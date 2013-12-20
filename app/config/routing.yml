@@ -1,0 +1,4 @@
+ayaline_composer:
+    resource: "@AyalineComposerBundle/Resources/config/routing.yml"
+    prefix:   /
+
