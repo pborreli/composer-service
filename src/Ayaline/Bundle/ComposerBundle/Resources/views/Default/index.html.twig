@@ -1,6 +1,10 @@
 {% extends 'AyalineComposerBundle::layout.html.twig' %}
 
 {% block content %}
+    <div class="row jumbotron well-sm">
+        <h1>Composer as a service</h1>
+        <p class="lead">Give your <strong>composer.json</strong>, get the corresponding <strong>vendor.zip</strong>, fast.</p>
+    </div>
     {{ form_start(form, {'attr': {'class': 'form-horizontal', 'role': 'form'}}) }}
         <div class="form-group" id="dnd-zone">
             {{ form_widget(form.body) }}
