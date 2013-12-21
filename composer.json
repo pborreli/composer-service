@@ -24,7 +24,9 @@
         "liip/monitor-bundle": "1.0.*@dev",
         "videlalvaro/php-amqplib": "~2.2",
 
-        "sonata-project/notification-bundle": "2.2.*@dev"
+        "sonata-project/notification-bundle": "2.2.*@dev",
+
+        "laupifrpar/pusher-bundle": "v1.2.2"
 
     },
     "scripts": {

@@ -2,3 +2,6 @@ ayaline_composer:
     resource: "@AyalineComposerBundle/Resources/config/routing.yml"
     prefix:   /
 
+lopi_pusher:
+    resource: "@LopiPusherBundle/Resources/config/routing.xml"
+    prefix:   /pusher

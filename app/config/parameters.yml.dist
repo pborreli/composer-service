@@ -19,3 +19,6 @@ parameters:
     rabbitmq_pass:     guest
     rabbitmq_port:     5672
     rabbitmq_vhost:    /
+    pusher_app_id:     change_me
+    pusher_key:        change_me
+    pusher_secret:     change_me

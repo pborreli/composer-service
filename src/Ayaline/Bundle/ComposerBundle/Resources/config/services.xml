@@ -18,10 +18,13 @@
     </services>
     -->
     <services>
-        <service id="sonata.notification.consumer.upload.composer" class="Ayaline\Bundle\ComposerBundle\Consumer\UploadComposerConsumer">
+        <service id="sonata.notification.consumer.upload.composer" class="Ayaline\Bundle\ComposerBundle\Consumer\UploadComposerConsumer" >
             <tag name="sonata.notification.consumer" type="upload.composer" />
-
+            <argument type="service" id="service_container" />
             <!--<argument type="service" id="logger" />-->
+        </service>
+        <service id="ayaline.composer.pusher.channel.authenticator" class="Ayaline\Bundle\ComposerBundle\Pusher\ChannelAuthenticator">
+            <argument type="service" id="service_container" />
         </service>
     </services>
 </container>

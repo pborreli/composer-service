@@ -19,6 +19,8 @@ class AppKernel extends Kernel
             new Ayaline\Bundle\ComposerBundle\AyalineComposerBundle(),
 
             new Sonata\NotificationBundle\SonataNotificationBundle(),
+
+            new Lopi\Bundle\PusherBundle\LopiPusherBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

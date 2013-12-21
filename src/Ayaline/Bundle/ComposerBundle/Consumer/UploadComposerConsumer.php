@@ -4,17 +4,25 @@ namespace Ayaline\Bundle\ComposerBundle\Consumer;
 
 use Sonata\NotificationBundle\Consumer\ConsumerEvent;
 use Sonata\NotificationBundle\Consumer\ConsumerInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\HttpKernel\Log\LoggerInterface;
-use Sonata\NotificationBundle\Exception\InvalidParameterException;
 use Symfony\Component\Process\Process;
 
 class UploadComposerConsumer implements ConsumerInterface
 {
     /**
+     * @var $container
      */
-    public function __construct()
+    public $container;
+
+    /**
+     * Constructor
+     *
+     * @param ContainerInterface  $container
+     */
+    public function __construct(ContainerInterface $container)
     {
+        $this->container  = $container;
     }
 
     /**
@@ -22,25 +30,43 @@ class UploadComposerConsumer implements ConsumerInterface
      */
     public function process(ConsumerEvent $event)
     {
-        $message = $event->getMessage();
-
+        $pusher = $this->container->get('lopi_pusher.pusher');
         $fs = new Filesystem();
-        $path = $message->getValue('path');
-        echo $path;
+
+        $message = $event->getMessage();
+        $body = $message->getValue('body');
+        $channelName = $message->getValue('channelName');
+
+        $path = '/dev/shm/composer/'. uniqid('composer', true);
+
         $fs->mkdir($path);
-        $fs->copy('/Users/ayoub/tmp/composer.json', $path.'/composer.json');
-        $process = new Process('php /Users/ayoub/tmp/composer.phar update -q --no-scripts --prefer-dist');
+        $fs->dumpFile($path.'/composer.json', $body);
+
+        $pusher->trigger($channelName, 'notice', array('msg' => 'Launching composer update'));
+
+        $process = new Process('hhvm /usr/local/bin/composer update -q --no-scripts --prefer-dist');
         $process->setWorkingDirectory($path);
         $process->run();
 
         if (!$process->isSuccessful()) {
-            echo $process->getErrorOutput();
-            //throw new \RuntimeException($process->getErrorOutput());
+            $pusher->trigger($channelName, 'error', array('message' => $process->getErrorOutput()));
         }
 
-        $process = new Process('zip -rq vendor.zip vendor/');
+        $pusher->trigger($channelName, 'notice', array('msg' => 'Compressing vendor.zip'));
+
+        $uniqid = uniqid();
+        $rootDir = $this->container->get('kernel')->getRootDir();
+        $resultPath = $rootDir.'/../web/assets/'.$uniqid;
+        $fs->mkdir($resultPath);
+        $process = new Process('zip -rq '.$resultPath.'/vendor.zip vendor/');
         $process->setWorkingDirectory($path);
         $process->run();
+
+        if (!$process->isSuccessful()) {
+            $pusher->trigger($channelName, 'error', array('message' => $process->getErrorOutput()));
+        }
+
+        $pusher->trigger($channelName, 'success', array('link' => '/assets/'.$uniqid.'/vendor.zip'));
 
         print $process->getOutput();
 

@@ -79,4 +79,16 @@ sonata_notification:
                 pass:         %rabbitmq_pass%
                 port:         %rabbitmq_port%
                 vhost:        %rabbitmq_vhost%
-                console_url : http://some.other.host:55999/api
+                console_url : http://localhost:55999/api
+
+
+lopi_pusher:
+    app_id: "%pusher_app_id%"
+    key:    "%pusher_key%"
+    secret: "%pusher_secret%"
+
+    auth_service_id: ayaline.composer.pusher.channel.authenticator
+
+twig:
+    globals:
+        pusher_key: "%pusher_key%"

@@ -9,6 +9,7 @@ use Composer\IO\BufferIO;
 use Composer\Json\JsonFile;
 use Composer\Util\RemoteFilesystem;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
@@ -16,22 +17,30 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
 
-        $tempfile = '/Users/ayoub/tmp/'. uniqid('composer', true);
-
-        $this->get('sonata.notification.backend')->createAndPublish('upload.composer', array(
-            'path' => $tempfile
-        ));
+        $defaultComposerBody = <<<DCB
+{
+    "require": {
+        "monolog/monolog": "1.2.*"
+    }
+}
+DCB;
 
         $form = $this->createFormBuilder()
-            ->add('file', 'file')
-            ->add('save', 'submit')
+            ->setAction($this->generateUrl('_welcome'))
+            ->add('body', 'textarea', array('attr' => array('class' => 'form-control', 'rows' => 10), 'data' => $defaultComposerBody))
             ->getForm();
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            // perform some action, such as saving the task to the database
 
+            $data = $form->getData();
+            $this->get('sonata.notification.backend')->createAndPublish('upload.composer', array(
+                'body' => $data['body'],
+                'channelName' => $request->getSession()->get('channelName')
+            ));
+
+            return new JsonResponse(array('status' => 'ok', 'message' => 'Launching...'));
         }
 
         return $this->render('AyalineComposerBundle:Default:index.html.twig', array(

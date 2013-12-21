@@ -1,7 +1,28 @@
 {% extends 'AyalineComposerBundle::layout.html.twig' %}
 
-
 {% block content %}
-
-
+    {{ form_start(form, {'attr': {'class': 'form-horizontal', 'role': 'form'}}) }}
+        <div class="form-group">
+            {{ form_widget(form.body) }}
+            <p class="drag-and-drop">
+                <span>
+                    Write your composer.json dragging and dropping,
+                    <input type="file" class="file-chooser">
+                    <a class="file-chooser-text" href="#">selecting it</a>, or pasting
+                    from the clipboard.
+                </span>
+            </p>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-12">
+                <a
+                        type="submit"
+                        class="btn btn-primary btn-lg ladda-button"
+                        data-loading-text="Loading..."
+                        data-style="expand-right"
+                        data-size="xl"
+                        disabled>Validate</a>
+            </div>
+        </div>
+    {{ form_end(form) }}
 {% endblock %}
