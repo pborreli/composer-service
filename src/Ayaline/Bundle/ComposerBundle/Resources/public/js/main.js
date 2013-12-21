@@ -50,6 +50,53 @@ $(document).ready(function() {
         button.removeAttr('disabled');
     });
 
+    $('#file').change(function() {
+        readFile(this.files[0])
+    });
+
+    function readFile(file) {
+        console.log(file.type);
+
+        if (file.type != 'application/json'){
+            $('.bad-file').addClass('in');
+
+            return false;
+        }
+        var reader = new FileReader();
+        reader.onload = function(event) {
+            var content = event.target.result;
+            $('textarea').val(content);
+        };
+        reader.readAsText(file);
+    }
+
+    function handleFileSelect(event) {
+        $(this).removeClass("dragover");
+        event.stopPropagation();
+        event.preventDefault();
+        readFile(event.dataTransfer.files[0])
+    }
+
+    function handleDragOver(event) {
+        $(this).addClass("dragover");
+        event.stopPropagation();
+        event.preventDefault();
+        event.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
+    }
+
+    function handleDragLeave(event) {
+        $(this).removeClass("dragover");
+        event.stopPropagation();
+        event.preventDefault();
+        event.dataTransfer.dropEffect = 'none';
+    }
+
+    // Setup the dnd listeners.
+    var dropZone = document.getElementById('dnd-zone');
+    dropZone.addEventListener('dragover', handleDragOver, false);
+    dropZone.addEventListener("dragleave", handleDragLeave, false);
+    dropZone.addEventListener('drop', handleFileSelect, false);
+
     $('form').on('submit', function() {
         ladda.start();
         $.ajax({

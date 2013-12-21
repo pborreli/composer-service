@@ -37,7 +37,10 @@ class UploadComposerConsumer implements ConsumerInterface
         $body = $message->getValue('body');
         $channelName = $message->getValue('channelName');
 
-        $path = '/dev/shm/composer/'. uniqid('composer', true);
+        $composers_tmp_path = $this->container->getParameter('composers_tmp_path', '/dev/shm/composer/');
+        $composers_tmp_path = rtrim($composers_tmp_path, '/').'/';
+
+        $path = $composers_tmp_path.uniqid('composer', true);
 
         $fs->mkdir($path);
         $fs->dumpFile($path.'/composer.json', $body);

@@ -22,3 +22,5 @@ parameters:
     pusher_app_id:     change_me
     pusher_key:        change_me
     pusher_secret:     change_me
+
+    composers_tmp_path: '/dev/shm/composer/'

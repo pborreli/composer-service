@@ -33,6 +33,10 @@ html.draganddrop textarea {
     display: block
 }
 
+.dragover textarea, .dragover .drag-and-drop {
+    box-shadow: #c9ff00 0 0 3px
+}
+
 .drag-and-drop .file-chooser {
     position: absolute;
     opacity: 0.0001;
