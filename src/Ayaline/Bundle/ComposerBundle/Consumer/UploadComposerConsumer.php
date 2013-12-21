@@ -2,6 +2,8 @@
 
 namespace Ayaline\Bundle\ComposerBundle\Consumer;
 
+use Composer\Json\JsonFile;
+use Composer\Json\JsonValidationException;
 use Sonata\NotificationBundle\Consumer\ConsumerEvent;
 use Sonata\NotificationBundle\Consumer\ConsumerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -45,6 +47,17 @@ class UploadComposerConsumer implements ConsumerInterface
         $fs->mkdir($path);
         $fs->dumpFile($path.'/composer.json', $body);
 
+        try {
+            $jsonFile = new JsonFile($path.'/composer.json');
+            $jsonFile->validateSchema(JsonFile::LAX_SCHEMA);
+        } catch (\Exception $exception) {
+            $from = array($path);
+            $to   = array('');
+            $message = str_replace($from, $to, $exception->getMessage());
+            $pusher->trigger($channelName, 'error', array('message' => nl2br($message)));
+            return 1;
+        }
+
         $pusher->trigger($channelName, 'notice', array('msg' => 'Launching composer update'));
 
         $process = new Process('hhvm /usr/local/bin/composer update -q --no-scripts --prefer-dist');
@@ -53,6 +66,10 @@ class UploadComposerConsumer implements ConsumerInterface
 
         if (!$process->isSuccessful()) {
             $pusher->trigger($channelName, 'error', array('message' => $process->getErrorOutput()));
+        }
+
+        if (!is_dir($path.'/vendor')) {
+            $pusher->trigger($channelName, 'error', array('message' => $process->getOutput()));
         }
 
         $pusher->trigger($channelName, 'notice', array('msg' => 'Compressing vendor.zip'));
@@ -71,7 +88,6 @@ class UploadComposerConsumer implements ConsumerInterface
 
         $pusher->trigger($channelName, 'success', array('link' => '/assets/'.$uniqid.'/vendor.zip'));
 
-        print $process->getOutput();
-
+        return 0;
     }
 }

@@ -13,9 +13,6 @@ $(document).ready(function() {
         button.removeClass('btn-success');
         button.find('.ladda-label').html('Validate');
         button.removeAttr('href');
-        button.click(function(e){
-            $('form').submit();
-        });
     });
 
     var ladda = Ladda.create( document.querySelector( '.btn' ) );
@@ -37,7 +34,12 @@ $(document).ready(function() {
         button.find('.ladda-label').html('Download');
         button.addClass('btn-success');
         button.attr('href', data.link);
-        button.unbind('click');
+    });
+
+    channel.bind('error', function(data) {
+        ladda.stop();
+        button.find('.ladda-label').html('Validate');
+        $('#error').html(data.message).addClass('alert in');
     });
 
     channel.bind('pusher:subscription_error', function(status) {

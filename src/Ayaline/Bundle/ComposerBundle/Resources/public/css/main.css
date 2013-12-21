@@ -1,6 +1,6 @@
 body {
     min-height: 2000px;
-    padding-top: 70px;
+    padding-top: 20px;
 }
 
 .drag-and-drop {
@@ -60,4 +60,9 @@ p.drag-and-drop.focused  {
 
 .dragover textarea, .dragover .drag-and-drop {
     box-shadow: #c9ff00 0 0 3px
+}
+
+#error {
+    margin-left: 0;
+    margin-right: 0
 }
