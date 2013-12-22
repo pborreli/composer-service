@@ -70,7 +70,7 @@ class UploadComposerConsumer implements ConsumerInterface
         }
 
         if (!is_dir($path.'/vendor')) {
-            $pusher->trigger($channelName, 'error', array('message' => $process->getOutput()));
+            $pusher->trigger($channelName, 'error', array('message' => 'Fatal error during composer update'));
             return 1;
         }
 
