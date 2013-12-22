@@ -65,7 +65,7 @@ class UploadComposerConsumer implements ConsumerInterface
         $process->run();
 
         if (!$process->isSuccessful()) {
-            $pusher->trigger($channelName, 'error', array('message' => $process->getErrorOutput()));
+            $pusher->trigger($channelName, 'error', array('message' => $process->getOutput()));
             return 1;
         }
 
