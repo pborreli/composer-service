@@ -66,10 +66,12 @@ class UploadComposerConsumer implements ConsumerInterface
 
         if (!$process->isSuccessful()) {
             $pusher->trigger($channelName, 'error', array('message' => $process->getErrorOutput()));
+            return 1;
         }
 
         if (!is_dir($path.'/vendor')) {
             $pusher->trigger($channelName, 'error', array('message' => $process->getOutput()));
+            return 1;
         }
 
         $pusher->trigger($channelName, 'notice', array('msg' => 'Compressing vendor.zip'));
