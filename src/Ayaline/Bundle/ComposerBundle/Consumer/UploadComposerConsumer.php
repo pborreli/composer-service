@@ -60,7 +60,7 @@ class UploadComposerConsumer implements ConsumerInterface
 
         $pusher->trigger($channelName, 'notice', array('message' => 'Updating...'));
 
-        $process = new Process('hhvm /usr/local/bin/composer update --no-scripts --prefer-dist --no-progress');
+        $process = new Process('hhvm /usr/local/bin/composer update --no-scripts --prefer-dist --no-progress --no-dev');
         $process->setWorkingDirectory($path);
         $process->run();
 
@@ -70,7 +70,7 @@ class UploadComposerConsumer implements ConsumerInterface
 
             $pusher->trigger($channelName, 'notice', array('message' => 'Restarting...'));
 
-            $process = new Process('/usr/local/bin/composer update --no-scripts --prefer-dist --no-progress');
+            $process = new Process('/usr/local/bin/composer update --no-scripts --prefer-dist --no-progress --no-dev');
             $process->setWorkingDirectory($path);
             $process->run();
         }
