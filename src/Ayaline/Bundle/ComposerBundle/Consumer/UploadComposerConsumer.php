@@ -64,6 +64,17 @@ class UploadComposerConsumer implements ConsumerInterface
         $process->setWorkingDirectory($path);
         $process->run();
 
+        $requirements = 'Your requirements could not be resolved to an installable set of packages.';
+
+        if (!$process->isSuccessful() && false !== strpos($process->getOutput(), $requirements)) {
+
+            $pusher->trigger($channelName, 'notice', array('message' => 'Restarting...'));
+
+            $process = new Process('/usr/local/bin/composer update --no-scripts --prefer-dist --no-progress');
+            $process->setWorkingDirectory($path);
+            $process->run();
+        }
+
         if (!$process->isSuccessful()) {
             $pusher->trigger($channelName, 'error', array('message' => $process->getOutput()));
             return 1;
