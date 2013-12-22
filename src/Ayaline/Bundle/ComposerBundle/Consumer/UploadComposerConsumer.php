@@ -90,6 +90,8 @@ class UploadComposerConsumer implements ConsumerInterface
 
         $pusher->trigger($channelName, 'success', array('link' => '/assets/'.$uniqid.'/vendor.zip'));
 
+        $fs->rmdir($path);
+
         return 0;
     }
 }
