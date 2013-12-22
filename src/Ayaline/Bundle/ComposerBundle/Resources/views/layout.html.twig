@@ -13,12 +13,18 @@
 {% block title 'Composer as a service' %}
 
 {% block body %}
-    <div class="container">
-    {% block content %}
+    <div id="wrap">
+        <div class="container">
+        {% block content %}
 
-    {% endblock %}
-    </div> <!-- /container -->
-
+        {% endblock %}
+        </div> <!-- /container -->
+    </div>
+    <div id="footer">
+        <div class="container">
+            <p class="text-muted text-center"><iframe src="http://ghbtns.com/github-btn.html?user=pborreli&type=follow&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20" async></iframe></p>
+        </div>
+    </div>
     <script>
         var channel_auth_endpoint = "{{ path('lopi_pusher_bundle_auth') }}";
         var pusher_key = "{{ pusher_key }}";
