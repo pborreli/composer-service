@@ -58,7 +58,7 @@ class UploadComposerConsumer implements ConsumerInterface
             return 1;
         }
 
-        $pusher->trigger($channelName, 'notice', array('msg' => 'Launching composer update'));
+        $pusher->trigger($channelName, 'notice', array('message' => 'Updating...'));
 
         $process = new Process('hhvm /usr/local/bin/composer update -q --no-scripts --prefer-dist');
         $process->setWorkingDirectory($path);
@@ -74,7 +74,7 @@ class UploadComposerConsumer implements ConsumerInterface
             return 1;
         }
 
-        $pusher->trigger($channelName, 'notice', array('msg' => 'Compressing vendor.zip'));
+        $pusher->trigger($channelName, 'notice', array('message' => 'Compressing...'));
 
         $uniqid = uniqid();
         $rootDir = $this->container->get('kernel')->getRootDir();

@@ -30,7 +30,7 @@ $(document).ready(function() {
     });
 
     channel.bind('notice', function(data) {
-        //console.log(data);
+        button.find('.ladda-label').html(data.message);
     });
 
     channel.bind('success', function(data) {
@@ -54,7 +54,7 @@ $(document).ready(function() {
     })
 
     channel.bind('pusher:subscription_succeeded', function() {
-        button.removeAttr('disabled');
+        button.removeClass('disabled');
     });
 
     $('#file').change(function() {
@@ -106,15 +106,14 @@ $(document).ready(function() {
 
     $('form').on('submit', function() {
         ladda.start();
+        button.find('.ladda-label').html('Validating...');
         $.ajax({
             url: $(this).attr('action'),
             type: $(this).attr('method'),
             data: $(this).serialize(),
             dataType: 'json',
             success: function(json) {
-                if(json.status == 'ok') {
-                    button.find('.ladda-label').html('Validating...');
-                } else {
+                if(json.status != 'ok') {
                     console.log('Erreur : '+ json.status);
                 }
             }

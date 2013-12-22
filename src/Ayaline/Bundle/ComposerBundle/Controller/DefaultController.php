@@ -27,7 +27,7 @@ DCB;
 
         $form = $this->createFormBuilder()
             ->setAction($this->generateUrl('_welcome'))
-            ->add('body', 'textarea', array('attr' => array('class' => 'form-control', 'rows' => 20), 'data' => $defaultComposerBody))
+            ->add('body', 'textarea', array('attr' => array('class' => 'form-control', 'rows' => 15), 'data' => $defaultComposerBody))
             ->getForm();
 
         $form->handleRequest($request);
