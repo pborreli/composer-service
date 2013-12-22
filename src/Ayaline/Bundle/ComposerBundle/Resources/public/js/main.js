@@ -35,7 +35,7 @@ $(document).ready(function() {
 
     channel.bind('success', function(data) {
         ladda.stop();
-        button.find('.ladda-label').html('Download');
+        button.find('.ladda-label').html('<i class="glyphicon glyphicon-download"></i> Download');
         button.addClass('btn-success');
         button.attr('href', data.link);
         button.unbind('click');
