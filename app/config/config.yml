@@ -92,3 +92,4 @@ lopi_pusher:
 twig:
     globals:
         pusher_key: "%pusher_key%"
+        analytics_id: "%analytics_id%"

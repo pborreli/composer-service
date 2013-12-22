@@ -24,3 +24,5 @@ parameters:
     pusher_secret:     change_me
 
     composers_tmp_path: '/dev/shm/composer/'
+
+    analytics_id:      UA-XXXXXX-X
