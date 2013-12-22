@@ -72,6 +72,7 @@ class UploadComposerConsumer implements ConsumerInterface
 
             $process = new Process('/usr/local/bin/composer update --no-scripts --prefer-dist --no-progress --no-dev');
             $process->setWorkingDirectory($path);
+            $process->setTimeout(300);
             $process->run();
         }
 
