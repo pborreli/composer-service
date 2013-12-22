@@ -60,12 +60,12 @@ class UploadComposerConsumer implements ConsumerInterface
 
         $pusher->trigger($channelName, 'notice', array('message' => 'Updating...'));
 
-        $process = new Process('hhvm /usr/local/bin/composer update -q --no-scripts --prefer-dist');
+        $process = new Process('hhvm /usr/local/bin/composer update --no-scripts --prefer-dist');
         $process->setWorkingDirectory($path);
         $process->run();
 
         if (!$process->isSuccessful()) {
-            $pusher->trigger($channelName, 'error', array('message' => $process->getOutput()));
+            $pusher->trigger($channelName, 'error', array('message' => $process->getErrorOutput()));
             return 1;
         }
 
