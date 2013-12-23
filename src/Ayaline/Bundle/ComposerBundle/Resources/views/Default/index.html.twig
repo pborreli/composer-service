@@ -35,4 +35,15 @@
         </div>
 
     {{ form_end(form) }}
+    <script type="text/javascript" src="//statuspage-production.s3.amazonaws.com/se.js"></script>
+    <script type="text/javascript">
+        window.fetchStatusPage({
+            pageId: '5dxbj378c8c9',     // required
+            renderTo: '#my-render-elem',        // optional, will render summary of status
+            successCallback: function(data) {   // optional, for full control of data returned
+                // do something with the data here
+                console.log(data.status.description);
+            }
+        });
+    </script>
 {% endblock %}

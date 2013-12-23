@@ -2156,16 +2156,16 @@
         },
         {
             "name": "videlalvaro/php-amqplib",
-            "version": "v2.2.5",
+            "version": "v2.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/videlalvaro/php-amqplib.git",
-                "reference": "6184ddd5497c6eaffa7817555515ff95999eefa1"
+                "reference": "6ef2ca9a45bb9fb20872f824f4c7c1518315bd3f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/videlalvaro/php-amqplib/zipball/6184ddd5497c6eaffa7817555515ff95999eefa1",
-                "reference": "6184ddd5497c6eaffa7817555515ff95999eefa1",
+                "url": "https://api.github.com/repos/videlalvaro/php-amqplib/zipball/6ef2ca9a45bb9fb20872f824f4c7c1518315bd3f",
+                "reference": "6ef2ca9a45bb9fb20872f824f4c7c1518315bd3f",
                 "shasum": ""
             },
             "require": {
@@ -2197,7 +2197,7 @@
                 "queue",
                 "rabbitmq"
             ],
-            "time": "2013-12-13 21:42:40"
+            "time": "2013-12-22 12:49:53"
         }
     ],
     "packages-dev": [
