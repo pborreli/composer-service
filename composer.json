@@ -1,8 +1,8 @@
 {
-    "name": "symfony/framework-standard-edition",
+    "name": "pborreli/composer-service",
     "license": "MIT",
     "type": "project",
-    "description": "The \"Symfony Standard Edition\" distribution",
+    "description": "Composer as a service",
     "autoload": {
         "psr-0": { "": "src/" }
     },
