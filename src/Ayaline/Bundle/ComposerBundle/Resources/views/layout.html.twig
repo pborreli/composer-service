@@ -1,0 +1,54 @@
+{% extends "::base.html.twig" %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    {% stylesheets
+    '@AyalineComposerBundle/Resources/public/css/main.css'
+    '@AyalineComposerBundle/Resources/public/css/ladda-themeless.css'
+    filter='cssrewrite' %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block title 'Composer as a service' %}
+
+{% block body %}
+    <div id="wrap">
+        <div class="container">
+        {% block content %}
+
+        {% endblock %}
+        </div> <!-- /container -->
+    </div>
+    <div id="footer">
+        <div class="container">
+            <p class="text-center">
+                shared with <span class="glyphicon glyphicon-heart"></span> by <a href="https://github.com/pborreli">Pascal Borreli</a>
+            </p>
+        </div>
+    </div>
+    <script>
+        var channel_auth_endpoint = "{{ path('lopi_pusher_bundle_auth') }}";
+        var pusher_key = "{{ pusher_key }}";
+    </script>
+    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="//js.pusher.com/2.1/pusher.min.js"></script>
+    {% javascripts
+    '@AyalineComposerBundle/Resources/public/js/jquery.cookie.js'
+    '@AyalineComposerBundle/Resources/public/js/spin.js'
+    '@AyalineComposerBundle/Resources/public/js/ladda.js'
+    '@AyalineComposerBundle/Resources/public/js/main.js'
+    %}
+<script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    {% if app.debug %}
+    <script>
+        Pusher.log = function(message) {
+        if (window.console && window.console.log) {
+            window.console.log(message);
+        }
+        };
+    </script>
+    {% endif %}
+{% endblock %}

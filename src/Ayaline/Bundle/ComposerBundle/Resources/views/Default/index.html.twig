@@ -1,0 +1,38 @@
+{% extends 'AyalineComposerBundle::layout.html.twig' %}
+
+{% block content %}
+    <div class="row jumbotron well-sm">
+        <h1>Composer as a service</h1>
+        <p class="lead">Give your <strong>composer.json</strong>, get the corresponding <strong>vendor.zip</strong>, fast.</p>
+    </div>
+
+    <div class="alert-danger fade" id="error"></div>
+
+    {{ form_start(form, {'attr': {'class': 'form-horizontal', 'role': 'form'}}) }}
+        <div class="form-group" id="dnd-zone">
+            {{ form_widget(form.body) }}
+            <p class="drag-and-drop">
+                <span>
+                    Write your composer.json dragging and dropping,
+                    <input type="file" class="file-chooser" id="file">
+                    <a class="file-chooser-text" href="#">selecting it</a>, or pasting
+                    from the clipboard.
+                </span>
+                <span class="bad-file alert-danger fade">
+                  Please use a composer.json file
+                </span>
+            </p>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-2">
+                <a type="submit"
+                   class="btn btn-primary btn-lg ladda-button disabled"
+                   data-loading-text="Loading..."
+                   data-style="expand-right"
+                   data-size="xl"
+                   >Validate</a>
+            </div>
+        </div>
+
+    {{ form_end(form) }}
+{% endblock %}

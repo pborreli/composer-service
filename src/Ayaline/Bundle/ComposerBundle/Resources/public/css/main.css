@@ -1,0 +1,91 @@
+body {
+    padding-top: 20px;
+}
+html,
+body {
+    height: 100%;
+    /* The html and body elements cannot have any padding or margin. */
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+    min-height: 100%;
+    height: auto;
+    /* Negative indent footer by its height */
+    margin: 0 auto -30px;
+    /* Pad bottom by footer height */
+    padding: 0 0 30px;
+}
+
+/* Set the fixed height of the footer here */
+#footer {
+    height: 30px;
+    font-weight: 300;
+}
+.drag-and-drop {
+    display: none
+}
+
+html.draganddrop .drag-and-drop {
+    margin: 0;
+    padding: 7px 10px;
+    color: #aaa;
+    font-size: 13px;
+    line-height: 16px;
+    background-color: #fafafa;
+    border: 1px solid #ccc;
+    border-top: 0;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: block;
+    position: relative;
+    -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+html.draganddrop textarea {
+    border-bottom: 1px dashed #ddd;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    display: block
+}
+
+.dragover textarea, .dragover .drag-and-drop {
+    box-shadow: #c9ff00 0 0 3px
+}
+
+.drag-and-drop .file-chooser {
+    position: absolute;
+    opacity: 0.0001;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+}
+
+p.drag-and-drop.focused  {
+    box-shadow: rgba(81, 167, 232, 0.5) 0 0 3px;
+    border-color:#51a7e8;
+}
+
+.drag-and-drop .file-chooser:hover + .file-chooser-text {
+    text-decoration: underline
+}
+
+.drag-and-drop span {
+    display: inline-block
+}
+
+.dragover textarea, .dragover .drag-and-drop {
+    box-shadow: #c9ff00 0 0 3px
+}
+
+#error {
+    margin-left: 0;
+    margin-right: 0
+}
+
+.container .text-muted {
+    margin: 20px 0;
+}

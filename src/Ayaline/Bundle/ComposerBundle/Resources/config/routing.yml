@@ -1,0 +1,3 @@
+_welcome:
+    pattern:  /
+    defaults: { _controller: AyalineComposerBundle:Default:index }
