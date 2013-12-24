@@ -82,26 +82,30 @@ class UploadComposerConsumer implements ConsumerInterface
             return 1;
         }
 
-        if (!is_dir($path.'/vendor')) {
+        if (!is_dir($path.'/vendor') || !is_file($path.'/composer.lock')) {
             $pusher->trigger($channelName, 'error', array('message' => 'Fatal error during composer update'));
             return 1;
         }
 
-        $pusher->trigger($channelName, 'notice', array('message' => 'Compressing...'));
+        $sha1LockFile = sha1_file($path.'/composer.lock');
 
-        $uniqid = uniqid();
         $rootDir = $this->container->get('kernel')->getRootDir();
-        $resultPath = $rootDir.'/../web/assets/'.$uniqid;
-        $fs->mkdir($resultPath);
-        $process = new Process('zip -rq '.$resultPath.'/vendor.zip .');
-        $process->setWorkingDirectory($path);
-        $process->run();
+        $resultPath = $rootDir.'/../web/assets/'.$sha1LockFile;
 
-        if (!$process->isSuccessful()) {
-            $pusher->trigger($channelName, 'error', array('message' => $process->getErrorOutput()));
+        if (!is_file($resultPath.'/vendor.zip')) {
+
+            $pusher->trigger($channelName, 'notice', array('message' => 'Compressing...'));
+
+            $fs->mkdir($resultPath);
+            $process = new Process('zip -rq '.$resultPath.'/vendor.zip .');
+            $process->setWorkingDirectory($path);
+            $process->run();
+
+            if (!$process->isSuccessful()) {
+                $pusher->trigger($channelName, 'error', array('message' => $process->getErrorOutput()));
+            }
         }
-
-        $pusher->trigger($channelName, 'success', array('link' => '/assets/'.$uniqid.'/vendor.zip'));
+        $pusher->trigger($channelName, 'success', array('link' => '/assets/'.$sha1LockFile.'/vendor.zip'));
 
         $fs->remove($path);
 
