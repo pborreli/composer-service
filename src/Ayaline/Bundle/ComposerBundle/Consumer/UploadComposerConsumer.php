@@ -93,7 +93,7 @@ class UploadComposerConsumer implements ConsumerInterface
         $rootDir = $this->container->get('kernel')->getRootDir();
         $resultPath = $rootDir.'/../web/assets/'.$uniqid;
         $fs->mkdir($resultPath);
-        $process = new Process('zip -rq '.$resultPath.'/vendor.zip vendor/');
+        $process = new Process('zip -rq '.$resultPath.'/vendor.zip .');
         $process->setWorkingDirectory($path);
         $process->run();
 
