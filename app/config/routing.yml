@@ -5,3 +5,7 @@ ayaline_composer:
 lopi_pusher:
     resource: "@LopiPusherBundle/Resources/config/routing.xml"
     prefix:   /pusher
+
+_monitor:
+    resource: "@LiipMonitorBundle/Resources/config/routing.yml"
+    prefix: /monitor/health

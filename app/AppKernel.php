@@ -21,6 +21,8 @@ class AppKernel extends Kernel
             new Sonata\NotificationBundle\SonataNotificationBundle(),
 
             new Lopi\Bundle\PusherBundle\LopiPusherBundle(),
+
+            new Liip\MonitorBundle\LiipMonitorBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

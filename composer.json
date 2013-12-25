@@ -26,7 +26,11 @@
 
         "sonata-project/notification-bundle": "2.2.*@dev",
 
-        "laupifrpar/pusher-bundle": "v1.2.2"
+        "laupifrpar/pusher-bundle": "v1.2.2",
+
+        "guzzle/guzzle": "3.8",
+
+        "sensiolabs/security-checker": "~1.3"
 
     },
     "scripts": {

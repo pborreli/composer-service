@@ -79,7 +79,7 @@ sonata_notification:
                 pass:         %rabbitmq_pass%
                 port:         %rabbitmq_port%
                 vhost:        %rabbitmq_vhost%
-                console_url : http://localhost:55999/api
+                console_url : http://localhost:15672/api
 
 
 lopi_pusher:
@@ -93,3 +93,9 @@ twig:
     globals:
         pusher_key: "%pusher_key%"
         analytics_id: "%analytics_id%"
+
+liip_monitor:
+    checks:
+        disc_usage:
+            path: %composers_tmp_path%
+        security_advisory: ~
