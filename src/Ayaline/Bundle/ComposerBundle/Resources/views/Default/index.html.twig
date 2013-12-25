@@ -9,30 +9,39 @@
     <div class="alert-danger fade" id="error"></div>
 
     {{ form_start(form, {'attr': {'class': 'form-horizontal', 'role': 'form'}}) }}
-        <div class="form-group" id="dnd-zone">
-            {{ form_widget(form.body) }}
-            <p class="drag-and-drop">
-                <span>
-                    Write your composer.json dragging and dropping,
-                    <input type="file" class="file-chooser" id="file">
-                    <a class="file-chooser-text" href="#">selecting it</a>, or pasting
-                    from the clipboard.
-                </span>
-                <span class="bad-file alert-danger fade">
-                  Please use a composer.json file
-                </span>
-            </p>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-2">
-                <a type="submit"
-                   class="btn btn-primary btn-lg ladda-button disabled"
-                   data-loading-text="Loading..."
-                   data-style="expand-right"
-                   data-size="xl"
-                   >Validate</a>
+        <div class="row">
+            <div class="form-group col-sm-8 col-lg-9" id="dnd-zone">
+                {{ form_widget(form.body) }}
+                <p class="drag-and-drop">
+                    <span>
+                        Write your composer.json dragging and dropping,
+                        <input type="file" class="file-chooser" id="file">
+                        <a class="file-chooser-text" href="#">selecting it</a>, or pasting
+                        from the clipboard.
+                    </span>
+                    <span class="bad-file alert-danger fade">
+                      Please use a composer.json file
+                    </span>
+                </p>
+            </div>
+            <div class="col-sm-4 col-lg-3 lead" id="progress">
+                <p class=""><a type="submit"
+                                   class="btn btn-primary btn-lg ladda-button disabled"
+                                   data-loading-text="Loading..."
+                                   data-style="zoom-in"
+                                   data-size="xl"
+                            >Go</a></p>
+
+                <ul id="steps">
+                    {#<li class="success"><i class="glyphicon glyphicon-ok"></i> Checking composer.json</li>
+                    <li class="success"><i class="glyphicon glyphicon-ok"></i> Sending to queue</li>
+                    <li class="success"><i class="glyphicon glyphicon-ok"></i> Starting async job</li>
+                    <li class="danger"><i class="glyphicon glyphicon-remove"></i> ./composer update</li>
+                    <li class="warning"><i class="glyphicon glyphicon-warning-sign"></i> Checking vulnerability</li>
+                    <li class="text-muted"><i class="glyphicon glyphicon-time"></i> Compressing vendor.zip</li>#}
+                </ul>
+                <a id="download-link" class="btn btn-lg btn-success fade" href=""><i class="glyphicon glyphicon-download"></i> Download</a>
             </div>
         </div>
-
     {{ form_end(form) }}
 {% endblock %}
