@@ -86,6 +86,32 @@ p.drag-and-drop.focused  {
     margin-right: 0
 }
 
-.container .text-muted {
-    margin: 20px 0;
+#steps {
+    list-style-type: none;
+    padding: 0;
+}
+
+#steps .muted {
+    color: #999999;
+}
+
+#steps .primary {
+    color: #428bca;
+}
+
+#steps .success {
+    color: #47a447;
+}
+
+#steps .danger {
+    color: #ac2925;
+}
+
+#steps .warning {
+    color: #d58512;
+}
+#steps li {
+    overflow:hidden;
+    white-space:nowrap;
+    font-size: 80%;
 }

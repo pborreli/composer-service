@@ -1,6 +1,9 @@
+
+
 $(document).ready(function() {
     var dragDrop = $('p.drag-and-drop');
-    var button = $('a.btn');
+    var button = $('#progress a.btn-primary');
+    var downloadLink = $('#download-link');
     $('input.file-chooser')
         .width(dragDrop.outerWidth())
         .height(dragDrop.outerHeight());
@@ -11,8 +14,6 @@ $(document).ready(function() {
         dragDrop.addClass('focused');
     }).on('input propertychange', function() {
         button.removeClass('btn-success');
-        button.find('.ladda-label').html('Validate');
-        button.removeAttr('href');
         button.unbind('click');
         button.click(function(e){
             $('form').submit();
@@ -29,22 +30,25 @@ $(document).ready(function() {
         $('form').submit();
     });
 
-    channel.bind('notice', function(data) {
-        button.find('.ladda-label').html(data.message);
-    });
-
-    channel.bind('success', function(data) {
+    channel.bind('consumer:error', function(data) {
         ladda.stop();
-        button.find('.ladda-label').html('<i class="glyphicon glyphicon-download"></i> Download');
-        button.addClass('btn-success');
-        button.attr('href', data.link);
-        button.unbind('click');
-    });
-
-    channel.bind('error', function(data) {
-        ladda.stop();
-        button.find('.ladda-label').html('Validate');
         $('#error').html(data.message).addClass('alert in');
+    });
+
+    channel.bind('consumer:success', function(data) {
+        step('Done !', false, true);
+        ladda.stop();
+
+        downloadLink.addClass('in');
+        downloadLink.attr('href', data.link);
+    });
+
+    channel.bind('consumer:new-step', function(data) {
+        step(data.message, false);
+    });
+
+    channel.bind('consumer:step-error', function(data) {
+        step(data.message, true);
     });
 
     channel.bind('pusher:subscription_error', function(status) {
@@ -98,6 +102,25 @@ $(document).ready(function() {
         event.dataTransfer.dropEffect = 'none';
     }
 
+    function step (message, error, last) {
+        error = typeof error !== 'undefined' ? error : false;
+        last = typeof last !== 'undefined' ? last : false;
+
+        var lastChild = $('#steps li:last-child');
+        lastChild.removeClass('text-muted').addClass(error ? 'danger' : 'success');
+
+        if (error) {
+            lastChild.html('<i class="glyphicon glyphicon-remove"></i> '+message);
+        }else{
+            lastChild.find('i').removeClass('glyphicon-time').addClass('glyphicon-ok');
+            if (last) {
+                $('<li class="success"><i class="glyphicon glyphicon-ok"></i> '+message+'</li>').appendTo('#steps');
+            } else {
+                $('<li class="text-muted"><i class="glyphicon glyphicon-time"></i> '+message+'</li>').appendTo('#steps');
+            }
+        }
+    }
+
     // Setup the dnd listeners.
     var dropZone = document.getElementById('dnd-zone');
     dropZone.addEventListener('dragover', handleDragOver, false);
@@ -106,7 +129,8 @@ $(document).ready(function() {
 
     $('form').on('submit', function() {
         ladda.start();
-        button.find('.ladda-label').html('Validating...');
+        $('#steps').addClass('fade').html(null).removeClass('fade');
+        downloadLink.removeClass('in');
         $.ajax({
             url: $(this).attr('action'),
             type: $(this).attr('method'),
@@ -114,7 +138,10 @@ $(document).ready(function() {
             dataType: 'json',
             success: function(json) {
                 if(json.status != 'ok') {
-                    console.log('Erreur : '+ json.status);
+                    ladda.stop();
+                    $('#error').html(json.message).addClass('alert in');
+                } else {
+                    step('Sending to queue', false);
                 }
             }
         });
