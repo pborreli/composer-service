@@ -6,10 +6,10 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-    {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}{% endblock %}
         {% javascripts
-        '@AyalineComposerBundle/Resources/public/js/modernizr.js' %}
-        <script src="{{ asset_url }}"></script>
+            '@AyalineComposerBundle/Resources/public/js/modernizr.js' %}
+            <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
         <script>
             var _prum = [['id', '{{ pingdom_rum_id }}'],
