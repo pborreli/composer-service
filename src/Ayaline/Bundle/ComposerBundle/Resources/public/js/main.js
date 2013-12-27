@@ -130,6 +130,7 @@ $(document).ready(function() {
     $('form').on('submit', function() {
         ladda.start();
         $('#steps').addClass('fade').html(null).removeClass('fade');
+        step('Validating composer.json', false);
         downloadLink.removeClass('in');
         $.ajax({
             url: $(this).attr('action'),
@@ -137,11 +138,11 @@ $(document).ready(function() {
             data: $(this).serialize(),
             dataType: 'json',
             success: function(json) {
-                if(json.status != 'ok') {
+                if(json.status == 'ok') {
+                    step('Sending to queue', false);
+                } else {
                     ladda.stop();
                     $('#error').html(json.message).addClass('alert in');
-                } else {
-                    step('Sending to queue', false);
                 }
             }
         });

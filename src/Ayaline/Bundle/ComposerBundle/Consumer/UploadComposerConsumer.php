@@ -50,19 +50,6 @@ class UploadComposerConsumer implements ConsumerInterface
         $fs->mkdir($path);
         $fs->dumpFile($path.'/composer.json', $body);
 
-        $pusher->trigger($channelName, 'consumer:new-step', array('message' => 'Validating composer.json'));
-
-        try {
-            $jsonFile = new JsonFile($path.'/composer.json');
-            $jsonFile->validateSchema(JsonFile::LAX_SCHEMA);
-        } catch (\Exception $exception) {
-            $from = array($path);
-            $to   = array('');
-            $message = str_replace($from, $to, $exception->getMessage());
-            $pusher->trigger($channelName, 'consumer:error', array('message' => nl2br($message)));
-            return 1;
-        }
-
         $pusher->trigger($channelName, 'consumer:new-step', array('message' => './composer update'));
 
         $process = new Process('hhvm /usr/local/bin/composer update --no-scripts --prefer-dist --no-progress --no-dev');
