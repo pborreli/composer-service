@@ -3,10 +3,10 @@
 {% block stylesheets %}
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
     {% stylesheets
-    '@AyalineComposerBundle/Resources/public/css/main.css'
-    '@AyalineComposerBundle/Resources/public/css/ladda-themeless.css'
-    filter='cssrewrite' %}
-    <link rel="stylesheet" href="{{ asset_url }}" />
+        '@AyalineComposerBundle/Resources/public/css/main.css'
+        '@AyalineComposerBundle/Resources/public/css/ladda-themeless.css'
+        filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
 {% endblock %}
 
@@ -36,20 +36,20 @@
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
     <script src="//js.pusher.com/2.1/pusher.min.js"></script>
     {% javascripts
-    '@AyalineComposerBundle/Resources/public/js/jquery.cookie.js'
-    '@AyalineComposerBundle/Resources/public/js/spin.js'
-    '@AyalineComposerBundle/Resources/public/js/ladda.js'
-    '@AyalineComposerBundle/Resources/public/js/main.js'
-    %}
-<script src="{{ asset_url }}"></script>
+        '@AyalineComposerBundle/Resources/public/js/jquery.cookie.js'
+        '@AyalineComposerBundle/Resources/public/js/spin.js'
+        '@AyalineComposerBundle/Resources/public/js/ladda.js'
+        '@AyalineComposerBundle/Resources/public/js/main.js'
+        %}
+        <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
     {% if app.debug %}
-    <script>
-        Pusher.log = function(message) {
-        if (window.console && window.console.log) {
-            window.console.log(message);
-        }
-        };
-    </script>
+        <script>
+            Pusher.log = function(message) {
+                if (window.console && window.console.log) {
+                    window.console.log(message);
+                }
+            };
+        </script>
     {% endif %}
 {% endblock %}

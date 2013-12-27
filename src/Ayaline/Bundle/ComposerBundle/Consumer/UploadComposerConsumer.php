@@ -91,7 +91,7 @@ class UploadComposerConsumer implements ConsumerInterface
 
         if (!$process->isSuccessful() || false !== strpos($output, $requirements) || false !== strpos($output, 'HipHop Fatal error')) {
 
-            $pusher->trigger($channelName, 'consumer:new-step', array('message' => 'Restarting...'));
+            $pusher->trigger($channelName, 'consumer:new-step', array('message' => 'Restarting ...'));
 
             $process = new Process('/usr/local/bin/composer update --no-scripts --prefer-dist --no-progress --no-dev');
             $process->setWorkingDirectory($path);

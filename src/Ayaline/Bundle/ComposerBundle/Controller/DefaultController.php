@@ -2,12 +2,8 @@
 
 namespace Ayaline\Bundle\ComposerBundle\Controller;
 
-use Composer\Composer;
-use Composer\Factory;
 use Composer\Installer;
-use Composer\IO\BufferIO;
 use Composer\Json\JsonFile;
-use Composer\Util\RemoteFilesystem;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
