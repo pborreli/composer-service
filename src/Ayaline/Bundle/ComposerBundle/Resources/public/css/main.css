@@ -1,10 +1,15 @@
 body {
     padding-top: 20px;
 }
+
 html,
 body {
     height: 100%;
     /* The html and body elements cannot have any padding or margin. */
+}
+
+textarea {
+    font-family: Monaco, "Liberation Mono", Courier, monospace;
 }
 
 /* Wrapper for page content to push down footer */
@@ -22,6 +27,7 @@ body {
     height: 30px;
     font-weight: 300;
 }
+
 .drag-and-drop {
     display: none
 }
@@ -64,9 +70,9 @@ html.draganddrop textarea {
     left: 0;
 }
 
-p.drag-and-drop.focused  {
+p.drag-and-drop.focused {
     box-shadow: rgba(81, 167, 232, 0.5) 0 0 3px;
-    border-color:#51a7e8;
+    border-color: #51a7e8;
 }
 
 .drag-and-drop .file-chooser:hover + .file-chooser-text {
@@ -110,9 +116,10 @@ p.drag-and-drop.focused  {
 #steps .warning {
     color: #d58512;
 }
+
 #steps li {
-    overflow:hidden;
-    white-space:nowrap;
+    overflow: hidden;
+    white-space: nowrap;
     font-size: 80%;
 }
 
