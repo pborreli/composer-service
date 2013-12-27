@@ -93,6 +93,7 @@ twig:
     globals:
         pusher_key: "%pusher_key%"
         analytics_id: "%analytics_id%"
+        pingdom_rum_id: "%pingdom_rum_id%"
 
 liip_monitor:
     checks:
