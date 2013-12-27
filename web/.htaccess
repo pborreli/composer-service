@@ -50,5 +50,3 @@ DirectoryIndex app.php
         # RedirectTemp cannot be used instead
     </IfModule>
 </IfModule>
-
-SetEnv COMPOSER_HOME /Users/ayoub
