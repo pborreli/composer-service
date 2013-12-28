@@ -1,5 +1,3 @@
-
-
 $(document).ready(function() {
     var dragDrop = $('p.drag-and-drop');
     var button = $('#progress a.btn-primary');
@@ -20,14 +18,16 @@ $(document).ready(function() {
         });
     });
 
-    var ladda = Ladda.create( document.querySelector( '.btn' ) );
+    var ladda = Ladda.create(document.querySelector('.btn'));
 
     var pusher = new Pusher(pusher_key, { authEndpoint: channel_auth_endpoint });
     var sessionId = $.cookie('COMPOSERAAS');
     var channel = pusher.subscribe('private-channel-'+sessionId);
+    var start, end;
 
-    button.click(function(e){
+    button.click(function(e) {
         $('form').submit();
+        start = new Date().getTime();
     });
 
     channel.bind('consumer:error', function(data) {
@@ -36,7 +36,8 @@ $(document).ready(function() {
     });
 
     channel.bind('consumer:success', function(data) {
-        step('Done !', false, true);
+        end = new Date().getTime();
+        step('Done in '+ (end - start)/100 +' seconds!', false, true);
         ladda.stop();
 
         downloadLink.addClass('in');
@@ -102,7 +103,7 @@ $(document).ready(function() {
         event.dataTransfer.dropEffect = 'none';
     }
 
-    function step (message, error, last) {
+    function step(message, error, last) {
         error = typeof error !== 'undefined' ? error : false;
         last = typeof last !== 'undefined' ? last : false;
 
