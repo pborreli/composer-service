@@ -48,13 +48,15 @@ class UploadComposerConsumer implements ConsumerInterface
         $path = rtrim($path, '/').'/';
         $path = $path.uniqid('composer', true);
 
+        $composerBinPath = $this->container->getParameter('composer_bin_path', '/usr/local/bin/composer');
+
         $fs = new Filesystem();
         $fs->mkdir($path);
         $fs->dumpFile($path.'/composer.json', $body);
 
         $pusher->trigger($channelName, 'consumer:new-step', array('message' => './composer update'));
 
-        $process = new Process('hhvm /usr/local/bin/composer update --no-scripts --prefer-dist --no-progress --no-dev');
+        $process = new Process("hhvm $composerBinPath update --no-scripts --prefer-dist --no-progress --no-dev");
         $process->setWorkingDirectory($path);
         $process->setTimeout(300);
 
@@ -78,11 +80,13 @@ class UploadComposerConsumer implements ConsumerInterface
 
         $requirements = 'Your requirements could not be resolved to an installable set of packages.';
 
-        if (!$process->isSuccessful() || false !== strpos($output, $requirements) || false !== strpos($output, 'HipHop Fatal error')) {
+        if (!$process->isSuccessful()
+            || false !== strpos($output, $requirements)
+            || false !== strpos($output, 'HipHop Fatal error')) {
 
             $pusher->trigger($channelName, 'consumer:new-step', array('message' => 'Restarting ...'));
 
-            $process = new Process('/usr/local/bin/composer update --no-scripts --prefer-dist --no-progress --no-dev');
+            $process = new Process("$composerBinPath update --no-scripts --prefer-dist --no-progress --no-dev");
             $process->setWorkingDirectory($path);
             $process->setTimeout(300);
             $output = null;
