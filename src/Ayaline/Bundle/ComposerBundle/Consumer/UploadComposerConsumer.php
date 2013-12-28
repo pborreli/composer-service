@@ -16,8 +16,6 @@ class UploadComposerConsumer implements ConsumerInterface
      */
     public $container;
 
-
-
     /**
      * Constructor
      *
@@ -41,11 +39,11 @@ class UploadComposerConsumer implements ConsumerInterface
 
         $pusher->trigger($channelName, 'consumer:new-step', array('message' => 'Starting async job'));
 
-        $path = $this->container->getParameter('composer_tmp_path', '/dev/shm/composer/');
+        $path = $this->container->getParameter('composer_tmp_path');
         $path = rtrim($path, '/').'/';
         $path = $path.uniqid('composer', true);
 
-        $composerBinPath = $this->container->getParameter('composer_bin_path', '/usr/local/bin/composer');
+        $composerBinPath = $this->container->getParameter('composer_bin_path');
 
         $fs = new Filesystem();
         $fs->mkdir($path);
@@ -71,7 +69,7 @@ class UploadComposerConsumer implements ConsumerInterface
         $output = null;
         try {
             $process->run($callback);
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             $pusher->trigger($channelName, 'consumer:step-error', array('message' => 'HHVM composer failed'));
         }
 
@@ -106,7 +104,7 @@ class UploadComposerConsumer implements ConsumerInterface
 
         try {
             $alerts = $checker->check($path.'/composer.lock', 'json');
-        }catch(\RuntimeException $e){
+        } catch(\RuntimeException $e) {
             $pusher->trigger($channelName, 'consumer:error', array('message' => $e->getMessage(), 'more' => $alerts));
             return 1;
         }
