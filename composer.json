@@ -31,7 +31,6 @@
         "guzzle/guzzle": "3.8",
 
         "sensiolabs/security-checker": "~1.3"
-
     },
     "scripts": {
         "post-install-cmd": [
@@ -58,18 +57,14 @@
         "symfony-assets-install": "relative",
         "incenteev-parameters": [
             {
-                "file": "app/config/parameters.yml",
-                "keep-outdated": true,
-                "env-map": {
-                    "pusher_app_id": "PUSHER_APP_ID",
-                    "pusher_key": "PUSHER_KEY",
-                    "pusher_secret": "PUSHER_SECRET"
-                }
+                "file": "app/config/parameters.yml"
             },
             {
                 "file": "behat.yml",
                 "dist-file": "behat.yml.dist",
-                "parameter-key": "default",
+                "parameter-key": "default"
+            },
+            {
                 "keep-outdated": true,
                 "env-map": {
                     "pusher_app_id": "PUSHER_APP_ID",
