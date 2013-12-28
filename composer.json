@@ -56,14 +56,28 @@
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",
         "symfony-assets-install": "relative",
-        "incenteev-parameters": {
-            "file": "app/config/parameters.yml",
-            "env-map": {
-                "pusher_app_id": "PUSHER_APP_ID",
-                "pusher_key": "PUSHER_KEY",
-                "pusher_secret": "PUSHER_SECRET"
+        "incenteev-parameters": [
+            {
+                "file": "app/config/parameters.yml",
+                "keep-outdated": true,
+                "env-map": {
+                    "pusher_app_id": "PUSHER_APP_ID",
+                    "pusher_key": "PUSHER_KEY",
+                    "pusher_secret": "PUSHER_SECRET"
+                }
+            },
+            {
+                "file": "behat.yml",
+                "dist-file": "behat.yml.dist",
+                "parameter-key": "default",
+                "keep-outdated": true,
+                "env-map": {
+                    "pusher_app_id": "PUSHER_APP_ID",
+                    "pusher_key": "PUSHER_KEY",
+                    "pusher_secret": "PUSHER_SECRET"
+                }
             }
-        },
+        ],
         "branch-alias": {
             "dev-master": "2.4-dev"
         }
