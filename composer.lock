@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "7624eedb9502ae61ca8049fa01360ae0",
+    "hash": "6b967a5396d311840aa7ba4c76a167a0",
     "packages": [
         {
             "name": "composer/composer",
@@ -11,12 +11,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "6ead35f189f73f236c69755893181d7b77c90840"
+                "reference": "09602bbf00c1897ea2c3a088f161490cd2808e49"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/6ead35f189f73f236c69755893181d7b77c90840",
-                "reference": "6ead35f189f73f236c69755893181d7b77c90840",
+                "url": "https://api.github.com/repos/composer/composer/zipball/09602bbf00c1897ea2c3a088f161490cd2808e49",
+                "reference": "09602bbf00c1897ea2c3a088f161490cd2808e49",
                 "shasum": ""
             },
             "require": {
@@ -72,7 +72,7 @@
                 "dependency",
                 "package"
             ],
-            "time": "2013-12-27 10:06:41"
+            "time": "2013-12-27 12:48:40"
         },
         {
             "name": "doctrine/annotations",

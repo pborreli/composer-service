@@ -24,6 +24,7 @@ parameters:
     pusher_secret:     change_me
 
     composer_tmp_path: '/dev/shm/composer/'
+    composer_bin_path: '/usr/local/bin/composer'
 
     analytics_id:      UA-XXXXXX-X
     pingdom_rum_id:    change_me

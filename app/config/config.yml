@@ -98,5 +98,4 @@ twig:
 liip_monitor:
     checks:
         disc_usage:
-            path: %composers_tmp_path%
-        security_advisory: ~
+            path: %composer_tmp_path%
