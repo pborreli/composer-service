@@ -5,7 +5,6 @@ namespace Ayaline\Bundle\ComposerBundle\Consumer;
 use SensioLabs\Security\SecurityChecker;
 use Sonata\NotificationBundle\Consumer\ConsumerEvent;
 use Sonata\NotificationBundle\Consumer\ConsumerInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Process\Process;
 

@@ -15,6 +15,8 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('ayaline_composer');
 
+        $rootNode->children()->end();
+
         return $treeBuilder;
     }
 }
