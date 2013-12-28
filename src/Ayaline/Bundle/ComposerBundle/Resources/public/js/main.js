@@ -23,7 +23,7 @@ $(document).ready(function() {
     var ladda = Ladda.create( document.querySelector( '.btn' ) );
 
     var pusher = new Pusher(pusher_key, { authEndpoint: channel_auth_endpoint });
-    var sessionId = $.cookie('PHPSESSID');
+    var sessionId = $.cookie('COMPOSERAAS');
     var channel = pusher.subscribe('private-channel-'+sessionId);
 
     button.click(function(e){

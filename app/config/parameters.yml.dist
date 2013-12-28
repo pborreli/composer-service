@@ -23,6 +23,7 @@ parameters:
     pusher_key:        change_me
     pusher_secret:     change_me
 
+    session_name:      COMPOSERAAS
     composer_tmp_path: '/dev/shm/composer/'
     composer_bin_path: '/usr/local/bin/composer'
 
