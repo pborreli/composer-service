@@ -2,7 +2,6 @@
 
 namespace Ayaline\Bundle\ComposerBundle\Controller;
 
-use Composer\Installer;
 use Composer\Json\JsonFile;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;

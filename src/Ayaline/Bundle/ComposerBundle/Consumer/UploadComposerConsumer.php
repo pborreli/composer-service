@@ -2,12 +2,9 @@
 
 namespace Ayaline\Bundle\ComposerBundle\Consumer;
 
-use Composer\Json\JsonFile;
-use Composer\Json\JsonValidationException;
 use SensioLabs\Security\SecurityChecker;
 use Sonata\NotificationBundle\Consumer\ConsumerEvent;
 use Sonata\NotificationBundle\Consumer\ConsumerInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Process\Process;
@@ -110,7 +107,7 @@ class UploadComposerConsumer implements ConsumerInterface
         try {
             $alerts = $checker->check($path.'/composer.lock', 'json');
         }catch(\RuntimeException $e){
-            $pusher->trigger($channelName, 'consumer:error', array('message' => $e->getMessage()));
+            $pusher->trigger($channelName, 'consumer:error', array('message' => $e->getMessage(), 'more' => $alerts));
             return 1;
         }
 

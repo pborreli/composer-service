@@ -4,7 +4,6 @@ namespace Ayaline\Bundle\ComposerBundle\Pusher;
 
 use Lopi\Bundle\PusherBundle\Authenticator\ChannelAuthenticatorInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpFoundation\Request;
 
 class ChannelAuthenticator implements ChannelAuthenticatorInterface
 {
