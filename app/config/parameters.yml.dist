@@ -12,7 +12,7 @@ parameters:
     mailer_password:   ~
 
     locale:            en
-    secret:            ThisTokenIsNotSoSecretChangeIt
+    secret:            ThisTokenIsNotSoSecretButIsSpecialToComposerAsAService
 
     rabbitmq_host:     localhost
     rabbitmq_user:     guest
