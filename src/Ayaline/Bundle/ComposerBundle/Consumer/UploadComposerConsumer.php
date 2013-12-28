@@ -117,15 +117,10 @@ class UploadComposerConsumer implements ConsumerInterface
 
         $this->pusher->trigger($channelName, 'consumer:new-step', array('message' => 'Checking vulnerability'));
         $checker = new SecurityChecker();
-
-        $alerts = $checker->check($path.'/composer.lock', 'json');
         try {
             $alerts = $checker->check($path.'/composer.lock', 'json');
-        }catch(\RuntimeException $e){
+        } catch (\RuntimeException $e){
             $this->pusher->trigger($channelName, 'consumer:error', array('message' => $e->getMessage(), 'more' => $alerts));
-        } catch(\RuntimeException $e) {
-            $pusher->trigger($channelName, 'consumer:error', array('message' => $e->getMessage(), 'more' => $alerts));
-            return 1;
         }
 
         $vulnerabilityCount = $checker->getLastVulnerabilityCount();
