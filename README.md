@@ -23,6 +23,14 @@ rabbitmq-server &
 php app/console sonata:notification:start
 ```
 
+## Run test suite
+
+You will need phantomjs executable:
+
+```bash
+brew update && brew install phantomjs
+```
+
 ## Future
 
  - An API is planned so it could be possible to be called from inside composer itself.

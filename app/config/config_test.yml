@@ -1,16 +1,26 @@
 imports:
-    - { resource: config_dev.yml }
+    - { resource: config.yml }
 
 framework:
     test: ~
-    session:
-        storage_id: session.storage.mock_file
     profiler:
         collect: false
-
-web_profiler:
-    toolbar: false
-    intercept_redirects: false
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: true
 
 swiftmailer:
     disable_delivery: true
+
+assetic:
+    use_controller: true
+
+monolog:
+    handlers:
+        main:
+            type:   stream
+            path:   "%kernel.logs_dir%/%kernel.environment%.log"
+            level:  debug
+        console:
+            type:   console
+            bubble: false
