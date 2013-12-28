@@ -5,14 +5,12 @@ namespace Ayaline\Bundle\ComposerBundle\Controller;
 use Composer\Json\JsonFile;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
-    public function indexAction(Request $request)
-    {
-
-        $defaultComposerBody = <<<DCB
+    private $defaultComposerBody = <<<DCB
 {
     "require": {
         "monolog/monolog": "1.2.*"
@@ -20,42 +18,56 @@ class DefaultController extends Controller
 }
 DCB;
 
+    /**
+     * @param Request $request
+     * @return JsonResponse|Response
+     */
+    public function indexAction(Request $request)
+    {
         $form = $this->createFormBuilder()
             ->setAction($this->generateUrl('_welcome'))
-            ->add('body', 'textarea', array('attr' => array('class' => 'form-control', 'rows' => 15), 'data' => $defaultComposerBody))
+            ->add('body', 'textarea', array('attr' => array('class' => 'form-control', 'rows' => 15), 'data' => $this->defaultComposerBody))
             ->getForm();
-
         $form->handleRequest($request);
 
         if ($form->isValid()) {
 
             $data = $form->getData();
-            $temp_file = tempnam(sys_get_temp_dir(), 'composer');
-            file_put_contents($temp_file, $data['body']);
-
-            try {
-                $jsonFile = new JsonFile($temp_file);
-                $jsonFile->validateSchema(JsonFile::LAX_SCHEMA);
-                unlink($temp_file);
-            } catch (\Exception $exception) {
-                $from = array($temp_file);
-                $to   = array('composer.json');
-                $message = str_replace($from, $to, $exception->getMessage());
-                unlink($temp_file);
-
+            if (true !== $message = $this->validateComposerJson($data['body'])) {
                 return new JsonResponse(array('status' => 'ko', 'message' => nl2br($message)));
             }
-
             $this->get('sonata.notification.backend')->createAndPublish('upload.composer', array(
-                'body' => $data['body'],
-                'channelName' => $request->getSession()->get('channelName')
+                'body' => $data['body'], 'channelName' => $request->getSession()->get('channelName')
             ));
 
             return new JsonResponse(array('status' => 'ok'));
         }
 
-        return $this->render('AyalineComposerBundle:Default:index.html.twig', array(
-            'form' => $form->createView(),
-        ));
+        return $this->render('AyalineComposerBundle:Default:index.html.twig', array('form' => $form->createView()));
+    }
+
+    /**
+     * @param string $string The composer.json string
+     * @return bool|mixed True if valid, string with the message otherwise
+     */
+    protected function validateComposerJson($string){
+
+        $temp_file = tempnam(sys_get_temp_dir(), 'composer');
+        file_put_contents($temp_file, $string);
+
+        try {
+            $jsonFile = new JsonFile($temp_file);
+            $jsonFile->validateSchema(JsonFile::LAX_SCHEMA);
+            unlink($temp_file);
+
+            return true;
+        } catch (\Exception $exception) {
+            $from = array($temp_file);
+            $to   = array('composer.json');
+            $message = str_replace($from, $to, $exception->getMessage());
+            unlink($temp_file);
+
+            return $message;
+        }
     }
 }
