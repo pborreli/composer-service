@@ -3,23 +3,15 @@
 namespace Ayaline\Bundle\ComposerBundle\Pusher;
 
 use Lopi\Bundle\PusherBundle\Authenticator\ChannelAuthenticatorInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class ChannelAuthenticator implements ChannelAuthenticatorInterface
 {
-    /**
-     * @var $container
-     */
-    public $container;
+    protected $requestStack;
 
-    /**
-     * Constructor
-     *
-     * @param ContainerInterface  $container
-     */
-    public function __construct(ContainerInterface $container)
+    public function __construct(RequestStack $requestStack)
     {
-        $this->container  = $container;
+        $this->requestStack = $requestStack;
     }
 
     /**
@@ -29,8 +21,7 @@ class ChannelAuthenticator implements ChannelAuthenticatorInterface
      */
     public function authenticate($socketId, $channelName)
     {
-        $request = $this->container->get('request');
-        $logger = $this->container->get('logger');
+        $request = $this->requestStack->getCurrentRequest();
         $session = $request->getSession();
 
         $session_name = $session->getName();
@@ -40,7 +31,6 @@ class ChannelAuthenticator implements ChannelAuthenticatorInterface
             return false;
         }
 
-        $logger->addInfo('Connected with socketId :'. $socketId. ' in channel :'.$channelName);
         $session->set('socketId', $socketId);
         $session->set('channelName', $channelName);
 

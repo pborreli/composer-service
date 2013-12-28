@@ -101,4 +101,4 @@ twig:
 liip_monitor:
     checks:
         disc_usage:
-            path: %composer_tmp_path%
+            path: %working_temp_path%

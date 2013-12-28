@@ -7,11 +7,13 @@
     <services>
         <service id="sonata.notification.consumer.upload.composer" class="Ayaline\Bundle\ComposerBundle\Consumer\UploadComposerConsumer" >
             <tag name="sonata.notification.consumer" type="upload.composer" />
-            <argument type="service" id="service_container" />
-            <!--<argument type="service" id="logger" />-->
+            <property name="pusher" type="service" id="lopi_pusher.pusher" />
+            <argument>%kernel.root_dir%</argument>
+            <argument>%working_temp_path%</argument>
+            <argument>%composer_bin_path%</argument>
         </service>
         <service id="ayaline.composer.pusher.channel.authenticator" class="Ayaline\Bundle\ComposerBundle\Pusher\ChannelAuthenticator">
-            <argument type="service" id="service_container" />
+            <argument type="service" id="request_stack"/>
         </service>
     </services>
 </container>
