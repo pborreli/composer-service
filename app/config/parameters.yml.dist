@@ -24,7 +24,7 @@ parameters:
     pusher_secret:     change_me
 
     session_name:      COMPOSERAAS
-    composer_tmp_path: '/dev/shm/composer/'
+    working_temp_path: '/dev/shm/composer/'
     composer_bin_path: '/usr/local/bin/composer'
 
     analytics_id:      UA-XXXXXX-X
