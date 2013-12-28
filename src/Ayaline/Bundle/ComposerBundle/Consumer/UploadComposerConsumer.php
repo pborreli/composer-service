@@ -19,6 +19,8 @@ class UploadComposerConsumer implements ConsumerInterface
      */
     public $container;
 
+
+
     /**
      * Constructor
      *
@@ -35,18 +37,18 @@ class UploadComposerConsumer implements ConsumerInterface
     public function process(ConsumerEvent $event)
     {
         $pusher = $this->container->get('lopi_pusher.pusher');
-        $fs = new Filesystem();
+
         $message = $event->getMessage();
         $body = $message->getValue('body');
         $channelName = $message->getValue('channelName');
 
         $pusher->trigger($channelName, 'consumer:new-step', array('message' => 'Starting async job'));
 
-        $composers_tmp_path = $this->container->getParameter('composers_tmp_path', '/dev/shm/composer/');
-        $composers_tmp_path = rtrim($composers_tmp_path, '/').'/';
+        $path = $this->container->getParameter('composer_tmp_path', '/dev/shm/composer/');
+        $path = rtrim($path, '/').'/';
+        $path = $path.uniqid('composer', true);
 
-        $path = $composers_tmp_path.uniqid('composer', true);
-
+        $fs = new Filesystem();
         $fs->mkdir($path);
         $fs->dumpFile($path.'/composer.json', $body);
 
@@ -132,8 +134,8 @@ class UploadComposerConsumer implements ConsumerInterface
                 $pusher->trigger($channelName, 'consumer:error', array('message' => $process->getErrorOutput()));
             }
         }
-        $pusher->trigger($channelName, 'consumer:success', array('link' => '/assets/'.$sha1LockFile.'/vendor.zip'));
 
+        $pusher->trigger($channelName, 'consumer:success', array('link' => '/assets/'.$sha1LockFile.'/vendor.zip'));
         $fs->remove($path);
 
         return 0;
