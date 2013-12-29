@@ -37,7 +37,7 @@ $(document).ready(function() {
 
     channel.bind('consumer:success', function(data) {
         end = new Date().getTime();
-        step('Done in '+ (end - start)/100 +' seconds!', false, true);
+        step('Done in '+ (end - start)/1000 +' seconds!', false, true);
         ladda.stop();
 
         downloadLink.addClass('in');
