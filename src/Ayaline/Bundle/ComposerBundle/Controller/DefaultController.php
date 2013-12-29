@@ -19,7 +19,7 @@ class DefaultController extends Controller
 DCB;
 
     /**
-     * @param Request $request
+     * @param  Request               $request
      * @return JsonResponse|Response
      */
     public function indexAction(Request $request)
@@ -47,11 +47,11 @@ DCB;
     }
 
     /**
-     * @param string $string The composer.json string
+     * @param  string     $string The composer.json string
      * @return bool|mixed True if valid, string with the message otherwise
      */
-    protected function validateComposerJson($string){
-
+    protected function validateComposerJson($string)
+    {
         $temp_file = tempnam(sys_get_temp_dir(), 'composer');
         file_put_contents($temp_file, $string);
 
