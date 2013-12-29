@@ -3,6 +3,14 @@
     "license": "MIT",
     "type": "project",
     "description": "Composer as a service",
+    "keywords": [ "composer", "symfony2", "rabbitmq", "pusher" ],
+    "authors": [
+        {
+            "name": "Pascal Borreli",
+            "email": "pascal@borreli.com"
+        }
+    ],
+    "homepage": "http://composer.borreli.com/",
     "autoload": {
         "psr-0": { "": "src/" }
     },
