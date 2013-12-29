@@ -33,6 +33,10 @@ DCB;
         if ($form->isValid()) {
 
             $data = $form->getData();
+            if (empty($data['body'])) {
+                return new JsonResponse(array('status' => 'ko', 'message' => 'Please provide a composer.json'));
+            }
+
             if (true !== $message = $this->validateComposerJson($data['body'])) {
                 return new JsonResponse(array('status' => 'ko', 'message' => nl2br($message)));
             }

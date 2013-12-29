@@ -1,6 +1,6 @@
 $(document).ready(function() {
     var dragDrop = $('p.drag-and-drop');
-    var button = $('#progress a.btn-primary');
+    var button = $('#progress button.btn-primary');
     var downloadLink = $('#download-link');
     $('input.file-chooser')
         .width(dragDrop.outerWidth())
