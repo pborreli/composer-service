@@ -1,7 +1,5 @@
 #Composer as a service [![SensioLabsInsight](https://insight.sensiolabs.com/projects/20408423-f871-4d67-a87c-8967bedd6ef7/small.png)](https://insight.sensiolabs.com/projects/20408423-f871-4d67-a87c-8967bedd6ef7)
 
-[![Build Status](https://travis-ci.org/pborreli/composer-service.png?branch=master)](https://travis-ci.org/pborreli/composer-service)
-
 ## What is it ?
 
 Originally the idea came from @pgodel
@@ -33,6 +31,14 @@ An API is planned so it could be possible to be called from inside composer itse
 
 It's MIT, you can do whatever you like without need of thank or anything.
 I'd be glad if you use it, happy if you enjoy it and very happy if you decide to contribute to make it better.
+
+## Quality
+
+[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/pborreli/composer-service/badges/quality-score.png?s=e24aa692dbefefcc7c9ed77bc1e9c64968a12571)](https://scrutinizer-ci.com/g/pborreli/composer-service/)
+[![Code Coverage](https://scrutinizer-ci.com/g/pborreli/composer-service/badges/coverage.png?s=0b0899966b79caa9e06c881b9bc6e9c7ac8dafe7)](https://scrutinizer-ci.com/g/pborreli/composer-service/)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/20408423-f871-4d67-a87c-8967bedd6ef7/mini.png)](https://insight.sensiolabs.com/projects/20408423-f871-4d67-a87c-8967bedd6ef7)
+[![Build Status](https://travis-ci.org/pborreli/composer-service.png?branch=master)](https://travis-ci.org/pborreli/composer-service)
+
 ## Contributors
 
 [@pborreli](https://github.com/pborreli)  
