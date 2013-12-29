@@ -13,3 +13,4 @@
 /bin
 /composer.phar
 /behat.yml
+composer.lock
