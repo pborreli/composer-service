@@ -85,7 +85,7 @@ class UploadComposerConsumer implements ConsumerInterface
         $output = null;
         try {
             $process->run($callback);
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             $this->pusher->trigger($channelName, 'consumer:step-error', array('message' => 'HHVM composer failed'));
         }
 
@@ -119,7 +119,7 @@ class UploadComposerConsumer implements ConsumerInterface
         $checker = new SecurityChecker();
         try {
             $alerts = $checker->check($path.'/composer.lock', 'text');
-        } catch (\RuntimeException $e){
+        } catch (\RuntimeException $e) {
             $this->pusher->trigger($channelName, 'consumer:error', array('message' => $e->getMessage()));
         }
 
