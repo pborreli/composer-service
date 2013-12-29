@@ -18,7 +18,8 @@ rabbitmq-server
 ## Installation
 
 ```bash
-composer install
+composer create-project pborreli/composer-service -sdev
+cd composer-service
 php -S localhost:9090 -t web &
 rabbitmq-server &
 php app/console sonata:notification:start
