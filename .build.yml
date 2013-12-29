@@ -3,7 +3,7 @@ build:
   - curl http://www.rabbitmq.com/rabbitmq-signing-key-public.asc | apt-key add -
   - echo "deb http://dl.hhvm.com/ubuntu precise main" >> /etc/apt/sources.list
   - apt-get update -y
-  - apt-get install -y --force-yes rabbitmq-server hhvm
+  - apt-get install -y --force-yes rabbitmq-server hhvm php-apc
   - composer install --no-dev --ansi --prefer-source --no-progress --no-interaction
   - app/console assetic:dump
 
