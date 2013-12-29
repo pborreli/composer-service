@@ -29,3 +29,4 @@ parameters:
 
     analytics_id:      UA-XXXXXX-X
     pingdom_rum_id:    change_me
+    assets_version_param: 10
