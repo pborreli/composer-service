@@ -49,7 +49,7 @@ $(document).ready(function() {
     });
 
     channel.bind('consumer:step-error', function(data) {
-        step(data.message, true);
+        step(data.message, true, false, data.alerts ? data.alerts : false);
     });
 
     channel.bind('pusher:subscription_error', function(status) {
@@ -103,15 +103,25 @@ $(document).ready(function() {
         event.dataTransfer.dropEffect = 'none';
     }
 
-    function step(message, error, last) {
+    function step(message, error, last, alerts) {
         error = typeof error !== 'undefined' ? error : false;
         last = typeof last !== 'undefined' ? last : false;
+        alerts = typeof alerts !== 'undefined' ? alerts : false;
 
         var lastChild = $('#steps li:last-child');
         lastChild.removeClass('text-muted').addClass(error ? 'danger' : 'success');
 
         if (error) {
-            lastChild.html('<i class="glyphicon glyphicon-remove"></i> '+message);
+            if (false === alerts) {
+                lastChild.html('<i class="glyphicon glyphicon-remove"></i> '+message);
+            } else {
+                lastChild.html('<i class="glyphicon glyphicon-remove"></i> <a data-placement="left" data-trigger="click" data-html="true" class="danger">'+message+'</a>');
+                var link = lastChild.find('a');
+                link.data('title', 'Security Report');
+                link.data('content', alerts);
+                link.data('container', 'body');
+                link.popover();
+            }
         }else{
             lastChild.find('i').removeClass('glyphicon-time').addClass('glyphicon-ok');
             if (last) {

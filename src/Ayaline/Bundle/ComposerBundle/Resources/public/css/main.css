@@ -22,6 +22,14 @@ textarea {
     padding: 0 0 30px;
 }
 
+.popover {
+    min-width: 600px !important;
+}
+.popover-title {
+    background-color: #f0ad4e;
+    color: #ffffff;
+}
+
 /* Set the fixed height of the footer here */
 #footer {
     height: 30px;
