@@ -23,7 +23,8 @@ $(document).ready(function() {
     var pusher = new Pusher(pusher_key, { authEndpoint: channel_auth_endpoint });
     var sessionId = $.cookie('COMPOSERAAS');
     var channel = pusher.subscribe('private-channel-'+sessionId);
-    var start, end;
+    var start = 0;
+    var end = 0;
 
     button.click(function(e) {
         $('form').submit();
