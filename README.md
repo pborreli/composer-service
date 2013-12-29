@@ -1,4 +1,4 @@
-#Composer as a service
+#Composer as a service [![SensioLabsInsight](https://insight.sensiolabs.com/projects/20408423-f871-4d67-a87c-8967bedd6ef7/small.png)](https://insight.sensiolabs.com/projects/20408423-f871-4d67-a87c-8967bedd6ef7)
 
 [![Build Status](https://travis-ci.org/pborreli/composer-service.png?branch=master)](https://travis-ci.org/pborreli/composer-service)
 
