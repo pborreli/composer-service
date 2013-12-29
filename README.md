@@ -1,5 +1,7 @@
 #Composer as a service
 
+[![Build Status](https://travis-ci.org/pborreli/composer-service.png?branch=master)](https://travis-ci.org/pborreli/composer-service)
+
 ## What is it ?
 
 Originally the idea came from @pgodel
