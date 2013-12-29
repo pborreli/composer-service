@@ -24,10 +24,10 @@ class ChannelAuthenticator implements ChannelAuthenticatorInterface
         $request = $this->requestStack->getCurrentRequest();
         $session = $request->getSession();
 
-        $session_name = $session->getName();
-        $cookie_name = $request->cookies->get($session_name);
+        $sessionName = $session->getName();
+        $cookieName = $request->cookies->get($sessionName);
 
-        if (strpos($channelName, $cookie_name) === false) {
+        if (strpos($channelName, $cookieName) === false) {
             return false;
         }
 

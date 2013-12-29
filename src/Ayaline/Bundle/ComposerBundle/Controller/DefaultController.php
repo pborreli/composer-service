@@ -57,20 +57,20 @@ DCB;
     protected function validateComposerJson($string)
     {
 
-        $temp_file = tempnam(sys_get_temp_dir(), 'composer');
-        file_put_contents($temp_file, $string);
+        $tempFile = tempnam(sys_get_temp_dir(), 'composer');
+        file_put_contents($tempFile, $string);
 
         try {
-            $jsonFile = new JsonFile($temp_file);
+            $jsonFile = new JsonFile($tempFile);
             $jsonFile->validateSchema(JsonFile::LAX_SCHEMA);
-            unlink($temp_file);
+            unlink($tempFile);
 
             return true;
         } catch (\Exception $exception) {
-            $from = array($temp_file);
+            $from = array($tempFile);
             $to   = array('composer.json');
             $message = str_replace($from, $to, $exception->getMessage());
-            unlink($temp_file);
+            unlink($tempFile);
 
             return $message;
         }

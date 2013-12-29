@@ -18,17 +18,17 @@ class UploadComposerConsumer implements ConsumerInterface
     /**
      * @var string
      */
-    public $root_dir;
+    public $rootDir;
 
     /**
      * @var string
      */
-    public $working_temp_path;
+    public $workingTempPath;
 
     /**
      * @var string
      */
-    public $composer_bin_path;
+    public $composerBinPath;
 
 
     /**
@@ -37,11 +37,11 @@ class UploadComposerConsumer implements ConsumerInterface
      * @param \Pusher $pusher
      *
      */
-    public function __construct($root_dir, $working_temp_path = '/dev/shm/composer/', $composer_bin_path = '/usr/local/bin/composer')
+    public function __construct($rootDir, $workingTempPath = '/dev/shm/composer/', $composerBinPath = '/usr/local/bin/composer')
     {
-        $this->root_dir = $root_dir;
-        $this->working_temp_path = $working_temp_path;
-        $this->composer_bin_path = $composer_bin_path;
+        $this->rootDir = $rootDir;
+        $this->workingTempPath = $workingTempPath;
+        $this->composerBinPath = $composerBinPath;
     }
 
     /**
@@ -55,15 +55,15 @@ class UploadComposerConsumer implements ConsumerInterface
 
         $this->pusher->trigger($channelName, 'consumer:new-step', array('message' => 'Starting async job'));
 
-        $path = $this->working_temp_path;
+        $path = $this->workingTempPath;
         $path = rtrim($path, '/').'/';
         $path = $path.uniqid('composer', true);
 
-        $composerBinPath = $this->composer_bin_path;
+        $composerBinPath = $this->composerBinPath;
 
-        $fs = new Filesystem();
-        $fs->mkdir($path);
-        $fs->dumpFile($path.'/composer.json', $body);
+        $filesystem = new Filesystem();
+        $filesystem->mkdir($path);
+        $filesystem->dumpFile($path.'/composer.json', $body);
 
         $this->pusher->trigger($channelName, 'consumer:new-step', array('message' => './composer update'));
 
@@ -131,14 +131,14 @@ class UploadComposerConsumer implements ConsumerInterface
 
         $sha1LockFile = sha1_file($path.'/composer.lock');
 
-        $resultPath = $this->root_dir.'/../web/assets/'.$sha1LockFile;
+        $resultPath = $this->rootDir.'/../web/assets/'.$sha1LockFile;
 
         if (is_file($resultPath.'/vendor.zip')) {
             $this->pusher->trigger($channelName, 'consumer:new-step', array('message' => 'Serving cached vendor.zip'));
         } else {
             $this->pusher->trigger($channelName, 'consumer:new-step', array('message' => 'Compressing vendor.zip'));
 
-            $fs->mkdir($resultPath);
+            $filesystem->mkdir($resultPath);
             $process = new Process('zip -rq '.$resultPath.'/vendor.zip .');
             $process->setWorkingDirectory($path);
             $process->run();
@@ -149,7 +149,7 @@ class UploadComposerConsumer implements ConsumerInterface
         }
 
         $this->pusher->trigger($channelName, 'consumer:success', array('link' => '/assets/'.$sha1LockFile.'/vendor.zip'));
-        $fs->remove($path);
+        $filesystem->remove($path);
 
         return 0;
     }
