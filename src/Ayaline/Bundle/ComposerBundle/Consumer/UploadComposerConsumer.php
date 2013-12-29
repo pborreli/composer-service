@@ -118,14 +118,15 @@ class UploadComposerConsumer implements ConsumerInterface
         $this->pusher->trigger($channelName, 'consumer:new-step', array('message' => 'Checking vulnerability'));
         $checker = new SecurityChecker();
         try {
-            $alerts = $checker->check($path.'/composer.lock', 'json');
+            $alerts = $checker->check($path.'/composer.lock', 'text');
         } catch (\RuntimeException $e){
-            $this->pusher->trigger($channelName, 'consumer:error', array('message' => $e->getMessage(), 'more' => $alerts));
+            $this->pusher->trigger($channelName, 'consumer:error', array('message' => $e->getMessage()));
         }
 
         $vulnerabilityCount = $checker->getLastVulnerabilityCount();
         if ($vulnerabilityCount > 0) {
-            $this->pusher->trigger($channelName, 'consumer:step-error', array('message' => 'Vulnerability found : '.$vulnerabilityCount));
+            $alerts = str_replace(array("Security Report\n===============\n"), array(''), trim($alerts, "\n"));
+            $this->pusher->trigger($channelName, 'consumer:step-error', array('message' => 'Vulnerability found : '.$vulnerabilityCount, 'alerts' => nl2br($alerts)));
         }
 
         $sha1LockFile = sha1_file($path.'/composer.lock');
