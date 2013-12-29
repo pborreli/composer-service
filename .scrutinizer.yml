@@ -1,0 +1,104 @@
+before_commands:
+    - composer install --dev --prefer-source --no-interaction
+
+tools:
+    # Code Coverage
+    external_code_coverage:
+        enabled: false
+
+    php_code_coverage:
+        enabled:              true
+        test_command:         phpunit -c app/
+        filter:
+            excluded_paths:
+                - 'bin/*'
+                - 'vendor/*'
+                - 'app/*'
+                - 'web/*'
+
+    # Code Sniffer
+    php_code_sniffer:
+        enabled:              true
+        command:              phpcs
+        config:
+            standard:         PSR2
+        filter:
+            excluded_paths:
+                - 'bin/*'
+                - 'vendor/*'
+                - 'app/*'
+                - 'web/*'
+
+    # Copy/Paste Detector
+    php_cpd:
+        enabled:              true
+        command:              phpcpd
+        excluded_dirs:
+            - 'bin/*'
+            - 'vendor/*'
+            - 'app/*'
+            - 'web/*'
+
+    # PHP CS Fixer (http://http://cs.sensiolabs.org/).
+    php_cs_fixer:
+        enabled:              true
+        command:              php-cs-fixer
+        config:
+            level:            psr2
+        filter:
+            excluded_paths:
+                - 'bin/*'
+                - 'vendor/*'
+                - 'app/*'
+                - 'web/*'
+
+    # Analyzes the size and structure of a PHP project.
+    php_loc:
+        enabled:              true
+        command:              phploc
+        excluded_dirs:
+            - bin
+            - vendor
+            - app
+            - web
+
+    # PHP Mess Detector (http://phpmd.org).
+    php_mess_detector:
+        enabled:              true
+        command:              phpmd
+        config:
+            rulesets:
+                - codesize
+                - unusedcode
+                - naming
+                - design
+                - controversial
+        filter:
+            excluded_paths:
+                - 'bin/*'
+                - 'vendor/*'
+                - 'app/*'
+                - 'web/*'
+
+    # Analyzes the size and structure of a PHP project.
+    php_pdepend:
+        enabled:              true
+        command:              pdepend
+        excluded_dirs:
+            - bin
+            - vendor
+            - app
+            - web
+
+    # Runs Scrutinizer's PHP Analyzer Tool
+    php_analyzer:
+        enabled:              true
+        filter:
+            excluded_paths:
+                - 'bin/*'
+                - 'vendor/*'
+                - 'app/*'
+                - 'web/*'
+
+    # Security Advisory Checker
+    sensiolabs_security_checker: true
