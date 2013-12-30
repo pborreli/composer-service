@@ -30,7 +30,6 @@ class UploadComposerConsumer implements ConsumerInterface
      */
     public $composerBinPath;
 
-
     /**
      * Constructor
      *
@@ -107,11 +106,13 @@ class UploadComposerConsumer implements ConsumerInterface
         if (!$process->isSuccessful()) {
             $this->pusher->trigger($channelName, 'consumer:error', array('message' => nl2br($output)));
             $this->pusher->trigger($channelName, 'consumer:step-error', array('message' => 'Composer failed'));
+
             return 1;
         }
 
         if (!is_dir($path.'/vendor') || !is_file($path.'/composer.lock')) {
             $this->pusher->trigger($channelName, 'consumer:step-error', array('message' => 'Fatal error during composer update'));
+
             return 1;
         }
 
