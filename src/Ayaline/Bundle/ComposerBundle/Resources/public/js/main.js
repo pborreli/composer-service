@@ -28,7 +28,6 @@ $(document).ready(function() {
 
     button.click(function(e) {
         $('form').submit();
-        start = new Date().getTime();
     });
 
     channel.bind('consumer:error', function(data) {
@@ -144,6 +143,7 @@ $(document).ready(function() {
         $('#steps').addClass('fade').html(null).removeClass('fade');
         step('Validating composer.json', false);
         downloadLink.removeClass('in');
+        start = new Date().getTime();
         $.ajax({
             url: $(this).attr('action'),
             type: $(this).attr('method'),
