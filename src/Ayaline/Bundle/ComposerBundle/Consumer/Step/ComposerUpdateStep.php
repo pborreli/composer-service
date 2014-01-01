@@ -10,7 +10,6 @@ use Symfony\Component\Process\Process;
  */
 class ComposerUpdateStep extends AbstractStep implements StepInterface
 {
-
     /**
      * {@inheritdoc}
      */
@@ -21,8 +20,18 @@ class ComposerUpdateStep extends AbstractStep implements StepInterface
         $output = null;
         $workingDirectory = $this->workingTempPath.'/'.$directory;
 
+        $hasDevDeps = $event->getMessage()->getValue('hasDevDependencies');
+        $requireDevOption = true === $hasDevDeps ? '--dev' : '--no-dev';
+
         try {
-            $process = $this->runProcess(sprintf("hhvm %s update --no-scripts --prefer-dist --no-progress --no-dev", $this->composerBinPath), $workingDirectory, $output);
+            $process = $this->runProcess(sprintf(
+                    "hhvm %s update %s --no-scripts --prefer-dist --no-progress",
+                    $this->composerBinPath,
+                    $requireDevOption
+                ),
+                $workingDirectory,
+                $output
+            );
         } catch (\Exception $e) {
             $this->pusher->trigger($this->getChannel($event), 'consumer:step-error', array('message' => 'HHVM composer failed'));
 
@@ -38,7 +47,14 @@ class ComposerUpdateStep extends AbstractStep implements StepInterface
             $this->pusher->trigger($this->getChannel($event), 'consumer:new-step', array('message' => 'Restarting ...'));
 
             $output = null;
-            $process = $this->runProcess(sprintf("%s update --no-scripts --prefer-dist --no-progress --no-dev", $this->composerBinPath), $workingDirectory, $output);
+            $process = $this->runProcess(sprintf(
+                    "%s update %s --no-scripts --prefer-dist --no-progress",
+                    $this->composerBinPath,
+                    $requireDevOption
+                ),
+                $workingDirectory,
+                $output
+            );
         }
 
         if (!$process->isSuccessful()) {

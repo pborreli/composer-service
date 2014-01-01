@@ -7,27 +7,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Ayaline\Bundle\ComposerBundle\Form\ComposerType;
 
 class DefaultController extends Controller
 {
-    private $defaultComposerBody = <<<DCB
-{
-    "require": {
-        "monolog/monolog": "1.2.*"
-    }
-}
-DCB;
-
     /**
      * @param  Request               $request
      * @return JsonResponse|Response
      */
     public function indexAction(Request $request)
     {
-        $form = $this->createFormBuilder()
-            ->setAction($this->generateUrl('_welcome'))
-            ->add('body', 'textarea', array('attr' => array('class' => 'form-control', 'rows' => 15), 'data' => $this->defaultComposerBody))
-            ->getForm();
+        $form = $this->createForm(new ComposerType(), null, array(
+                'action' => $this->generateUrl('_welcome')
+            )
+        );
+
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -41,7 +35,9 @@ DCB;
                 return new JsonResponse(array('status' => 'ko', 'message' => nl2br($message)));
             }
             $this->get('sonata.notification.backend')->createAndPublish('upload.composer', array(
-                'body' => $data['body'], 'channelName' => $request->getSession()->get('channelName')
+                'body' => $data['body'],
+                'channelName' => $request->getSession()->get('channelName'),
+                'hasDevDependencies' => $data['hasDevDependencies']
             ));
 
             return new JsonResponse(array('status' => 'ok'));
@@ -52,7 +48,7 @@ DCB;
 
     /**
      * @param  string     $string The composer.json string
-     * @return bool|mixed True if valid, string with the message otherwise
+     * @return Boolean|mixed True if valid, string with the message otherwise
      */
     protected function validateComposerJson($string)
     {

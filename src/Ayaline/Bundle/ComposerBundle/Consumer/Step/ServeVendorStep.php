@@ -10,7 +10,6 @@ use Symfony\Component\Process\Process;
  */
 class ServeVendorStep extends AbstractStep implements StepInterface
 {
-
     /**
      * {@inheritdoc}
      */
