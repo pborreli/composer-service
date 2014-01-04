@@ -14,5 +14,6 @@ services: rabbitmq
 
 before_script:
   - composer install -n
+  - app/console sonata:notification:start > /dev/null &
 
 script: phpunit -c app
