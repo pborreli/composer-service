@@ -3,7 +3,6 @@
 namespace Ayaline\Bundle\ComposerBundle\Consumer\Step;
 
 use Sonata\NotificationBundle\Consumer\ConsumerEvent;
-use Symfony\Component\Filesystem\Filesystem;
 
 /**
  * @author Hubert Moutot <hubert.moutot@gmail.com>
