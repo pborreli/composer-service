@@ -5,15 +5,69 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
+
+        <!-- Consumer steps -->
+        <service id="ayaline.composer.consumer.step.base" abstract="true">
+            <call method="setPusher">
+                 <argument type="service" id="lopi_pusher.pusher" />
+            </call>
+            <call method="setFilesystem">
+                 <argument type="service" id="filesystem" />
+            </call>
+            <call method="setRootDir">
+                <argument>%kernel.root_dir%</argument>
+            </call>
+            <call method="setWorkingTempPath">
+                <argument>%working_temp_path%</argument>
+            </call>
+            <call method="setComposerBinPath">
+                <argument>%composer_bin_path%</argument>
+            </call>
+        </service>
+
+        <service id="ayaline.composer.consumer.step.dump_file"
+            parent="ayaline.composer.consumer.step.base"
+            class="Ayaline\Bundle\ComposerBundle\Consumer\Step\DumpFileStep">
+        </service>
+
+        <service id="ayaline.composer.consumer.step.composer_update"
+            parent="ayaline.composer.consumer.step.base"
+            class="Ayaline\Bundle\ComposerBundle\Consumer\Step\ComposerUpdateStep">
+        </service>
+
+        <service id="ayaline.composer.consumer.step.check_vulnerabilities"
+            parent="ayaline.composer.consumer.step.base"
+            class="Ayaline\Bundle\ComposerBundle\Consumer\Step\CheckVulnerabilitiesStep">
+            <argument type="service" id="ayaline.composer.security_checker" />
+        </service>
+
+        <service id="ayaline.composer.consumer.step.serve_vendor"
+            parent="ayaline.composer.consumer.step.base"
+            class="Ayaline\Bundle\ComposerBundle\Consumer\Step\ServeVendorStep">
+        </service>
+
+        <service id="ayaline.composer.consumer.step.finalize"
+            parent="ayaline.composer.consumer.step.base"
+            class="Ayaline\Bundle\ComposerBundle\Consumer\Step\FinalizeStep">
+        </service>
+        <!-- /Steps -->
+
         <service id="sonata.notification.consumer.upload.composer" class="Ayaline\Bundle\ComposerBundle\Consumer\UploadComposerConsumer" >
             <tag name="sonata.notification.consumer" type="upload.composer" />
-            <property name="pusher" type="service" id="lopi_pusher.pusher" />
-            <argument>%kernel.root_dir%</argument>
-            <argument>%working_temp_path%</argument>
-            <argument>%composer_bin_path%</argument>
+            <argument type="collection">
+                <argument type="service" id="ayaline.composer.consumer.step.dump_file"/>
+                <argument type="service" id="ayaline.composer.consumer.step.composer_update"/>
+                <argument type="service" id="ayaline.composer.consumer.step.check_vulnerabilities"/>
+                <argument type="service" id="ayaline.composer.consumer.step.serve_vendor"/>
+                <argument type="service" id="ayaline.composer.consumer.step.finalize"/>
+            </argument>
         </service>
+
         <service id="ayaline.composer.pusher.channel.authenticator" class="Ayaline\Bundle\ComposerBundle\Pusher\ChannelAuthenticator">
             <argument type="service" id="request_stack"/>
         </service>
+
+        <service id="ayaline.composer.security_checker" class="SensioLabs\Security\SecurityChecker" />
+
     </services>
 </container>
