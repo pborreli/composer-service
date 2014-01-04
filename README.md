@@ -25,7 +25,10 @@ php app/console sonata:notification:start
 
 ## Future
 
-An API is planned so it could be possible to be called from inside composer itself.
+ - An API is planned so it could be possible to be called from inside composer itself.
+ - More tests
+ - Better code
+ - Insert your needed feature here
 
 ## License
 
@@ -38,6 +41,11 @@ I'd be glad if you use it, happy if you enjoy it and very happy if you decide to
 [![Code Coverage](https://scrutinizer-ci.com/g/pborreli/composer-service/badges/coverage.png?s=0b0899966b79caa9e06c881b9bc6e9c7ac8dafe7)](https://scrutinizer-ci.com/g/pborreli/composer-service/)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/20408423-f871-4d67-a87c-8967bedd6ef7/mini.png)](https://insight.sensiolabs.com/projects/20408423-f871-4d67-a87c-8967bedd6ef7)
 [![Build Status](https://travis-ci.org/pborreli/composer-service.png?branch=master)](https://travis-ci.org/pborreli/composer-service)
+
+## Contributing
+
+If you wish to contribute to this website, please [fork it on GitHub](https://github.com/pborreli/composer-service/fork), push your
+change to a named branch, then send me a pull request.
 
 ## Contributors
 
