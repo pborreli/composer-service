@@ -83,4 +83,33 @@ class DemoControllerTest extends WebTestCase
         $this->assertEquals('ko', $data['status']);
         $this->assertContains('does not contain valid JSON', $data['message']);
     }
+
+    public function testValidateCorrectComposerJsonForm()
+    {
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/');
+
+        $form = $crawler->selectButton('Go')->form();
+        $client->submit($form, array('form[body]' => '{}'));
+
+        $this->assertEquals(
+            Response::HTTP_OK,
+            $client->getResponse()->getStatusCode()
+        );
+
+        $this->assertTrue(
+            $client->getResponse()->headers->contains(
+                'Content-Type',
+                'application/json'
+            )
+        );
+
+        $data = json_decode($client->getResponse()->getContent(), true);
+
+        $this->assertArrayHasKey('status', $data);
+        $this->assertArrayNotHasKey('message', $data);
+
+        $this->assertEquals('ok', $data['status']);
+    }
 }
