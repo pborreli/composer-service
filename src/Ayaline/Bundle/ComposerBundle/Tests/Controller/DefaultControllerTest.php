@@ -31,7 +31,7 @@ class DemoControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/');
 
         $form = $crawler->selectButton('Go')->form();
-        $client->submit($form, array('form[body]' => null));
+        $client->submit($form, array('composer[body]' => null));
 
         $this->assertEquals(
             Response::HTTP_OK,
@@ -61,7 +61,7 @@ class DemoControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/');
 
         $form = $crawler->selectButton('Go')->form();
-        $client->submit($form, array('form[body]' => '{]'));
+        $client->submit($form, array('composer[body]' => '{]'));
 
         $this->assertEquals(
             Response::HTTP_OK,
@@ -91,7 +91,7 @@ class DemoControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/');
 
         $form = $crawler->selectButton('Go')->form();
-        $client->submit($form, array('form[body]' => '{}'));
+        $client->submit($form, array('composer[body]' => '{}'));
 
         $this->assertEquals(
             Response::HTTP_OK,

@@ -9,7 +9,6 @@ use Sonata\NotificationBundle\Consumer\ConsumerEvent;
  */
 class FinalizeStep extends AbstractStep implements StepInterface
 {
-
     /**
      * {@inheritdoc}
      */

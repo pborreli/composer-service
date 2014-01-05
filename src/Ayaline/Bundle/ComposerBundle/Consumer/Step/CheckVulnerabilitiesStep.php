@@ -10,7 +10,6 @@ use SensioLabs\Security\SecurityChecker;
  */
 class CheckVulnerabilitiesStep extends AbstractStep implements StepInterface
 {
-
     protected $securityChecker;
 
     /**

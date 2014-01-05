@@ -10,7 +10,6 @@ use Sonata\NotificationBundle\Consumer\ConsumerEvent;
  */
 abstract class AbstractStep implements StepInterface
 {
-
     protected $pusher;
 
     protected $filesystem;
