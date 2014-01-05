@@ -18,7 +18,10 @@ DCB;
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('body', 'textarea', array(
+            ->add(
+                'body',
+                'textarea',
+                array(
                     'attr' => array(
                         'class' => 'form-control',
                         'rows' => 15,
@@ -26,10 +29,7 @@ DCB;
                     'data' => $this->defaultComposerBody,
                 )
             )
-            ->add('hasDevDependencies', 'checkbox', array(
-                    'required' => true,
-                )
-            )
+            ->add('hasDevDependencies', 'checkbox', array('required' => true))
         ;
     }
 

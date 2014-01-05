@@ -24,7 +24,8 @@ class ComposerUpdateStep extends AbstractStep implements StepInterface
         $requireDevOption = true === $hasDevDeps ? '--dev' : '--no-dev';
 
         try {
-            $process = $this->runProcess(sprintf(
+            $process = $this->runProcess(
+                sprintf(
                     "hhvm %s update %s --no-scripts --prefer-dist --no-progress",
                     $this->composerBinPath,
                     $requireDevOption
@@ -47,7 +48,8 @@ class ComposerUpdateStep extends AbstractStep implements StepInterface
             $this->pusher->trigger($this->getChannel($event), 'consumer:new-step', array('message' => 'Restarting ...'));
 
             $output = null;
-            $process = $this->runProcess(sprintf(
+            $process = $this->runProcess(
+                sprintf(
                     "%s update %s --no-scripts --prefer-dist --no-progress",
                     $this->composerBinPath,
                     $requireDevOption

@@ -17,7 +17,10 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $form = $this->createForm(new ComposerType(), null, array(
+        $form = $this->createForm(
+            new ComposerType(),
+            null,
+            array(
                 'action' => $this->generateUrl('_welcome')
             )
         );
