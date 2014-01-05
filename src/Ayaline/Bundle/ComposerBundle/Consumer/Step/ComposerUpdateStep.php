@@ -23,51 +23,39 @@ class ComposerUpdateStep extends AbstractStep implements StepInterface
         $hasDevDeps = $event->getMessage()->getValue('hasDevDependencies');
         $requireDevOption = true === $hasDevDeps ? '--dev' : '--no-dev';
 
-        try {
-            $process = $this->runProcess(
-                sprintf(
-                    "hhvm %s update %s --no-scripts --prefer-dist --no-progress",
-                    $this->composerBinPath,
-                    $requireDevOption
-                ),
-                $workingDirectory,
-                $output
-            );
-        } catch (\Exception $e) {
-            $this->pusher->trigger($this->getChannel($event), 'consumer:step-error', array('message' => 'HHVM composer failed'));
+        $commandLine = sprintf('%s update %s', $this->composerBinPath, $requireDevOption);
+        $commandLine .= ' --no-scripts --prefer-dist --no-progress';
 
-            return 1;
-        }
-
-        $requirements = 'Your requirements could not be resolved to an installable set of packages.';
+        $process = $this->runProcess('hhvm '.$commandLine, $workingDirectory, $output);
 
         if (!$process->isSuccessful()
-            || false !== strpos($output, $requirements)
+            || false !== strpos($output, 'Your requirements could not be resolved to an installable set of packages.')
             || false !== strpos($output, 'HipHop Fatal error')) {
 
-            $this->pusher->trigger($this->getChannel($event), 'consumer:new-step', array('message' => 'Restarting ...'));
+            $this->pusher->trigger($this->getChannel($event), 'consumer:new-step', array('message' => 'Restarting...'));
 
             $output = null;
-            $process = $this->runProcess(
-                sprintf(
-                    "%s update %s --no-scripts --prefer-dist --no-progress",
-                    $this->composerBinPath,
-                    $requireDevOption
-                ),
-                $workingDirectory,
-                $output
-            );
+            $process = $this->runProcess($commandLine, $workingDirectory, $output);
         }
 
         if (!$process->isSuccessful()) {
             $this->pusher->trigger($this->getChannel($event), 'consumer:error', array('message' => nl2br($output)));
-            $this->pusher->trigger($this->getChannel($event), 'consumer:step-error', array('message' => 'Composer failed'));
+            $this->pusher->trigger(
+                $this->getChannel($event),
+                'consumer:step-error',
+                array('message' => 'Composer failed')
+            );
 
             return 1;
         }
 
-        if (!is_dir($this->workingTempPath.'/'.$directory.'/vendor') || !is_file($this->workingTempPath.'/'.$directory.'/composer.lock')) {
-            $this->pusher->trigger($this->getChannel($event), 'consumer:step-error', array('message' => 'Fatal error during composer update '.$this->workingTempPath.'/'.$directory));
+        if (!is_dir($this->workingTempPath.'/'.$directory.'/vendor')
+            || !is_file($this->workingTempPath.'/'.$directory.'/composer.lock')) {
+            $this->pusher->trigger(
+                $this->getChannel($event),
+                'consumer:step-error',
+                array('message' => 'Fatal error during composer update')
+            );
 
             return 1;
         }
