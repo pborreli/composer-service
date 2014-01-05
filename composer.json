@@ -69,7 +69,8 @@
             "env-map": {
                 "pusher_app_id": "PUSHER_APP_ID",
                 "pusher_key": "PUSHER_KEY",
-                "pusher_secret": "PUSHER_SECRET"
+                "pusher_secret": "PUSHER_SECRET",
+                "assets_version_param": "ASSETS_VERSION_PARAM"
             }
         },
         "branch-alias": {
