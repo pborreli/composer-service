@@ -2,6 +2,7 @@ build:
   - echo "deb http://www.rabbitmq.com/debian/ testing main" >> /etc/apt/sources.list
   - curl http://www.rabbitmq.com/rabbitmq-signing-key-public.asc | apt-key add -
   - echo "deb http://dl.hhvm.com/ubuntu saucy main" >> /etc/apt/sources.list
+  - curl http://dl.hhvm.com/conf/hhvm.gpg.key | apt-key add -
   - apt-get update -y
   - apt-get install -y --force-yes rabbitmq-server hhvm php-apc
   - composer install --no-dev --ansi --prefer-source --no-progress --no-interaction
