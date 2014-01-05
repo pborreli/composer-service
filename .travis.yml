@@ -1,19 +1,29 @@
 language: php
 
 php:
-  - 5.3
-  - 5.4
-  - 5.5
-  - hhvm
+    - 5.3
+    - 5.4
+    - 5.5
+    - hhvm
 
 matrix:
     allow_failures:
         - php: hhvm
 
+env:
+    # repository pborreli/composer-service
+    # PUSHER_APP_ID= PUSHER_KEY= PUSHER_SECRET=
+    - secure: "LwnKMDhBUzxPhbDvBzpdHK6NjXPMlS4gR5ulHKLvcMGnYkpTdiLonOeaC3iNvk3GoFmPjscFrl5YWfy/jh5vg5tUHy8FB3oue3j0GgjiVXRWZa/ccJLjySNfLNTVfmzSNkOxEDRLC3CYIIUK/FPumPBF4g72xLfRT3Zux9PAszw="
+
 services: rabbitmq
 
 before_script:
-  - composer install -n
-  - app/console sonata:notification:start > /dev/null &
+    - composer install -n
+    - php app/console --env=test sonata:notification:start > /dev/null &
+    - phantomjs --webdriver=4444 > /dev/null &
+    - php -S localhost:8080 -t web &
 
-script: phpunit -c app
+script:
+    - bin/behat --format=pretty --tags="~@javascript" --verbose --stop-on-failure
+    - bin/behat --format=pretty --tags="@javascript" --verbose --stop-on-failure
+    - phpunit -c app
