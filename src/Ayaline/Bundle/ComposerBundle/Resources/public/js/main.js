@@ -18,6 +18,10 @@ $(document).ready(function() {
         });
     });
 
+    $('#composer_hasDevDependencies').change(function () {
+        $('#label-hasDevDependencies').html($(this).is(':checked') ? '<i class="glyphicon glyphicon-check"></i> --dev' : '<i class="glyphicon glyphicon-unchecked"></i> --no-dev');
+    });
+
     var ladda = Ladda.create(document.querySelector('.btn'));
 
     var pusher = new Pusher(pusher_key, { authEndpoint: channel_auth_endpoint });
