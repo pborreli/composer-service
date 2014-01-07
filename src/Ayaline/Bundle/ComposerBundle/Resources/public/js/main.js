@@ -126,7 +126,7 @@ $(document).ready(function() {
                 link.data('container', 'body');
                 link.popover();
             }
-        }else{
+        } else {
             lastChild.find('i').removeClass('glyphicon-time').addClass('glyphicon-ok');
             if (last) {
                 $('<li class="success"><i class="glyphicon glyphicon-ok"></i> '+message+'</li>').appendTo('#steps');
@@ -160,6 +160,7 @@ $(document).ready(function() {
                     ladda.stop();
                     $('#error').html(json.message).addClass('alert in');
                 }
+                button.removeClass('active');
             }
         });
 
