@@ -3,7 +3,7 @@
     "license": "MIT",
     "type": "project",
     "description": "Composer as a service",
-    "keywords": [ "composer", "symfony2", "rabbitmq", "pusher" ],
+    "keywords": ["composer", "symfony2", "rabbitmq", "pusher"],
     "authors": [
         {
             "name": "Pascal Borreli",
@@ -12,7 +12,7 @@
     ],
     "homepage": "http://composer.borreli.com/",
     "autoload": {
-        "psr-0": { "": "src/" }
+        "psr-0": {"": "src/"}
     },
     "require": {
         "php": ">=5.3.3",
@@ -36,10 +36,17 @@
 
         "laupifrpar/pusher-bundle": "v1.2.2",
 
-        "guzzle/guzzle": "3.8",
+        "guzzle/guzzle": "~3.5",
 
         "sensiolabs/security-checker": "~1.3"
-
+    },
+    "require-dev": {
+        "behat/behat":                       "3.0.0beta8",
+        "behat/symfony2-extension":          "~1.1",
+        "behat/mink-extension":              "~1.2",
+        "behat/mink-browserkit-driver":      "~1.1",
+        "behat/mink-goutte-driver":          "~1.0",
+        "behat/mink-selenium2-driver":       "~1.1"
     },
     "scripts": {
         "post-install-cmd": [
