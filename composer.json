@@ -41,7 +41,7 @@
         "sensiolabs/security-checker": "~1.3"
     },
     "require-dev": {
-        "behat/behat":                       "3.0.0beta8",
+        "behat/behat":                       "~2.5",
         "behat/symfony2-extension":          "~1.1",
         "behat/mink-extension":              "~1.2",
         "behat/mink-browserkit-driver":      "~1.1",
@@ -76,8 +76,7 @@
             "env-map": {
                 "pusher_app_id": "PUSHER_APP_ID",
                 "pusher_key": "PUSHER_KEY",
-                "pusher_secret": "PUSHER_SECRET",
-                "assets_version_param": "ASSETS_VERSION_PARAM"
+                "pusher_secret": "PUSHER_SECRET"
             }
         },
         "branch-alias": {

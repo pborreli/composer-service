@@ -24,6 +24,5 @@ before_script:
     - php -S localhost:8080 -t web &
 
 script:
-    - bin/behat --format=pretty --tags="~@javascript" --verbose --stop-on-failure
-    - bin/behat --format=pretty --tags="@javascript" --verbose --stop-on-failure
+    - bin/behat --format=pretty --verbose --stop-on-failure
     - phpunit -c app

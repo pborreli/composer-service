@@ -6,7 +6,7 @@ Feature: generate link of compressed vendors folder from composer.json
   @javascript
   Scenario: Generate vendor .zip download link
     Given I am on the homepage
-     When I fill in "form_body" with:
+     When I fill in "composer_body" with:
       """
       {
           "require": {

@@ -3,8 +3,6 @@ default:
         tags: "~@wip"
     formatter:
         name: progress
-    paths:
-        features: use_cases
     context:
         class: Ayaline\Bundle\ComposerBundle\UseCase\FeatureContext
     extensions:
