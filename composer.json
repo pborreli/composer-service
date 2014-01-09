@@ -34,7 +34,7 @@
 
         "sonata-project/notification-bundle": "2.2.*@dev",
 
-        "laupifrpar/pusher-bundle": "v1.2.2",
+        "laupifrpar/pusher-bundle": "~1.2",
 
         "guzzle/guzzle": "~3.5",
 
