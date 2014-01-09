@@ -3,20 +3,20 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "edf589ad7d23217dc4d53a725891fc5c",
+    "hash": "4c9258a5697c9440d0e00766ab3b77f1",
     "packages": [
         {
             "name": "composer/composer",
-            "version": "dev-master",
+            "version": "1.0.0-alpha8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "11facc3f449310e862feb95a140fe0e84aaee7b4"
+                "reference": "1eb1df44a97fb2daca1bb8b007f3bee012f0aa46"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/11facc3f449310e862feb95a140fe0e84aaee7b4",
-                "reference": "11facc3f449310e862feb95a140fe0e84aaee7b4",
+                "url": "https://api.github.com/repos/composer/composer/zipball/1eb1df44a97fb2daca1bb8b007f3bee012f0aa46",
+                "reference": "1eb1df44a97fb2daca1bb8b007f3bee012f0aa46",
                 "shasum": ""
             },
             "require": {
@@ -72,7 +72,7 @@
                 "dependency",
                 "package"
             ],
-            "time": "2014-01-07 23:04:45"
+            "time": "2014-01-06 18:39:59"
         },
         {
             "name": "doctrine/annotations",
@@ -1013,17 +1013,17 @@
         },
         {
             "name": "laupifrpar/pusher-bundle",
-            "version": "v1.2.2",
+            "version": "v1.2.3",
             "target-dir": "Lopi/Bundle/PusherBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laupiFrpar/LopiPusherBundle.git",
-                "reference": "5e4bee4f933a45c1707bf3c1e547a6aeff5f78b6"
+                "reference": "2729b72780da389c975034b9e2bddc43cd5c6ceb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laupiFrpar/LopiPusherBundle/zipball/5e4bee4f933a45c1707bf3c1e547a6aeff5f78b6",
-                "reference": "5e4bee4f933a45c1707bf3c1e547a6aeff5f78b6",
+                "url": "https://api.github.com/repos/laupiFrpar/LopiPusherBundle/zipball/2729b72780da389c975034b9e2bddc43cd5c6ceb",
+                "reference": "2729b72780da389c975034b9e2bddc43cd5c6ceb",
                 "shasum": ""
             },
             "require": {
@@ -1064,7 +1064,7 @@
                 "pusher",
                 "symfony"
             ],
-            "time": "2013-10-29 12:55:33"
+            "time": "2014-01-06 10:02:52"
         },
         {
             "name": "liip/monitor",
@@ -1578,17 +1578,17 @@
         },
         {
             "name": "sonata-project/core-bundle",
-            "version": "2.2.2",
+            "version": "2.2.3",
             "target-dir": "Sonata/CoreBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataCoreBundle.git",
-                "reference": "accd2c305d2636b3cb20e3a0eb12501911a5dac6"
+                "reference": "fadf268d4b2c23220b27c33389b6a6132085159e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataCoreBundle/zipball/accd2c305d2636b3cb20e3a0eb12501911a5dac6",
-                "reference": "accd2c305d2636b3cb20e3a0eb12501911a5dac6",
+                "url": "https://api.github.com/repos/sonata-project/SonataCoreBundle/zipball/fadf268d4b2c23220b27c33389b6a6132085159e",
+                "reference": "fadf268d4b2c23220b27c33389b6a6132085159e",
                 "shasum": ""
             },
             "require": {
@@ -1632,7 +1632,7 @@
             "keywords": [
                 "sonata"
             ],
-            "time": "2013-12-16 10:13:27"
+            "time": "2014-01-07 11:35:59"
         },
         {
             "name": "sonata-project/doctrine-extensions",
@@ -2910,7 +2910,7 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "composer/composer": 20,
+        "composer/composer": 15,
         "liip/monitor-bundle": 20,
         "sonata-project/notification-bundle": 20
     },

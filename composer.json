@@ -28,7 +28,7 @@
         "sensio/generator-bundle": "~2.3",
         "incenteev/composer-parameter-handler": "~2.0",
 
-        "composer/composer": "1.0.*@dev",
+        "composer/composer": "1.0.0-alpha8",
         "liip/monitor-bundle": "1.0.*@dev",
         "videlalvaro/php-amqplib": "~2.2",
 
