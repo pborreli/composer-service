@@ -1,7 +1,7 @@
 language: php
 
 php:
-    - 5.3
+    #- 5.3
     - 5.4
     - 5.5
     - hhvm
@@ -19,9 +19,10 @@ services: rabbitmq
 
 before_script:
     - composer install -n
+    - sudo cp ~/.phpenv/versions/$(phpenv version-name)/bin/composer.phar /usr/local/bin/composer
     - php app/console --env=test sonata:notification:start > /dev/null &
     - phantomjs --webdriver=4444 > /dev/null &
-    - php -S localhost:8080 -t web &
+    - php -S localhost:8080 -t web > /dev/null &
 
 script:
     - bin/behat --format=pretty --verbose --stop-on-failure

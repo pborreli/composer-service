@@ -10,10 +10,7 @@ Feature: generate link of compressed vendors folder from composer.json
       """
       {
           "require": {
-              "symfony/yaml": "~2.3"
-          },
-          "require-dev": {
-              "symfony/filesystem": "~2.3"
+              "monolog/monolog": "1.2.*"
           }
       }
       """
@@ -24,6 +21,5 @@ Feature: generate link of compressed vendors folder from composer.json
       And I should see "Starting async job"
       And I should see "./composer update"
       And I should see "Checking vulnerability"
-      And I should see "Serving cached vendor.zip"
       And I should see text matching "Done in \d+\.?\d* seconds"
       And I should see "Download" link
