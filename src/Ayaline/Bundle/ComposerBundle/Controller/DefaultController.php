@@ -3,33 +3,53 @@
 namespace Ayaline\Bundle\ComposerBundle\Controller;
 
 use Composer\Json\JsonFile;
+use Sonata\NotificationBundle\Backend\AMQPBackendDispatcher;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
-use Ayaline\Bundle\ComposerBundle\Form\ComposerType;
 
 class DefaultController extends Controller
 {
+    private $sonataNotificationsBackend;
+    /**
+     * @var EngineInterface
+     */
+    private $templating;
+
+    /**
+     * @var FormInterface
+     */
+    private $composerForm;
+
+    /**
+     * @param EngineInterface $templating
+     * @param FormInterface $composerForm
+     * @param AMQPBackendDispatcher $sonataNotificationsBackend
+     */
+    public function __construct(
+        EngineInterface $templating,
+        FormInterface $composerForm,
+        AMQPBackendDispatcher $sonataNotificationsBackend
+    ) {
+        $this->templating = $templating;
+        $this->composerForm = $composerForm;
+        $this->sonataNotificationsBackend = $sonataNotificationsBackend;
+    }
+
     /**
      * @param  Request               $request
      * @return JsonResponse|Response
      */
     public function indexAction(Request $request)
     {
-        $form = $this->createForm(
-            new ComposerType(),
-            null,
-            array(
-                'action' => $this->generateUrl('_welcome')
-            )
-        );
+        $this->composerForm->handleRequest($request);
 
-        $form->handleRequest($request);
+        if ($this->composerForm->isValid()) {
 
-        if ($form->isValid()) {
-
-            $data = $form->getData();
+            $data = $this->composerForm->getData();
             if (empty($data['body'])) {
                 return new JsonResponse(array('status' => 'ko', 'message' => 'Please provide a composer.json'));
             }
@@ -37,7 +57,8 @@ class DefaultController extends Controller
             if (true !== $message = $this->validateComposerJson($data['body'])) {
                 return new JsonResponse(array('status' => 'ko', 'message' => nl2br($message)));
             }
-            $this->get('sonata.notification.backend')->createAndPublish('upload.composer', array(
+
+            $this->sonataNotificationsBackend->createAndPublish('upload.composer', array(
                 'body' => $data['body'],
                 'channelName' => $request->getSession()->get('channelName'),
                 'hasDevDependencies' => $data['hasDevDependencies']
@@ -46,7 +67,10 @@ class DefaultController extends Controller
             return new JsonResponse(array('status' => 'ok'));
         }
 
-        return $this->render('AyalineComposerBundle:Default:index.html.twig', array('form' => $form->createView()));
+        return $this->templating->renderResponse(
+            'AyalineComposerBundle:Default:index.html.twig',
+            array('form' => $this->composerForm->createView())
+        );
     }
 
     /**
