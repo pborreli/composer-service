@@ -38,4 +38,37 @@ class AppKernel extends Kernel
     {
         $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCacheDir()
+    {
+        if ($this->isVagrantEnvironment()) {
+            return '/dev/shm/composer-service/cache/'.$this->environment;
+        }
+
+        return parent::getCacheDir();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getLogDir()
+    {
+        if ($this->isVagrantEnvironment()) {
+            return '/dev/shm/composer-service/logs';
+        }
+
+        return parent::getLogDir();
+    }
+
+    /**
+     * @return bool
+     */
+    private function isVagrantEnvironment()
+    {
+        return (getenv('HOME') === '/home/vagrant'
+            || getenv('VAGRANT') === 'VAGRANT') && is_dir('/dev/shm');
+    }
 }
