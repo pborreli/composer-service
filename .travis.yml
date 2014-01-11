@@ -25,4 +25,4 @@ before_script:
 
 script:
     - bin/behat --format=pretty --verbose --stop-on-failure
-    - phpunit -c app
+    - bin/phpspec r
