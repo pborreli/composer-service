@@ -25,4 +25,4 @@ before_script:
 
 script:
     - bin/behat --format=pretty --verbose --stop-on-failure
-    - bin/phpspec r
+    - bin/phpspec r --format=pretty --verbose

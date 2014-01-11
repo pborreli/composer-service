@@ -9,7 +9,6 @@ use Sonata\NotificationBundle\Consumer\ConsumerEvent;
  */
 class DumpFileStep extends AbstractStep implements StepInterface
 {
-
     /**
      * {@inheritdoc}
      */
@@ -18,7 +17,10 @@ class DumpFileStep extends AbstractStep implements StepInterface
         $this->pusher->trigger($this->getChannel($event), 'consumer:new-step', array('message' => 'Starting async job'));
 
         $this->filesystem->mkdir($this->workingTempPath.'/'.$directory);
-        $this->filesystem->dumpFile($this->workingTempPath.'/'.$directory.'/composer.json', $event->getMessage()->getValue('body'));
+        $this->filesystem->dumpFile(
+            sprintf('%s/%s/composer.json', $this->workingTempPath, $directory),
+            $event->getMessage()->getValue('body')
+        );
 
         return 0;
     }
