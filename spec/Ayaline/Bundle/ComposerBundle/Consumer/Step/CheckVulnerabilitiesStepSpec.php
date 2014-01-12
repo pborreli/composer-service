@@ -100,7 +100,7 @@ class CheckVulnerabilitiesStepSpec extends ObjectBehavior
             )
         )->shouldBeCalled();
 
-        $this->execute($event, 'composer_dir')->shouldReturn(1);
+        $this->execute($event, 'composer_dir')->shouldReturn(0);
     }
 
     /**
