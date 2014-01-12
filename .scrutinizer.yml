@@ -1,5 +1,6 @@
 before_commands:
     - composer install --dev --prefer-source --no-interaction
+    - bin/phpspec
 
 tools:
     # Code Coverage
@@ -7,16 +8,7 @@ tools:
         enabled: false
 
     php_code_coverage:
-        enabled:              true
-        test_command:         phpunit -c app/
-        filter:
-            excluded_paths:
-                - 'bin/*'
-                - 'vendor/*'
-                - 'app/*'
-                - 'web/*'
-                - 'src/Ayaline/Bundle/ComposerBundle/Features/*'
-                - 'spec/*'
+        enabled:              false
 
     # Code Sniffer
     php_code_sniffer:
