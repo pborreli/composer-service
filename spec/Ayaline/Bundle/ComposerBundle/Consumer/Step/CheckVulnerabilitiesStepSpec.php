@@ -31,10 +31,10 @@ class CheckVulnerabilitiesStepSpec extends ObjectBehavior
         $message->getValue('channelName')->shouldBeCalled()->willReturn('new_channel');
 
         $pusher->trigger(
-                'new_channel',
-                'consumer:new-step',
-                array('message' => 'Checking vulnerability')
-            )->shouldBeCalled();
+            'new_channel',
+            'consumer:new-step',
+            array('message' => 'Checking vulnerability')
+        )->shouldBeCalled();
 
         $securityChecker->check(sys_get_temp_dir().'/composer_dir/composer.lock', 'text')
             ->shouldBeCalled();
@@ -85,9 +85,9 @@ class CheckVulnerabilitiesStepSpec extends ObjectBehavior
             array('message' => 'Checking vulnerability')
         )->shouldBeCalled();
 
-        $securityChecker->check(sys_get_temp_dir().'/composer_dir/composer.lock', 'text')
-            ->shouldBeCalled()->willReturn($this->getRawVulnerabilityMessage()
-        );
+        $securityChecker
+            ->check(sys_get_temp_dir().'/composer_dir/composer.lock', 'text')
+            ->shouldBeCalled()->willReturn($this->getRawVulnerabilityMessage());
 
         $securityChecker->getLastVulnerabilityCount()->shouldBeCalled()->willReturn(1);
 

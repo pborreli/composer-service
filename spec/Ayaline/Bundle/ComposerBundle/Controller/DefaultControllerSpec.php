@@ -34,9 +34,9 @@ class DefaultControllerSpec extends ObjectBehavior
         $composerForm->createView()->shouldBeCalled()->willReturn($formView);
 
         $templating->renderResponse(
-                'AyalineComposerBundle:Default:index.html.twig',
-                array('form' => $formView)
-            )->shouldBeCalled()->willReturn($response);
+            'AyalineComposerBundle:Default:index.html.twig',
+            array('form' => $formView)
+        )->shouldBeCalled()->willReturn($response);
 
         $this->indexAction($request)->shouldReturn($response);
     }
@@ -114,15 +114,16 @@ EOT;
     public function getMatchers()
     {
         return array(
-            'beJsonResponse' => function($response, $data) {
-                    if (!$response instanceof JsonResponse) {
-                        return false;
-                    }
+            'beJsonResponse' => function ($response, $data) {
+                if (!$response instanceof JsonResponse) {
+                    return false;
+                }
 
-                    return $response->getContent() === json_encode(
-                        $data, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT
-                    );
-                },
+                return $response->getContent() === json_encode(
+                    $data,
+                    JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT
+                );
+            },
         );
     }
 }

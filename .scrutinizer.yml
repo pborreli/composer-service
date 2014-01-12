@@ -15,6 +15,8 @@ tools:
                 - 'vendor/*'
                 - 'app/*'
                 - 'web/*'
+                - 'src/Ayaline/Bundle/ComposerBundle/Features/*'
+                - 'spec/*'
 
     # Code Sniffer
     php_code_sniffer:
@@ -38,6 +40,7 @@ tools:
             - 'vendor/*'
             - 'app/*'
             - 'web/*'
+            - 'spec/*'
 
     # PHP CS Fixer (http://http://cs.sensiolabs.org/).
     php_cs_fixer:
@@ -61,6 +64,7 @@ tools:
             - vendor
             - app
             - web
+            - spec
 
     # PHP Mess Detector (http://phpmd.org).
     php_mess_detector:
@@ -79,6 +83,7 @@ tools:
                 - 'vendor/*'
                 - 'app/*'
                 - 'web/*'
+                - 'spec/*'
 
     # Analyzes the size and structure of a PHP project.
     php_pdepend:
@@ -89,6 +94,7 @@ tools:
             - vendor
             - app
             - web
+            - spec
 
     # Runs Scrutinizer's PHP Analyzer Tool
     php_analyzer:
@@ -99,6 +105,7 @@ tools:
                 - 'vendor/*'
                 - 'app/*'
                 - 'web/*'
+                - 'spec/*'
 
     # Security Advisory Checker
     sensiolabs_security_checker: true

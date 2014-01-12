@@ -20,18 +20,17 @@ class ComposerTypeSpec extends ObjectBehavior
     function it_add_fields_during_build_form(FormBuilder $builder)
     {
         $builder->add(
-                'body',
-                'textarea',
-                array(
-                    'attr' => array(
-                        'class' => 'form-control',
-                        'rows' => 15,
-                    ),
-                    'data' => $this->getDefaultComposerBody()
-                ,
-                )
-            )->shouldBeCalled()
-            ->willReturn($builder);
+            'body',
+            'textarea',
+            array(
+                'attr' => array(
+                    'class' => 'form-control',
+                    'rows' => 15,
+                ),
+                'data' => $this->getDefaultComposerBody()
+            ,
+            )
+        )->shouldBeCalled()->willReturn($builder);
 
         $builder->add('hasDevDependencies', 'checkbox', array('required' => true))
             ->shouldBeCalled()
