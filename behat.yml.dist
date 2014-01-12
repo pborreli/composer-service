@@ -4,7 +4,7 @@ default:
     formatter:
         name: progress
     context:
-        class: Ayaline\Bundle\ComposerBundle\UseCase\FeatureContext
+        class: Ayaline\Bundle\ComposerBundle\Features\FeatureContext
     extensions:
         Behat\MinkExtension\Extension:
             base_url:    'http://localhost:8080/app_test.php'

@@ -52,8 +52,6 @@ class CheckVulnerabilitiesStep extends AbstractStep implements StepInterface
                     'alerts' => nl2br($alerts)
                 )
             );
-
-            return 1;
         }
 
         return 0;

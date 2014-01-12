@@ -1,6 +1,6 @@
 <?php
 
-namespace Ayaline\Bundle\ComposerBundle\UseCase;
+namespace Ayaline\Bundle\ComposerBundle\Features;
 
 use Behat\Mink\Element\NodeElement;
 use Behat\Mink\Exception\ExpectationException;
@@ -45,7 +45,7 @@ class FeatureContext extends MinkContext implements KernelAwareInterface
      */
     public function waitUntilTheDownloadButtonShowsUp()
     {
-        $this->getSession()->wait(18000, '$("a#download-link").hasClass("in")');
+        $this->getSession()->wait(25000, '$("a#download-link").hasClass("in")');
     }
 
     /**
