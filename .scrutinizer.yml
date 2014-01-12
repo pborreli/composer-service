@@ -1,6 +1,6 @@
 before_commands:
     - composer install --dev --prefer-source --no-interaction
-    - bin/phpspec
+    - bin/phpspec r --format=pretty --verbose
 
 tools:
     # Code Coverage
