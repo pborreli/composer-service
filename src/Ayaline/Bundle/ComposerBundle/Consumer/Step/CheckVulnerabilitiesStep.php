@@ -27,16 +27,12 @@ class CheckVulnerabilitiesStep extends AbstractStep implements StepInterface
      */
     public function execute(ConsumerEvent $event, $directory)
     {
-        $this->pusher->trigger(
-            $this->getChannel($event),
-            'consumer:new-step',
-            array('message' => 'Checking vulnerability')
-        );
+        $this->triggerNewStep($event, array('message' => 'Checking vulnerability'));
 
         try {
             $alerts = $this->securityChecker->check($this->workingTempPath.'/'.$directory.'/composer.lock', 'text');
         } catch (\RuntimeException $e) {
-            $this->pusher->trigger($this->getChannel($event), 'consumer:error', array('message' => $e->getMessage()));
+            $this->triggerError($event, array('message' => $e->getMessage()));
 
             return 1;
         }
@@ -44,9 +40,8 @@ class CheckVulnerabilitiesStep extends AbstractStep implements StepInterface
         $vulnerabilityCount = $this->securityChecker->getLastVulnerabilityCount();
         if ($vulnerabilityCount > 0) {
             $alerts = str_replace(array("Security Report\n===============\n"), array(''), trim($alerts, "\n"));
-            $this->pusher->trigger(
-                $this->getChannel($event),
-                'consumer:step-error',
+            $this->triggerStepError(
+                $event,
                 array(
                     'message' => 'Vulnerability found : '.$vulnerabilityCount,
                     'alerts' => nl2br($alerts)

@@ -14,7 +14,7 @@ class DumpFileStep extends AbstractStep implements StepInterface
      */
     public function execute(ConsumerEvent $event, $directory)
     {
-        $this->pusher->trigger($this->getChannel($event), 'consumer:new-step', array('message' => 'Starting async job'));
+        $this->triggerNewStep($event, array('message' => 'Starting async job'));
 
         $this->filesystem->mkdir($this->workingTempPath.'/'.$directory);
         $this->filesystem->dumpFile(

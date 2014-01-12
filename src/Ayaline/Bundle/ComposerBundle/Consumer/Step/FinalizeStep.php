@@ -16,7 +16,7 @@ class FinalizeStep extends AbstractStep implements StepInterface
     {
         $sha1LockFile = sha1_file($this->workingTempPath.'/'.$directory.'/composer.lock');
 
-        $this->pusher->trigger($this->getChannel($event), 'consumer:success', array('link' => '/assets/'.$sha1LockFile.'/vendor.zip'));
+        $this->triggerSuccess($event, array('link' => '/assets/'.$sha1LockFile.'/vendor.zip'));
         $this->filesystem->remove($this->workingTempPath.'/'.$directory);
 
         return 0;

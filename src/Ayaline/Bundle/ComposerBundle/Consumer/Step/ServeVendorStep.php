@@ -19,12 +19,12 @@ class ServeVendorStep extends AbstractStep implements StepInterface
         $resultPath = $this->rootDir.'/../web/assets/'.$sha1LockFile;
 
         if (is_file($resultPath.'/vendor.zip')) {
-            $this->pusher->trigger($this->getChannel($event), 'consumer:new-step', array('message' => 'Serving cached vendor.zip'));
+            $this->triggerNewStep($event, array('message' => 'Serving cached vendor.zip'));
 
             return 0;
         }
 
-        $this->pusher->trigger($this->getChannel($event), 'consumer:new-step', array('message' => 'Compressing vendor.zip'));
+        $this->triggerNewStep($event, array('message' => 'Compressing vendor.zip'));
 
         $this->filesystem->mkdir($resultPath);
 
@@ -33,7 +33,7 @@ class ServeVendorStep extends AbstractStep implements StepInterface
         $process->run();
 
         if (!$process->isSuccessful()) {
-            $this->pusher->trigger($this->getChannel($event), 'consumer:error', array('message' => $process->getErrorOutput()));
+            $this->triggerError($event, array('message' => $process->getErrorOutput()));
 
             return 1;
         }
