@@ -3,7 +3,6 @@
 namespace spec\Ayaline\Bundle\ComposerBundle;
 
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class AyalineComposerBundleSpec extends ObjectBehavior
 {

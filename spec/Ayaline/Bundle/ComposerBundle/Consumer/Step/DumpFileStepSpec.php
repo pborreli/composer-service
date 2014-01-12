@@ -3,7 +3,6 @@
 namespace spec\Ayaline\Bundle\ComposerBundle\Consumer\Step;
 
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 use Sonata\NotificationBundle\Consumer\ConsumerEvent;
 use Sonata\NotificationBundle\Model\Message;
 use Symfony\Component\Filesystem\Filesystem;

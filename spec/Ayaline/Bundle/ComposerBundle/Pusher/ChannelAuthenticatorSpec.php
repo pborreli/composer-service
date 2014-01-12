@@ -3,7 +3,6 @@
 namespace spec\Ayaline\Bundle\ComposerBundle\Pusher;
 
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
