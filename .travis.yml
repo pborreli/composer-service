@@ -26,5 +26,5 @@ before_script:
     - php -S localhost:8080 -t web &
 
 script:
-    - bin/behat --format=pretty --verbose
     - bin/phpspec r --format=pretty --verbose
+    - bin/behat --format=pretty --verbose
