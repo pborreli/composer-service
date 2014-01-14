@@ -16,6 +16,7 @@ use Sonata\NotificationBundle\Backend\AMQPBackendDispatcher;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormView;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,14 +33,11 @@ class DefaultControllerSpec extends ObjectBehavior
     }
 
     function it_render_welcome_page(
-        Request $request,
         EngineInterface $templating,
         Form $composerForm,
         FormView $formView,
         Response $response
     ){
-        $composerForm->handleRequest($request)->shouldBeCalled();
-        $composerForm->isValid()->shouldBeCalled()->willReturn(false);
         $composerForm->createView()->shouldBeCalled()->willReturn($formView);
 
         $templating->renderResponse(
@@ -47,41 +45,24 @@ class DefaultControllerSpec extends ObjectBehavior
             array('form' => $formView)
         )->shouldBeCalled()->willReturn($response);
 
-        $this->indexAction($request)->shouldReturn($response);
-    }
-
-    function it_return_json_with_error_message_when_form_data_is_empty(
-        Request $request,
-        Form $composerForm
-    ) {
-        $composerForm->handleRequest($request)->shouldBeCalled();
-        $composerForm->isValid()->shouldBeCalled()->willReturn(true);
-        $composerForm->getData()->shouldBeCalled()->willReturn(array());
-
-        $this->indexAction($request)->shouldBeJsonResponse(
-            array('status' => 'ko', 'message' => 'Please provide a composer.json')
-        );
+        $this->indexAction()->shouldReturn($response);
     }
 
     function it_return_json_with_error_message_when_form_data_is_not_valid_json(
         Request $request,
-        Form $composerForm
+        Form $composerForm,
+        FormError $composerFormError
     ){
         $composerForm->handleRequest($request)->shouldBeCalled();
-        $composerForm->isValid()->shouldBeCalled()->willReturn(true);
-        $composerForm->getData()->shouldBeCalled()->willReturn(array(
-            'body' => 'not valid json'
-        ));
+        $composerForm->isValid()->shouldBeCalled()->willReturn(false);
+        $composerForm->isValid()->shouldBeCalled()->willReturn(false);
 
-        $this->indexAction($request)->shouldBeJsonResponse(
-            array('status' => 'ko', 'message' => <<<EOT
-"composer.json" does not contain valid JSON<br />
-Parse error on line 1:<br />
-not valid json<br />
-^<br />
-Expected one of: 'STRING', 'NUMBER', 'NULL', 'TRUE', 'FALSE', '{', '['
-EOT
-            )
+        $composerForm->get('body')->shouldBeCalled()->willReturn($composerForm);
+        $composerForm->getErrors()->shouldBeCalled()->willReturn(array($composerFormError));
+        $composerFormError->getMessage()->shouldBeCalled()->willReturn('Please provide a composer.json');
+        
+        $this->uploadComposerAction($request)->shouldBeJsonResponse(
+            array('status' => 'ko', 'message' => array('Please provide a composer.json'))
         );
     }
 
@@ -115,7 +96,7 @@ EOT;
             'hasDevDependencies' => false
         ))->shouldBeCalled();
 
-        $this->indexAction($request)->shouldBeJsonResponse(
+        $this->uploadComposerAction($request)->shouldBeJsonResponse(
             array('status' => 'ok')
         );
     }
