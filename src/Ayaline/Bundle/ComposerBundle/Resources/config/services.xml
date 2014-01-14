@@ -79,7 +79,7 @@
         <!-- End forms -->
 
         <!-- Controllers -->
-        <service id="ayaline.controller.default" class="Ayaline\Bundle\ComposerBundle\Controller\DefaultController">
+        <service id="ayaline.controller.composer" class="Ayaline\Bundle\ComposerBundle\Controller\ComposerController">
             <argument type="service" id="templating" />
             <argument type="service" id="ayaline.form.composer" />
             <argument type="service" id="sonata.notification.backend" />
