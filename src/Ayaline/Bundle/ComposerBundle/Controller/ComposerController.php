@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
-class DefaultController extends Controller
+class ComposerController extends Controller
 {
     /**
      * @var EngineInterface
@@ -57,7 +57,7 @@ class DefaultController extends Controller
     public function indexAction()
     {
         return $this->templating->renderResponse(
-            'AyalineComposerBundle:Default:index.html.twig',
+            'AyalineComposerBundle:Composer:index.html.twig',
             array('form' => $this->composerForm->createView())
         );
     }

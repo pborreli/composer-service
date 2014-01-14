@@ -22,7 +22,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 
-class DefaultControllerSpec extends ObjectBehavior
+class ComposerControllerSpec extends ObjectBehavior
 {
     function let(
         EngineInterface $templating,
@@ -41,7 +41,7 @@ class DefaultControllerSpec extends ObjectBehavior
         $composerForm->createView()->shouldBeCalled()->willReturn($formView);
 
         $templating->renderResponse(
-            'AyalineComposerBundle:Default:index.html.twig',
+            'AyalineComposerBundle:Composer:index.html.twig',
             array('form' => $formView)
         )->shouldBeCalled()->willReturn($response);
 
