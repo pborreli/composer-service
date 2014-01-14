@@ -10,7 +10,7 @@ use Ayaline\Bundle\ComposerBundle\Validator\Constraints\ComposerJson;
 
 class ComposerJsonValidatorSpec extends ObjectBehavior
 {
-    public function let(ExecutionContext $context)
+    function let(ExecutionContext $context)
     {
         $this->initialize($context);
     }
