@@ -44,7 +44,7 @@ $(document).ready(function() {
         step('Done in '+ (end - start)/1000 +' seconds!', false, true);
         ladda.stop();
 
-        downloadLink.addClass('in');
+        downloadLink.removeClass('hide');
         downloadLink.attr('href', data.link);
     });
 
@@ -146,7 +146,7 @@ $(document).ready(function() {
         ladda.start();
         $('#steps').addClass('fade').html(null).removeClass('fade');
         step('Validating composer.json', false);
-        downloadLink.removeClass('in');
+        downloadLink.addClass('hide');
         start = new Date().getTime();
         $.ajax({
             url: $(this).attr('action'),
