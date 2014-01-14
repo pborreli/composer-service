@@ -11,7 +11,6 @@
 
 namespace Ayaline\Bundle\ComposerBundle\Controller;
 
-use Composer\Json\JsonFile;
 use Sonata\NotificationBundle\Backend\AMQPBackendDispatcher;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
@@ -38,8 +37,8 @@ class DefaultController extends Controller
     private $sonataNotificationsBackend;
 
     /**
-     * @param EngineInterface $templating
-     * @param FormInterface $composerForm
+     * @param EngineInterface       $templating
+     * @param FormInterface         $composerForm
      * @param AMQPBackendDispatcher $sonataNotificationsBackend
      */
     public function __construct(
@@ -83,7 +82,7 @@ class DefaultController extends Controller
         }
 
         // @todo: change it if https://github.com/symfony/symfony/pull/9918 is merged
-        $errors = array_map(function($error) {
+        $errors = array_map(function ($error) {
             return $error->getMessage();
 
         }, $this->composerForm->get('body')->getErrors());

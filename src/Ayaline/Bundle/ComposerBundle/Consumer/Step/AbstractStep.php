@@ -106,7 +106,7 @@ abstract class AbstractStep implements StepInterface
      * Triggers a "consumer:new-step" message on Pusher.
      *
      * @param ConsumerEvent $event
-     * @param array $message
+     * @param array         $message
      */
     protected function triggerNewStep(ConsumerEvent $event, $message)
     {
@@ -117,7 +117,7 @@ abstract class AbstractStep implements StepInterface
      * Triggers a "consumer:step-error" message on Pusher.
      *
      * @param ConsumerEvent $event
-     * @param array $message
+     * @param array         $message
      */
     protected function triggerStepError(ConsumerEvent $event, $message)
     {
@@ -128,7 +128,7 @@ abstract class AbstractStep implements StepInterface
      * Triggers a "consumer:error" message on Pusher.
      *
      * @param ConsumerEvent $event
-     * @param array $message
+     * @param array         $message
      */
     protected function triggerError(ConsumerEvent $event, $message)
     {
@@ -139,7 +139,7 @@ abstract class AbstractStep implements StepInterface
      * Triggers a "consumer:success" message on Pusher.
      *
      * @param ConsumerEvent $event
-     * @param array $message
+     * @param array         $message
      */
     protected function triggerSuccess(ConsumerEvent $event, $message)
     {
