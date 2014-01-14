@@ -143,10 +143,10 @@ $(document).ready(function() {
     dropZone.addEventListener('drop', handleFileSelect, false);
 
     $('form').on('submit', function() {
+        downloadLink.addClass('hide');
         ladda.start();
         $('#steps').addClass('fade').html(null).removeClass('fade');
         step('Validating composer.json', false);
-        downloadLink.addClass('hide');
         start = new Date().getTime();
         $.ajax({
             url: $(this).attr('action'),
