@@ -8,7 +8,7 @@
 
     <div class="alert-danger fade" id="error"></div>
 
-    {{ form_start(form, {'attr': {'class': 'form-horizontal', 'role': 'form'}}) }}
+    {{ form_start(form, {'action': path('composer_service_upload'), 'method': 'POST', 'attr': {'class': 'form-horizontal', 'role': 'form'}}) }}
         <div class="row">
             <div class="form-group col-sm-8 col-lg-9" id="dnd-zone">
                 {{ form_widget(form.body) }}

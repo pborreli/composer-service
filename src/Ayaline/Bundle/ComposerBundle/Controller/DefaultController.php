@@ -11,7 +11,6 @@
 
 namespace Ayaline\Bundle\ComposerBundle\Controller;
 
-use Composer\Json\JsonFile;
 use Sonata\NotificationBundle\Backend\AMQPBackendDispatcher;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
@@ -22,7 +21,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
-    private $sonataNotificationsBackend;
     /**
      * @var EngineInterface
      */
@@ -34,8 +32,13 @@ class DefaultController extends Controller
     private $composerForm;
 
     /**
-     * @param EngineInterface $templating
-     * @param FormInterface $composerForm
+     * @var AMQPBackendDispatcher
+     */
+    private $sonataNotificationsBackend;
+
+    /**
+     * @param EngineInterface       $templating
+     * @param FormInterface         $composerForm
      * @param AMQPBackendDispatcher $sonataNotificationsBackend
      */
     public function __construct(
@@ -49,24 +52,26 @@ class DefaultController extends Controller
     }
 
     /**
-     * @param  Request               $request
-     * @return JsonResponse|Response
+     * @return Response
      */
-    public function indexAction(Request $request)
+    public function indexAction()
+    {
+        return $this->templating->renderResponse(
+            'AyalineComposerBundle:Default:index.html.twig',
+            array('form' => $this->composerForm->createView())
+        );
+    }
+
+    /**
+     * @param  Request      $request
+     * @return JsonResponse
+     */
+    public function uploadComposerAction(Request $request)
     {
         $this->composerForm->handleRequest($request);
 
         if ($this->composerForm->isValid()) {
-
             $data = $this->composerForm->getData();
-            if (empty($data['body'])) {
-                return new JsonResponse(array('status' => 'ko', 'message' => 'Please provide a composer.json'));
-            }
-
-            if (true !== $message = $this->validateComposerJson($data['body'])) {
-                return new JsonResponse(array('status' => 'ko', 'message' => nl2br($message)));
-            }
-
             $this->sonataNotificationsBackend->createAndPublish('upload.composer', array(
                 'body' => $data['body'],
                 'channelName' => $request->getSession()->get('channelName'),
@@ -76,34 +81,12 @@ class DefaultController extends Controller
             return new JsonResponse(array('status' => 'ok'));
         }
 
-        return $this->templating->renderResponse(
-            'AyalineComposerBundle:Default:index.html.twig',
-            array('form' => $this->composerForm->createView())
-        );
-    }
+        // @todo: change it if https://github.com/symfony/symfony/pull/9918 is merged
+        $errors = array_map(function ($error) {
+            return $error->getMessage();
 
-    /**
-     * @param  string     $string The composer.json string
-     * @return Boolean|mixed True if valid, string with the message otherwise
-     */
-    protected function validateComposerJson($string)
-    {
-        $tempFile = tempnam(sys_get_temp_dir(), 'composer');
-        file_put_contents($tempFile, $string);
+        }, $this->composerForm->get('body')->getErrors());
 
-        try {
-            $jsonFile = new JsonFile($tempFile);
-            $jsonFile->validateSchema(JsonFile::LAX_SCHEMA);
-            unlink($tempFile);
-
-            return true;
-        } catch (\Exception $exception) {
-            $from = array($tempFile);
-            $to   = array('composer.json');
-            $message = str_replace($from, $to, $exception->getMessage());
-            unlink($tempFile);
-
-            return $message;
-        }
+        return new JsonResponse(array('status' => 'ko', 'message' => $errors));
     }
 }

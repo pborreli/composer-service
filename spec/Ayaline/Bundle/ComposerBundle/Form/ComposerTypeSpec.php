@@ -13,6 +13,7 @@ namespace spec\Ayaline\Bundle\ComposerBundle\Form;
 
 use PhpSpec\ObjectBehavior;
 use Symfony\Component\Form\FormBuilder;
+use Ayaline\Bundle\ComposerBundle\Validator\Constraints\ComposerJson;
 
 class ComposerTypeSpec extends ObjectBehavior
 {
@@ -36,8 +37,10 @@ class ComposerTypeSpec extends ObjectBehavior
                     'class' => 'form-control',
                     'rows' => 15,
                 ),
-                'data' => $this->getDefaultComposerBody()
-            ,
+                'data' => $this->getDefaultComposerBody(),
+                'constraints' => array(
+                    new ComposerJson()
+                ),
             )
         )->shouldBeCalled()->willReturn($builder);
 

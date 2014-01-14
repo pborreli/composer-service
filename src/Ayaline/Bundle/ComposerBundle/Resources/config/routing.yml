@@ -1,3 +1,8 @@
-_welcome:
-    pattern:  /
+composer_service_homepage:
+    path: /
     defaults: { _controller: ayaline.controller.default:indexAction }
+
+composer_service_upload:
+    path: /composer-service/upload
+    defaults: { _controller: ayaline.controller.default:uploadComposerAction }
+    methods: [POST]
