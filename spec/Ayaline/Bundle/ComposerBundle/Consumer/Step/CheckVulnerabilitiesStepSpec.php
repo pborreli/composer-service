@@ -96,7 +96,7 @@ class CheckVulnerabilitiesStepSpec extends ObjectBehavior
 
         $securityChecker
             ->check(sys_get_temp_dir().'/composer_dir/composer.lock', 'text')
-            ->shouldBeCalled()->willReturn($this->getRawVulnerabilityMessage());
+            ->shouldBeCalled()->willReturn($this->getVulnerabilityMessage());
 
         $securityChecker->getLastVulnerabilityCount()->shouldBeCalled()->willReturn(1);
 
@@ -105,7 +105,14 @@ class CheckVulnerabilitiesStepSpec extends ObjectBehavior
             'consumer:step-error',
             array(
                 'message' => 'Vulnerability found : 1',
-                'alerts' => $this->getFormatedVulnerabilityMessage()
+            )
+        )->shouldBeCalled();
+
+        $pusher->trigger(
+            'new_channel',
+            'consumer:vulnerabilities',
+            array(
+                'message' => $this->getVulnerabilityMessage(),
             )
         )->shouldBeCalled();
 
@@ -115,7 +122,7 @@ class CheckVulnerabilitiesStepSpec extends ObjectBehavior
     /**
      * @return string
      */
-    private function getRawVulnerabilityMessage()
+    private function getVulnerabilityMessage()
     {
         return <<<EOT
 Security Report
@@ -139,35 +146,6 @@ CVE-2012-6431: Routes behind a firewall are accessible even when not logged in
 
 
 * Disclaimer: This checker can only detect vulnerabilities that are referenced
-              in the SensioLabs security advisories database.
-EOT;
-    }
-
-    /**
-     * @return string
-     */
-    private function getFormatedVulnerabilityMessage()
-    {
-        return <<<EOT
-<br />
-The checker detected 1 package(s) that have known* vulnerabilities in<br />
-your project. We recommend you to check the related security advisories<br />
-and upgrade these dependencies.<br />
-<br />
-symfony/symfony (v2.0.10)<br />
--------------------------<br />
-<br />
-CVE-2013-1397: Ability to enable/disable object support in YAML parsing and dumping<br />
-               http://symfony.com/blog/security-release-symfony-2-0-22-and-2-1-7-released<br />
-<br />
-xxx-xxxx-xxxx: Security fixes related to the way XML is handled<br />
-               http://symfony.com/blog/security-release-symfony-2-0-17-released<br />
-<br />
-CVE-2012-6431: Routes behind a firewall are accessible even when not logged in<br />
-               http://symfony.com/blog/security-release-symfony-2-0-20-and-2-1-5-released<br />
-<br />
-<br />
-* Disclaimer: This checker can only detect vulnerabilities that are referenced<br />
               in the SensioLabs security advisories database.
 EOT;
     }

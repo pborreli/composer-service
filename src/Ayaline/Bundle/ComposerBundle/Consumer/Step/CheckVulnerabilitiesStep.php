@@ -48,14 +48,8 @@ class CheckVulnerabilitiesStep extends AbstractStep implements StepInterface
 
         $vulnerabilityCount = $this->securityChecker->getLastVulnerabilityCount();
         if ($vulnerabilityCount > 0) {
-            $alerts = str_replace(array("Security Report\n===============\n"), array(''), trim($alerts, "\n"));
-            $this->triggerStepError(
-                $event,
-                array(
-                    'message' => 'Vulnerability found : '.$vulnerabilityCount,
-                    'alerts' => nl2br($alerts)
-                )
-            );
+            $this->triggerStepError($event, array('message' => 'Vulnerability found : '.$vulnerabilityCount));
+            $this->triggerVulnerabilities($event, array('message' => trim($alerts)));
         }
 
         return 0;

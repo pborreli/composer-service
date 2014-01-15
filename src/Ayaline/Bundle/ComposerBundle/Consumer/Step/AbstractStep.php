@@ -145,4 +145,37 @@ abstract class AbstractStep implements StepInterface
     {
         $this->pusher->trigger($this->getChannel($event), 'consumer:success', $message);
     }
+
+    /**
+     * Triggers a "consumer:composer-output" message on Pusher.
+     *
+     * @param ConsumerEvent $event
+     * @param array         $message
+     */
+    protected function triggerComposerOutput(ConsumerEvent $event, $message)
+    {
+        $this->pusher->trigger($this->getChannel($event), 'consumer:composer-output', $message);
+    }
+
+    /**
+     * Triggers a "consumer:composer-installed" message on Pusher.
+     *
+     * @param ConsumerEvent $event
+     * @param array         $message
+     */
+    protected function triggerComposerInstalled(ConsumerEvent $event, $message)
+    {
+        $this->pusher->trigger($this->getChannel($event), 'consumer:composer-installed', $message);
+    }
+
+    /**
+     * Triggers a "consumer:vulnerabilities" message on Pusher.
+     *
+     * @param ConsumerEvent $event
+     * @param array         $message
+     */
+    protected function triggerVulnerabilities(ConsumerEvent $event, $message)
+    {
+        $this->pusher->trigger($this->getChannel($event), 'consumer:vulnerabilities', $message);
+    }
 }

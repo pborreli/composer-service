@@ -10,19 +10,41 @@
 
     {{ form_start(form, {'action': path('composer_service_upload'), 'method': 'POST', 'attr': {'class': 'form-horizontal', 'role': 'form'}}) }}
         <div class="row">
-            <div class="form-group col-sm-8 col-lg-9" id="dnd-zone">
-                {{ form_widget(form.body) }}
-                <p class="drag-and-drop">
-                    <span>
-                        Write your composer.json, dragging/dropping,
-                        <input type="file" class="file-chooser" id="file">
-                        <a class="file-chooser-text" href="#">selecting it</a> or pasting
-                        from the clipboard.
-                    </span>
-                    <span class="bad-file alert-danger fade">
-                      Please use a composer.json file
-                    </span>
-                </p>
+            <div class="col-sm-8 col-lg-9 main-col">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#dnd-zone" data-toggle="tab">Composer.json</a></li>
+                    <li class="hide"><a href="#composer-output" class="text-success" data-toggle="tab"><i class="glyphicon glyphicon-eye-open"></i> Composer output</a></li>
+                    <li class="hide"><a href="#composer-installed" class="text-success" data-toggle="tab"><i class="glyphicon glyphicon-eye-open"></i> Show installed</a></li>
+                    <li class="hide"><a href="#vulnerabilities" class="text-danger" data-toggle="tab"><i class="glyphicon glyphicon-fire"></i> Vulnerabilities</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active form-group" id="dnd-zone">
+                        {{ form_widget(form.body) }}
+                        <p class="drag-and-drop">
+                            <span>
+                                Write your composer.json, dragging/dropping,
+                                <input type="file" class="file-chooser" id="file">
+                                <a class="file-chooser-text" href="#">selecting it</a> or pasting
+                                from the clipboard.
+                            </span>
+                            <span class="bad-file alert-danger fade">
+                              Please use a composer.json file
+                            </span>
+                        </p>
+                    </div>
+                    <div class="tab-pane" id="composer-output">
+                        <button type="button" class="log-copy btn btn-default" data-target="log-composer-output" id="cp-composer-output"><i class="glyphicon glyphicon-floppy-save"></i></button>
+                        <pre class="log" id="log-composer-output"></pre>
+                    </div>
+                    <div class="tab-pane" id="composer-installed">
+                        <button type="button" class="log-copy btn btn-default" data-target="log-composer-installed" id="cp-composer-installed"><i class="glyphicon glyphicon-floppy-save"></i></button>
+                        <pre class="log" id="log-composer-installed"></pre>
+                    </div>
+                    <div class="tab-pane" id="vulnerabilities">
+                        <button type="button" class="log-copy btn btn-default" data-target="log-vulnerabilities" id="cp-vulnerabilities"><i class="glyphicon glyphicon-floppy-save"></i></button>
+                        <pre class="log" id="log-vulnerabilities"></pre>
+                    </div>
+                </div>
             </div>
             <div class="col-sm-4 col-lg-3 lead" id="progress">
                 <div class="btn-group" data-toggle="buttons">

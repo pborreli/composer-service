@@ -13,9 +13,7 @@ $(document).ready(function() {
     }).on('input propertychange', function() {
         button.removeClass('btn-success');
         button.unbind('click');
-        button.click(function(e){
-            $('form').submit();
-        });
+        button.click(handleButtonClick);
     });
 
     $('#composer_hasDevDependencies').change(function () {
@@ -24,15 +22,34 @@ $(document).ready(function() {
 
     var ladda = Ladda.create(document.querySelector('.btn'));
 
+    ZeroClipboard.setDefaults({ moviePath: '/bundles/ayalinecomposer/swf/ZeroClipboard.swf' });
+    var clip = new ZeroClipboard();
+
+    clip.on("dataRequested", function (client, args) {
+        var text = '';
+        $('#' + $(this).attr('data-target') + ' p').each(function() {
+            text += $(this).text() + '\n';
+        })
+
+        client.setText($.trim(text));
+    });
+
     var pusher = new Pusher(pusher_key, { authEndpoint: channel_auth_endpoint });
     var sessionId = $.cookie('COMPOSERAAS');
     var channel = pusher.subscribe('private-channel-'+sessionId);
     var start = 0;
     var end = 0;
 
-    button.click(function(e) {
+    function handleButtonClick() {
+        $('.nav-tabs a:first').tab('show');
+        $('.nav-tabs li:not(:first)').addClass('hide');
+        $('.tab-content button[data-target]').each(function() {
+            clip.unglue(this);
+        });
         $('form').submit();
-    });
+    }
+
+    button.click(handleButtonClick);
 
     channel.bind('consumer:error', function(data) {
         ladda.stop();
@@ -56,6 +73,18 @@ $(document).ready(function() {
         step(data.message, true, false, data.alerts ? data.alerts : false);
     });
 
+    channel.bind('consumer:composer-output', function(data) {
+        addLogs('composer-output', data);
+    });
+
+    channel.bind('consumer:composer-installed', function(data) {
+        addLogs('composer-installed', data);
+    });
+
+    channel.bind('consumer:vulnerabilities', function(data) {
+        addLogs('vulnerabilities', data);
+    });
+
     channel.bind('pusher:subscription_error', function(status) {
         if(status == 408 || status == 503){
 
@@ -69,6 +98,12 @@ $(document).ready(function() {
     $('#file').change(function() {
         readFile(this.files[0])
     });
+
+    function addLogs(id, data) {
+        var content = '<p>' + data.message.split(/\r?\n/).join('</p><p>') + '</p>';
+        $('#log-' + id).html(content);
+        $('.nav-tabs a[href=#' + id + ']').parent().removeClass('hide');
+    }
 
     function readFile(file) {
         console.log(file.type);
@@ -165,5 +200,19 @@ $(document).ready(function() {
         });
 
         return false;
+    });
+
+    $('.nav-tabs').delegate('a[data-toggle="tab"]', 'shown.bs.tab', function (e) {
+        $relatedTab = $($(e.relatedTarget).attr('href'));
+        var oldButton = $relatedTab.find('button[data-target]')[0];
+        if(oldButton) {
+            clip.unglue(oldButton);
+        }
+
+        $tab = $($(e.target).attr('href'));
+        var newButton = $tab.find('button[data-target]')[0];
+        if(newButton) {
+            clip.glue(newButton);
+        }
     });
 });
