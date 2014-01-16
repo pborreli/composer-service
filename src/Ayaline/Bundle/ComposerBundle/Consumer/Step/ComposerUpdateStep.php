@@ -61,6 +61,14 @@ class ComposerUpdateStep extends AbstractStep implements StepInterface
             return 1;
         }
 
+        $this->triggerComposerOutput($event, array('message' => $process->getOutput()));
+
+        $output = null;
+        $process = $this->runProcess(sprintf('%s show --installed', $this->composerBinPath), $workingDirectory, $output);
+        if ($process->isSuccessful()) {
+            $this->triggerComposerInstalled($event, array('message' => $process->getOutput()));
+        }
+
         return 0;
     }
 
@@ -84,5 +92,4 @@ class ComposerUpdateStep extends AbstractStep implements StepInterface
 
         return $process;
     }
-
 }

@@ -132,6 +132,67 @@ p.drag-and-drop.focused {
     font-size: 80%;
 }
 
+.main-col {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.main-col .form-group {
+    margin: 0;
+}
+
+.main-col textarea, .log {
+    border-top: 0;
+    -webkit-border-top-left-radius: 0;
+    -moz-border-radius-topleft: 0;
+    border-top-left-radius: 0;
+    -webkit-border-top-right-radius: 0;
+    -moz-border-radius-topright: 0;
+    border-top-right-radius: 0
+}
+
+.tab-pane {
+    position: relative;
+}
+
+.log {
+    background-color: #444;
+    color: #fff;
+    padding: 10px 0;
+    overflow: auto;
+}
+
+.log p {
+    margin: 0;
+    padding: 4px 10px;
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+.log p:hover {
+    background-color: #666;
+}
+
+.log-copy {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.log-copy.zeroclipboard-is-hover {
+    background-color: #ebebeb;
+    border-color: #adadad;
+}
+
+.log-copy.zeroclipboard-is-active {
+    background-color: #ebebeb;
+    border-color: #adadad;
+    outline: 0;
+    -webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
+    -moz-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    box-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
+}
+
 /* Left will inherit from right (so we don't need to duplicate code */
 .github-fork-ribbon {
     /* The right and left lasses determine the side we attach our banner to */
