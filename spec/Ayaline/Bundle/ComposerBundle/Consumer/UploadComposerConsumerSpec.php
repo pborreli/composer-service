@@ -28,7 +28,7 @@ class UploadComposerConsumerSpec extends ObjectBehavior
         ConsumerEvent $event,
         StepInterface $step1,
         StepInterface $step2
-    ){
+    ) {
         $this->beConstructedWith(array(
             $step1, $step2
         ));
@@ -43,7 +43,7 @@ class UploadComposerConsumerSpec extends ObjectBehavior
         ConsumerEvent $event,
         StepInterface $step1,
         StepInterface $step2
-    ){
+    ) {
         $this->beConstructedWith(array(
             $step1, $step2
         ));

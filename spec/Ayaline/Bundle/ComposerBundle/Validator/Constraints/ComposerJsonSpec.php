@@ -12,7 +12,6 @@
 namespace spec\Ayaline\Bundle\ComposerBundle\Validator\Constraints;
 
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class ComposerJsonSpec extends ObjectBehavior
 {

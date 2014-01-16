@@ -13,7 +13,6 @@ namespace Ayaline\Bundle\ComposerBundle\Validator\Constraints;
 
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
-
 use Composer\Json\JsonFile;
 
 /**
