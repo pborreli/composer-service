@@ -37,7 +37,7 @@ class ComposerControllerSpec extends ObjectBehavior
         Form $composerForm,
         FormView $formView,
         Response $response
-    ){
+    ) {
         $composerForm->createView()->shouldBeCalled()->willReturn($formView);
 
         $templating->renderResponse(
@@ -52,7 +52,7 @@ class ComposerControllerSpec extends ObjectBehavior
         Request $request,
         Form $composerForm,
         FormError $composerFormError
-    ){
+    ) {
         $composerForm->handleRequest($request)->shouldBeCalled();
         $composerForm->isValid()->shouldBeCalled()->willReturn(false);
         $composerForm->isValid()->shouldBeCalled()->willReturn(false);
@@ -60,7 +60,7 @@ class ComposerControllerSpec extends ObjectBehavior
         $composerForm->get('body')->shouldBeCalled()->willReturn($composerForm);
         $composerForm->getErrors()->shouldBeCalled()->willReturn(array($composerFormError));
         $composerFormError->getMessage()->shouldBeCalled()->willReturn('Please provide a composer.json');
-        
+
         $this->uploadComposerAction($request)->shouldBeJsonResponse(
             array('status' => 'ko', 'message' => array('Please provide a composer.json'))
         );

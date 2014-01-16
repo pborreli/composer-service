@@ -84,5 +84,4 @@ class ComposerUpdateStep extends AbstractStep implements StepInterface
 
         return $process;
     }
-
 }
