@@ -38,7 +38,7 @@ brew update && brew install phantomjs
  - Better code
  - Insert your needed feature here
 
-## License
+## License [![License](https://poser.pugx.org/pborreli/composer-service/license.png)](https://packagist.org/packages/pborreli/composer-service)
 
 It's MIT, you can do whatever you like without need of thank or anything.
 I'd be glad if you use it, happy if you enjoy it and very happy if you decide to contribute to make it better.
