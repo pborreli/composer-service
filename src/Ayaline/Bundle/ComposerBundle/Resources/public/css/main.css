@@ -155,6 +155,16 @@ p.drag-and-drop.focused {
     position: relative;
 }
 
+.nav-tabs > li.active.console > a,
+.nav-tabs > li.active.console > a:hover,
+.nav-tabs > li.active.console > a:focus {
+    color: #fff;
+    cursor: default;
+    background-color: #444;
+    border: 1px solid #1c1e22;
+    border-bottom-color: transparent;
+}
+
 .log {
     background-color: #444;
     color: #fff;
@@ -162,6 +172,15 @@ p.drag-and-drop.focused {
     overflow: auto;
 }
 
+#log-vulnerabilities{
+    background-color: #fff;
+    color: #ac2925;
+    padding: 10px 0;
+    overflow: auto;
+}
+#log-vulnerabilities p:hover {
+    background-color: #eee;
+}
 .log p {
     margin: 0;
     padding: 4px 10px;

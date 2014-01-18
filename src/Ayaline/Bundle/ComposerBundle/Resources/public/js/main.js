@@ -29,7 +29,7 @@ $(document).ready(function() {
         var text = '';
         $('#' + $(this).attr('data-target') + ' p').each(function() {
             text += $(this).text() + '\n';
-        })
+        });
 
         client.setText($.trim(text));
     });
@@ -106,8 +106,6 @@ $(document).ready(function() {
     }
 
     function readFile(file) {
-        console.log(file.type);
-
         if (file.type != 'application/json'){
             $('.bad-file').addClass('in');
 
