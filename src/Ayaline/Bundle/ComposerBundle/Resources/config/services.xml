@@ -35,6 +35,11 @@
             class="Ayaline\Bundle\ComposerBundle\Consumer\Step\ComposerUpdateStep">
         </service>
 
+        <service id="ayaline.composer.consumer.step.composer_installed"
+            parent="ayaline.composer.consumer.step.base"
+            class="Ayaline\Bundle\ComposerBundle\Consumer\Step\ComposerInstalledStep">
+        </service>
+
         <service id="ayaline.composer.consumer.step.check_vulnerabilities"
             parent="ayaline.composer.consumer.step.base"
             class="Ayaline\Bundle\ComposerBundle\Consumer\Step\CheckVulnerabilitiesStep">
@@ -57,6 +62,7 @@
             <argument type="collection">
                 <argument type="service" id="ayaline.composer.consumer.step.dump_file"/>
                 <argument type="service" id="ayaline.composer.consumer.step.composer_update"/>
+                <argument type="service" id="ayaline.composer.consumer.step.composer_installed"/>
                 <argument type="service" id="ayaline.composer.consumer.step.check_vulnerabilities"/>
                 <argument type="service" id="ayaline.composer.consumer.step.serve_vendor"/>
                 <argument type="service" id="ayaline.composer.consumer.step.finalize"/>

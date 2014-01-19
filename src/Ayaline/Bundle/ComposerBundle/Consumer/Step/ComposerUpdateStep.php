@@ -12,7 +12,6 @@
 namespace Ayaline\Bundle\ComposerBundle\Consumer\Step;
 
 use Sonata\NotificationBundle\Consumer\ConsumerEvent;
-use Symfony\Component\Process\Process;
 
 /**
  * @author Hubert Moutot <hubert.moutot@gmail.com>
@@ -63,33 +62,6 @@ class ComposerUpdateStep extends AbstractStep implements StepInterface
 
         $this->triggerComposerOutput($event, array('message' => $process->getOutput()));
 
-        $output = null;
-        $process = $this->runProcess(sprintf('%s show --installed', $this->composerBinPath), $workingDirectory, $output);
-        if ($process->isSuccessful()) {
-            $this->triggerComposerInstalled($event, array('message' => $process->getOutput()));
-        }
-
         return 0;
-    }
-
-    protected function runProcess($commandline, $workingDirectory, &$output)
-    {
-        $callback = function ($type, $data) use (&$output) {
-            if ('' == $data = trim($data)) {
-                return;
-            }
-            if ($type == 'err') {
-                $output .= $data.PHP_EOL;
-            } else {
-                $output = $data.PHP_EOL;
-            }
-        };
-
-        $process = new Process($commandline);
-        $process->setWorkingDirectory($workingDirectory);
-        $process->setTimeout(300);
-        $process->run($callback);
-
-        return $process;
     }
 }
