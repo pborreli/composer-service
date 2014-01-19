@@ -81,7 +81,6 @@ class ComposerController extends Controller
             return new JsonResponse(array('status' => 'ok'));
         }
 
-        // @todo: change it if https://github.com/symfony/symfony/pull/9918 is merged
         $errors = array_map(function ($error) {
             return $error->getMessage();
 
