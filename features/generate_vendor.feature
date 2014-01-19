@@ -20,6 +20,8 @@ Feature: generate link of compressed vendors folder from composer.json
       And I should see "Sending to queue"
       And I should see "Starting async job"
       And I should see "./composer update"
+      And I should see "Composer output"
+      And I should see "Show installed"
       And I should see "Checking vulnerability"
       And I should see text matching "Done in \d+\.?\d* seconds"
       And I should see "Download" link
@@ -41,6 +43,8 @@ Feature: generate link of compressed vendors folder from composer.json
     And I should see "Sending to queue"
     And I should see "Starting async job"
     And I should see "./composer update"
+    And I should see "Composer output"
+    And I should see "Show installed"
     And I should see "Checking vulnerability"
     And I should see "Serving cached vendor.zip"
     And I should see text matching "Done in \d+\.?\d* seconds"
@@ -63,6 +67,8 @@ Feature: generate link of compressed vendors folder from composer.json
     And I should see "Sending to queue"
     And I should see "Starting async job"
     And I should see "./composer update"
+    And I should see "Composer output"
+    And I should see "Show installed"
     And I should see "Vulnerability found : 1"
     And I should see text matching "Done in \d+\.?\d* seconds"
     And I should see "Download" link

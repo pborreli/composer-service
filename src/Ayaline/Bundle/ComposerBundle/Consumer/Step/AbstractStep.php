@@ -13,6 +13,7 @@ namespace Ayaline\Bundle\ComposerBundle\Consumer\Step;
 
 use Symfony\Component\Filesystem\Filesystem;
 use Sonata\NotificationBundle\Consumer\ConsumerEvent;
+use Symfony\Component\Process\Process;
 
 /**
  * @author Hubert Moutot <hubert.moutot@gmail.com>
@@ -177,5 +178,35 @@ abstract class AbstractStep implements StepInterface
     protected function triggerVulnerabilities(ConsumerEvent $event, $message)
     {
         $this->pusher->trigger($this->getChannel($event), 'consumer:vulnerabilities', $message);
+    }
+
+    /**
+     * Runs a process
+     *
+     * @param string $commandline      the command line to execute
+     * @param string $workingDirectory the current working directory
+     * @param string $output           the output
+     *
+     * @return Process the resulting Process
+     */
+    protected function runProcess($commandline, $workingDirectory, &$output)
+    {
+        $callback = function ($type, $data) use (&$output) {
+            if ('' == $data = trim($data)) {
+                return;
+            }
+            if ($type == 'err') {
+                $output .= $data.PHP_EOL;
+            } else {
+                $output = $data.PHP_EOL;
+            }
+        };
+
+        $process = new Process($commandline);
+        $process->setWorkingDirectory($workingDirectory);
+        $process->setTimeout(300);
+        $process->run($callback);
+
+        return $process;
     }
 }
