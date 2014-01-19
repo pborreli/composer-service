@@ -1,6 +1,7 @@
 composer_service_homepage:
     path: /
     defaults: { _controller: ayaline.controller.composer:indexAction }
+    methods: [GET]
 
 composer_service_upload:
     path: /composer-service/upload
