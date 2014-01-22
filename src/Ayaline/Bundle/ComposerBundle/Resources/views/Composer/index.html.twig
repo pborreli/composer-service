@@ -18,7 +18,7 @@
                     <li class="hide"><a href="#vulnerabilities" class="text-danger" data-toggle="tab"><i class="glyphicon glyphicon-fire"></i> Vulnerabilities</a></li>
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane active form-group" id="dnd-zone">
+                    <div class="tab-pane active form-group fade in" id="dnd-zone">
                         {{ form_widget(form.body) }}
                         <p class="drag-and-drop">
                             <span>
@@ -32,15 +32,15 @@
                             </span>
                         </p>
                     </div>
-                    <div class="tab-pane" id="composer-output">
+                    <div class="tab-pane fade" id="composer-output">
                         <button type="button" class="log-copy btn btn-xs btn-default" data-target="log-composer-output" id="cp-composer-output"><i class="glyphicon glyphicon-share"></i> copy to clipboard</button>
                         <pre class="log" id="log-composer-output"></pre>
                     </div>
-                    <div class="tab-pane" id="composer-installed">
+                    <div class="tab-pane fade" id="composer-installed">
                         <button type="button" class="log-copy btn btn-xs btn-default" data-target="log-composer-installed" id="cp-composer-installed"><i class="glyphicon glyphicon-share"></i> copy to clipboard</button>
                         <pre class="log" id="log-composer-installed"></pre>
                     </div>
-                    <div class="tab-pane" id="vulnerabilities">
+                    <div class="tab-pane fade" id="vulnerabilities">
                         <button type="button" class="log-copy btn btn-xs btn-default" data-target="log-vulnerabilities" id="cp-vulnerabilities"><i class="glyphicon glyphicon-share"></i> copy to clipboard</button>
                         <pre class="log" id="log-vulnerabilities"></pre>
                     </div>
