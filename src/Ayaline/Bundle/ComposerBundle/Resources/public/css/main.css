@@ -5,7 +5,11 @@ body {
 html,
 body {
     height: 100%;
-    /* The html and body elements cannot have any padding or margin. */
+    background: url(/bundles/ayalinecomposer/svg/trianglify-background.svg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 textarea {
