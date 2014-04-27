@@ -31,7 +31,7 @@
         "composer/composer": "1.0.0-alpha8",
         "liip/monitor-bundle": "1.0.*@dev",
         "videlalvaro/php-amqplib": "~2.2",
-
+        "nelmio/security-bundle": "~1.4",
         "sonata-project/notification-bundle": "2.2.*@dev",
 
         "laupifrpar/pusher-bundle": "~1.2",

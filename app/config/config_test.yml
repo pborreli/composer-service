@@ -15,6 +15,10 @@ swiftmailer:
 assetic:
     use_controller: true
 
+nelmio_security:
+    forced_ssl:
+        enabled: false
+
 monolog:
     handlers:
         main:

@@ -101,6 +101,10 @@ twig:
         analytics_id: "%analytics_id%"
         pingdom_rum_id: "%pingdom_rum_id%"
 
+nelmio_security:
+    forced_ssl:
+        enabled: %forced_ssl%
+
 liip_monitor:
     checks:
         disc_usage:
