@@ -17,7 +17,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Ayaline\Bundle\ComposerBundle\AyalineComposerBundle(),
-
+            new Nelmio\SecurityBundle\NelmioSecurityBundle(),
             new Sonata\NotificationBundle\SonataNotificationBundle(),
 
             new Lopi\Bundle\PusherBundle\LopiPusherBundle(),
