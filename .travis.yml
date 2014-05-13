@@ -21,7 +21,7 @@ services: rabbitmq
 before_script:
     - composer selfupdate
     - composer install -n
-    - sudo cp ~/.phpenv/versions/$(phpenv version-name)/bin/composer.phar /usr/local/bin/composer
+    - sudo cp ~/.phpenv/versions/$(phpenv version-name)/bin/composer /usr/local/bin/composer
     - php app/console --env=test sonata:notification:start > /dev/null &
     - phantomjs --webdriver=4444 > /dev/null &
     - php -S localhost:8080 -t web &
