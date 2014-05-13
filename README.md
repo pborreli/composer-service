@@ -45,6 +45,7 @@ I'd be glad if you use it, happy if you enjoy it and very happy if you decide to
 
 ## Quality
 
+[![Codacy Quality Score](http://img.shields.io/badge/Codacy-C-yellowgreen.png)](https://www.codacy.com/public/pborreli/composer-service.git)
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/pborreli/composer-service/badges/quality-score.png?s=e24aa692dbefefcc7c9ed77bc1e9c64968a12571)](https://scrutinizer-ci.com/g/pborreli/composer-service/)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/20408423-f871-4d67-a87c-8967bedd6ef7/mini.png)](https://insight.sensiolabs.com/projects/20408423-f871-4d67-a87c-8967bedd6ef7)
 [![Build Status](https://travis-ci.org/pborreli/composer-service.png?branch=master)](https://travis-ci.org/pborreli/composer-service)
