@@ -92,7 +92,8 @@ lopi_pusher:
     app_id: "%pusher_app_id%"
     key:    "%pusher_key%"
     secret: "%pusher_secret%"
-
+    host:   %pusher_host%
+    port:   %pusher_port%
     auth_service_id: ayaline.composer.pusher.channel.authenticator
 
 twig:

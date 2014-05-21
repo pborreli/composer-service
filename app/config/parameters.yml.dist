@@ -23,6 +23,9 @@ parameters:
     pusher_key:        change_me
     pusher_secret:     change_me
 
+    pusher_host:       https://api.pusherapp.com
+    pusher_port:       443
+
     session_name:      COMPOSERAAS
     working_temp_path: '/dev/shm/composer/'
     composer_bin_path: '/usr/local/bin/composer'
