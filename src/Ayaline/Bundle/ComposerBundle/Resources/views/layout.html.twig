@@ -1,11 +1,10 @@
 {% extends "::base.html.twig" %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     {% stylesheets
         '@AyalineComposerBundle/Resources/public/css/main.css'
         '@AyalineComposerBundle/Resources/public/css/ladda-themeless.css'
-        '@AyalineComposerBundle/Resources/public/css/endcredits.css'
         filter='cssrewrite' %}
         <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
@@ -30,99 +29,16 @@
         <div class="container">
             <p class="text-center">
                 <a href="https://twitter.com/composeraas">@composeraas</a> — shared with <span class="glyphicon glyphicon-heart"></span> by <a href="https://github.com/pborreli">Pascal Borreli</a> —
-                <span class="glyphicon glyphicon-stats"></span> <a href="https://composeraas.statuspage.io/">Status Page</a> —
-                <span class="glyphicon glyphicon-thumbs-up"></span> <a href="#credits" name="credits">Credits</a>
+                <span class="glyphicon glyphicon-stats"></span> <a href="https://composeraas.statuspage.io/">Status Page</a>
             </p>
-        </div>
-    </div>
-
-    <div id="titles">
-        <div id="credits">
-            <div id="the-end">Composer as a service</div>
-            <br>
-            <h1>Contributors</h1>
-            <dl>
-                <dt>Author</dt>
-                <dd>Pascal Borreli</dd>
-                <dt>Original Idea</dt>
-                <dd>Pablo Godel</dd>
-                <dt>Staging</dt>
-                <dd>Geoffrey Bachelet</dd>
-                <dt>Developer #1</dt>
-                <dd>Luis Cordova</dd>
-                <dt>Developer #2</dt>
-                <dd>Hubert Moutot</dd>
-                <dt>Developer #3</dt>
-                <dd>Norbert Orzechowicz</dd>
-                <dt>Developer #4</dt>
-                <dd>Markus Staab</dd>
-                <dt>Developer #5</dt>
-                <dd>Abdellatif AitBoudad</dd>
-            </dl>
-            <h1>Vendors</h1>
-            <dl>
-                <dt>Symfony</dt>
-                <dd>Fabien Potencier</dd>
-                <dt>Sonata/NotificationBundle</dt>
-                <dd>Thomas Rabaix</dd>
-                <dt>Behat & phpspec2</dt>
-                <dd>Konstantin Kudryashov</dd>
-                <dt>Composer</dt>
-                <dd>Nils Adermann</dd>
-                <dd>Jordi Boggiano</dd>
-                <dt>Guzzle</dt>
-                <dd>Michael Dowling</dd>
-                <dt>Incenteev/ParameterHandler</dt>
-                <dd>Christophe Coevoet</dd>
-                <dt>JMS/Serializer</dt>
-                <dd>Johannes M. Schmitt</dd>
-                <dt>Assetic</dt>
-                <dd>Kris Wallsmith</dd>
-                <dt>Lopi/PusherBundle</dt>
-                <dd>Pierre-Louis Launay</dd>
-                <dt>Liip/MonitorBundle</dt>
-                <dd>Alvaro Videla</dd>
-                <dd>Liip AG</dd>
-                <dt>Monolog</dt>
-                <dd>Jordi Boggiano</dd>
-                <dt>SensioLabs/SecurityChecker</dt>
-                <dd>Fabien Potencier</dd>
-                <dt>php-amqplib</dt>
-                <dd>Alvaro Videla</dd>
-                <dt>Twig</dt>
-                <dd>Fabien Potencier</dd>
-            </dl>
-            <h1>Developed using</h1>
-            <p>
-                <img src="{{ asset('bundles/ayalinecomposer/images/logo-php.png') }}" width="225" height="118">
-                <img src="{{ asset('bundles/ayalinecomposer/images/symfony_white.svg') }}">
-                <img src="{{ asset('bundles/ayalinecomposer/images/jquery-logo.jpg') }}" width="300" height="128">
-                <img src="{{ asset('bundles/ayalinecomposer/images/rabbitmq_logo.jpg') }}" width="300" height="148">
-                <br><br>
-                <img src="{{ asset('bundles/ayalinecomposer/images/travis-mascot-200px.png') }}">
-                <br><br>
-                <img src="{{ asset('bundles/ayalinecomposer/images/insight-logo.png') }}">
-                <br><br>
-                <img src="{{ asset('bundles/ayalinecomposer/images/scrutinizer-ci.png') }}" width="120" height="120">
-            </p>
-            <h1>Huge Thanks</h1>
-            <p><img src="{{ asset('bundles/ayalinecomposer/images/pusher-logo.png') }}" width="300" height="129"></p>
-            <p><img src="{{ asset('bundles/ayalinecomposer/images/statusPage.io-logo.png') }}" width="281" height="45"></p>
-            <h1>Hosted by</h1>
-            <p>
-                <img src="{{ asset('bundles/ayalinecomposer/images/ayaline.png') }}">
-            </p>
-            <div class="fineprint">All trademarks are the property of the trademark owners.
-                <br>No developers were harmed in the making of this project.</div>
-
         </div>
     </div>
     <script>
         var channel_auth_endpoint = "{{ path('lopi_pusher_bundle_auth') }}";
         var pusher_key = "{{ pusher_key }}";
     </script>
-    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <script src="//d3dy5gmtp8yhk7.cloudfront.net/2.2/pusher.min.js"></script>
     {% javascripts
         '@AyalineComposerBundle/Resources/public/js/jquery.cookie.js'
@@ -130,7 +46,6 @@
         '@AyalineComposerBundle/Resources/public/js/ladda.js'
         '@AyalineComposerBundle/Resources/public/js/ZeroClipboard.js'
         '@AyalineComposerBundle/Resources/public/js/main.js'
-        '@AyalineComposerBundle/Resources/public/js/endcredits.js'
         %}
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
