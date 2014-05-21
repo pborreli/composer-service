@@ -105,6 +105,7 @@ twig:
 nelmio_security:
     forced_ssl:
         enabled: %forced_ssl%
+        hsts_max_age: 2592000 # 30 days
 
 liip_monitor:
     checks:
