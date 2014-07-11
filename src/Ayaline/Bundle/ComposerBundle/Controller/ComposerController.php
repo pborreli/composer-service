@@ -12,14 +12,13 @@
 namespace Ayaline\Bundle\ComposerBundle\Controller;
 
 use Sonata\NotificationBundle\Backend\AMQPBackendDispatcher;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
-class ComposerController extends Controller
+class ComposerController
 {
     /**
      * @var EngineInterface
