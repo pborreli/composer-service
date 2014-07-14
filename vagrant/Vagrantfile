@@ -5,7 +5,7 @@ Vagrant.configure("2") do |config|
   config.vm.box_url = "http://files.vagrantup.com/precise64.box"
 
   config.vm.network :private_network, ip: "10.0.0.215"
-    config.ssh.forward_agent = true
+  config.ssh.forward_agent = true
 
   config.vm.provider :virtualbox do |v|
     v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
@@ -13,7 +13,6 @@ Vagrant.configure("2") do |config|
     v.customize ["modifyvm", :id, "--name", "composer service"]
   end
 
-  nfs_setting = RUBY_PLATFORM =~ /darwin/ || RUBY_PLATFORM =~ /linux/
   config.vm.synced_folder "./../", "/var/www/composer-service", type: "nfs", nfs_udp: false
   config.vm.provision :shell do |shell|
     shell.path = "shell/bootstrap.sh"
