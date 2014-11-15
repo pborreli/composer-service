@@ -2,8 +2,8 @@
 
 {% block content %}
     <div class="row jumbotron well-sm">
-        <h1>Composer as a service</h1>
-        <p class="lead">Give your <strong>composer.json</strong>, get the corresponding <strong>vendor.zip</strong>, fast.</p>
+        <h1>{{ "composer_as_service"|trans }}</h1>
+        <p class="lead">{{ "give_composer_get_vendor"|trans|raw }}</p>
     </div>
 
     <div class="alert-danger fade" id="error"></div>
@@ -22,26 +22,23 @@
                         {{ form_widget(form.body) }}
                         <p class="drag-and-drop">
                             <span>
-                                Write your composer.json, dragging/dropping,
-                                <input type="file" class="file-chooser" id="file">
-                                <a class="file-chooser-text" href="#">selecting it</a> or pasting
-                                from the clipboard.
+                                {{ "write_dragging_dropping_selecting_pasting_composer"|trans|raw }}
                             </span>
                             <span class="bad-file alert-danger fade">
-                              Please use a composer.json file
+                              {{ "msg_use_composer"|trans }}
                             </span>
                         </p>
                     </div>
                     <div class="tab-pane" id="composer-output">
-                        <button type="button" class="log-copy btn btn-xs btn-default" data-target="log-composer-output" id="cp-composer-output"><i class="glyphicon glyphicon-share"></i> copy to clipboard</button>
+                        <button type="button" class="log-copy btn btn-xs btn-default" data-target="log-composer-output" id="cp-composer-output"><i class="glyphicon glyphicon-share"></i> {{ "copy_to_clipboard"|trans }}</button>
                         <pre class="log" id="log-composer-output"></pre>
                     </div>
                     <div class="tab-pane" id="composer-installed">
-                        <button type="button" class="log-copy btn btn-xs btn-default" data-target="log-composer-installed" id="cp-composer-installed"><i class="glyphicon glyphicon-share"></i> copy to clipboard</button>
+                        <button type="button" class="log-copy btn btn-xs btn-default" data-target="log-composer-installed" id="cp-composer-installed"><i class="glyphicon glyphicon-share"></i> {{ "copy_to_clipboard"|trans }}</button>
                         <pre class="log" id="log-composer-installed"></pre>
                     </div>
                     <div class="tab-pane" id="vulnerabilities">
-                        <button type="button" class="log-copy btn btn-xs btn-default" data-target="log-vulnerabilities" id="cp-vulnerabilities"><i class="glyphicon glyphicon-share"></i> copy to clipboard</button>
+                        <button type="button" class="log-copy btn btn-xs btn-default" data-target="log-vulnerabilities" id="cp-vulnerabilities"><i class="glyphicon glyphicon-share"></i> {{ "copy_to_clipboard"|trans }}</button>
                         <pre class="log" id="log-vulnerabilities"></pre>
                     </div>
                 </div>
