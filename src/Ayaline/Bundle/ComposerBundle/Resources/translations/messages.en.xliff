@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="" >
+        <body>
+            <trans-unit id="fork_me_on_github">
+                <source>fork_me_on_github</source>
+                <target>Fork me on GitHub</target>
+            </trans-unit>
+            <trans-unit id="composer_as_service">
+                <source>composer_as_service</source>
+                <target>Composer as a service</target>
+            </trans-unit>
+            <trans-unit id="give_as_service">
+                <source>give_composer_get_vendor</source>
+                <target>Give your <![CDATA[<strong>composer.json</strong>]]>, get the corresponding <![CDATA[<strong>vendor.zip</strong>]]>, fast.</target>
+            </trans-unit>
+            <trans-unit id="copy_to_clipboard">
+                <source>copy_to_clipboard</source>
+                <target>copy to clipboard</target>
+            </trans-unit>
+            <trans-unit id="write_dragging_dropping_selecting_pasting_composer">
+                <source>write_dragging_dropping_selecting_pasting_composer</source>
+                <target>Write your composer.json, dragging/dropping, <![CDATA[<input type="file" class="file-chooser" id="file"> <a class="file-chooser-text" href="#">selecting it</a>]]> or pasting from the clipboard.</target>
+            </trans-unit>
+            <trans-unit id="msg_use_composer">
+                <source>msg_use_composer</source>
+                <target>Please use a composer.json file</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
