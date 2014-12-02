@@ -15,11 +15,13 @@ First you should add composer-service.dev address to ``/etc/hosts`` on the host 
 Now you should setup the virtual machine
 
 ```
-$ composer install
+
 $ cd vagrant
 $ vagrant up
 $ vagrant ssh
 $ cd /var/www/composer-service
+$ composer install
+$ php app/console assetic:dump
 $ php app/console sonata:notification:start
 ```
 

@@ -16,17 +16,16 @@
     },
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": "~2.4",
+        "symfony/symfony": "2.6.*",
         "doctrine/orm": "~2.2,>=2.2.3",
         "doctrine/doctrine-bundle": "~1.2",
         "twig/extensions": "~1.0",
-        "symfony/assetic-bundle": "2.4.*@dev",
-        "kriswallsmith/assetic": "1.2.*@dev",
+        "symfony/assetic-bundle": "~2.4",
         "symfony/swiftmailer-bundle": "~2.3",
         "symfony/monolog-bundle": "~2.4",
-        "sensio/distribution-bundle": "~2.3",
+        "sensio/distribution-bundle": "~3.0",
         "sensio/framework-extra-bundle": "~3.0",
-        "sensio/generator-bundle": "~2.3",
+
         "incenteev/composer-parameter-handler": "~2.0",
         "composer/composer": "1.0.0-alpha8",
         "liip/monitor-bundle": "1.0.*@dev",
@@ -41,6 +40,7 @@
         "sensiolabs/security-checker": "~1.3"
     },
     "require-dev": {
+        "sensio/generator-bundle":           "~2.3",
         "behat/behat":                       "~2.5",
         "behat/symfony2-extension":          "~1.1",
         "behat/mink-extension":              "~1.2",
@@ -81,8 +81,5 @@
                 "assets_version_param": "ASSETS_VERSION_PARAM"
             }
         },
-        "branch-alias": {
-            "dev-master": "2.4-dev"
-        }
     }
 }
