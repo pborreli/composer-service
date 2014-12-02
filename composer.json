@@ -80,6 +80,6 @@
                 "pusher_secret": "PUSHER_SECRET",
                 "assets_version_param": "ASSETS_VERSION_PARAM"
             }
-        },
+        }
     }
 }
