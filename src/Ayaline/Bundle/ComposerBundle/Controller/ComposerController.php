@@ -14,6 +14,7 @@ namespace Ayaline\Bundle\ComposerBundle\Controller;
 use Sonata\NotificationBundle\Backend\AMQPBackendDispatcher;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -80,7 +81,7 @@ class ComposerController
             return new JsonResponse(array('status' => 'ok'));
         }
 
-        $errors = array_map(function ($error) {
+        $errors = array_map(function (FormError $error) {
             return $error->getMessage();
 
         }, $this->composerForm->get('body')->getErrors());
