@@ -42,6 +42,7 @@ DCB;
                     'attr' => array(
                         'class' => 'form-control',
                         'rows' => 15,
+                        'spellcheck'=> false
                     ),
                     'data' => $this->defaultComposerBody,
                     'constraints' => array(
