@@ -63,6 +63,7 @@ doctrine:
         # path:     "%database_path%"
         types:
             json: Sonata\Doctrine\Types\JsonType
+        server_version: 5.5
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
