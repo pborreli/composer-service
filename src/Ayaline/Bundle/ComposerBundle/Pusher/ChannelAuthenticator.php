@@ -17,7 +17,12 @@ use Symfony\Component\HttpFoundation\RequestStack;
 class ChannelAuthenticator implements ChannelAuthenticatorInterface
 {
     protected $requestStack;
-
+    
+    /**
+     * Constructor.
+     *
+     * @param RequestStack $requestStack A RequestStack instance
+     */
     public function __construct(RequestStack $requestStack)
     {
         $this->requestStack = $requestStack;
