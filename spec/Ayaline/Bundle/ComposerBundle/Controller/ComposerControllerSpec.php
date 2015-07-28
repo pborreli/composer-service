@@ -83,7 +83,7 @@ EOT;
         $composerForm->handleRequest($request)->shouldBeCalled();
         $composerForm->isValid()->shouldBeCalled()->willReturn(true);
         $composerForm->getData()->shouldBeCalled()->willReturn(array(
-            'body'               => $composerJsonContent,
+            'body' => $composerJsonContent,
             'hasDevDependencies' => false,
         ));
 
@@ -91,8 +91,8 @@ EOT;
         $session->get('channelName')->shouldBeCalled()->willReturn('example_channel_name');
 
         $sonataNotificationsBackend->createAndPublish('upload.composer', array(
-            'body'               => $composerJsonContent,
-            'channelName'        => 'example_channel_name',
+            'body' => $composerJsonContent,
+            'channelName' => 'example_channel_name',
             'hasDevDependencies' => false,
         ))->shouldBeCalled();
 

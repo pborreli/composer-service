@@ -35,9 +35,9 @@ class ComposerTypeSpec extends ObjectBehavior
             array(
                 'attr' => array(
                     'class' => 'form-control',
-                    'rows'  => 15,
+                    'rows' => 15,
                 ),
-                'data'        => $this->getDefaultComposerBody(),
+                'data' => $this->getDefaultComposerBody(),
                 'constraints' => array(
                     new ComposerJson(),
                 ),
