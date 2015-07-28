@@ -11,23 +11,23 @@
 
 namespace spec\Ayaline\Bundle\ComposerBundle\Form;
 
+use Ayaline\Bundle\ComposerBundle\Validator\Constraints\ComposerJson;
 use PhpSpec\ObjectBehavior;
 use Symfony\Component\Form\FormBuilder;
-use Ayaline\Bundle\ComposerBundle\Validator\Constraints\ComposerJson;
 
 class ComposerTypeSpec extends ObjectBehavior
 {
-    function it_is_form_type()
+    public function it_is_form_type()
     {
         $this->shouldHaveType('Symfony\Component\Form\AbstractType');
     }
 
-    function it_have_name()
+    public function it_have_name()
     {
         $this->getName()->shouldReturn('composer');
     }
 
-    function it_add_fields_during_build_form(FormBuilder $builder)
+    public function it_add_fields_during_build_form(FormBuilder $builder)
     {
         $builder->add(
             'body',
@@ -35,11 +35,11 @@ class ComposerTypeSpec extends ObjectBehavior
             array(
                 'attr' => array(
                     'class' => 'form-control',
-                    'rows' => 15,
+                    'rows'  => 15,
                 ),
-                'data' => $this->getDefaultComposerBody(),
+                'data'        => $this->getDefaultComposerBody(),
                 'constraints' => array(
-                    new ComposerJson()
+                    new ComposerJson(),
                 ),
             )
         )->shouldBeCalled()->willReturn($builder);

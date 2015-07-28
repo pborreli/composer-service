@@ -15,12 +15,12 @@ use PhpSpec\ObjectBehavior;
 
 class ComposerJsonSpec extends ObjectBehavior
 {
-    function it_is_initializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType('Ayaline\Bundle\ComposerBundle\Validator\Constraints\ComposerJson');
     }
 
-    function it_is_a_validation_constraint()
+    public function it_is_a_validation_constraint()
     {
         $this->shouldHaveType('Symfony\Component\Validator\Constraint');
     }

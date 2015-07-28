@@ -18,19 +18,19 @@ use Sonata\NotificationBundle\Model\Message;
 
 class CheckVulnerabilitiesStepSpec extends ObjectBehavior
 {
-    function let(\Pusher $pusher, SecurityChecker $securityChecker)
+    public function let(\Pusher $pusher, SecurityChecker $securityChecker)
     {
         $this->beConstructedWith($securityChecker);
         $this->setPusher($pusher);
         $this->setWorkingTempPath(sys_get_temp_dir());
     }
 
-    function it_is_step()
+    public function it_is_step()
     {
         $this->shouldBeAnInstanceOf('Ayaline\Bundle\ComposerBundle\Consumer\Step\StepInterface');
     }
 
-    function it_return_zero_status_if_no_vulnerabilities_found(
+    public function it_return_zero_status_if_no_vulnerabilities_found(
         SecurityChecker $securityChecker,
         ConsumerEvent $event,
         Message $message,
@@ -52,7 +52,7 @@ class CheckVulnerabilitiesStepSpec extends ObjectBehavior
         $this->execute($event, 'composer_dir')->shouldReturn(0);
     }
 
-    function it_push_error_message_when_error_occurs_during_vulnerability_check(
+    public function it_push_error_message_when_error_occurs_during_vulnerability_check(
         SecurityChecker $securityChecker,
         ConsumerEvent $event,
         Message $message,
@@ -79,7 +79,7 @@ class CheckVulnerabilitiesStepSpec extends ObjectBehavior
         $this->execute($event, 'composer_dir')->shouldReturn(1);
     }
 
-    function it_push_error_message_and_alerts_when_vulnerability_found(
+    public function it_push_error_message_and_alerts_when_vulnerability_found(
         SecurityChecker $securityChecker,
         ConsumerEvent $event,
         Message $message,

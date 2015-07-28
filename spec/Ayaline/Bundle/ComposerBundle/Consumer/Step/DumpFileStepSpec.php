@@ -18,19 +18,19 @@ use Symfony\Component\Filesystem\Filesystem;
 
 class DumpFileStepSpec extends ObjectBehavior
 {
-    function let(\Pusher $pusher, Filesystem $filesystem)
+    public function let(\Pusher $pusher, Filesystem $filesystem)
     {
         $this->setPusher($pusher);
         $this->setFileSystem($filesystem);
         $this->setWorkingTempPath(sys_get_temp_dir());
     }
 
-    function it_is_step()
+    public function it_is_step()
     {
         $this->shouldBeAnInstanceOf('Ayaline\Bundle\ComposerBundle\Consumer\Step\StepInterface');
     }
 
-    function it_dump_composer_json_content_to_file(
+    public function it_dump_composer_json_content_to_file(
         ConsumerEvent $event,
         Message $message,
         \Pusher $pusher,
@@ -42,9 +42,9 @@ class DumpFileStepSpec extends ObjectBehavior
 
         $pusher->trigger('new_channel', 'consumer:new-step', array('message' => 'Starting async job'))
             ->shouldBeCalled();
-        $filesystem->mkdir(sys_get_temp_dir() . '/' . 'composer_dir')->shouldBeCalled();
+        $filesystem->mkdir(sys_get_temp_dir().'/'.'composer_dir')->shouldBeCalled();
         $filesystem->dumpFile(
-            sys_get_temp_dir() . '/composer_dir/composer.json',
+            sys_get_temp_dir().'/composer_dir/composer.json',
             'composer.json content'
         )->shouldBeCalled();
 

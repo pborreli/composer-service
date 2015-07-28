@@ -74,8 +74,8 @@ class ComposerController
         if ($this->composerForm->isValid()) {
             $data = $this->composerForm->getData();
             $this->sonataNotificationsBackend->createAndPublish('upload.composer', array(
-                'body'               => $data['body'],
-                'channelName'        => $request->getSession()->get('channelName'),
+                'body' => $data['body'],
+                'channelName' => $request->getSession()->get('channelName'),
                 'hasDevDependencies' => $data['hasDevDependencies'],
             ));
 

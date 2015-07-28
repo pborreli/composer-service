@@ -11,36 +11,36 @@
 
 namespace spec\Ayaline\Bundle\ComposerBundle\Validator\Constraints;
 
+use Ayaline\Bundle\ComposerBundle\Validator\Constraints\ComposerJson;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Symfony\Component\Validator\ExecutionContext;
-use Ayaline\Bundle\ComposerBundle\Validator\Constraints\ComposerJson;
 
 class ComposerJsonValidatorSpec extends ObjectBehavior
 {
-    function let(ExecutionContext $context)
+    public function let(ExecutionContext $context)
     {
         $this->initialize($context);
     }
 
-    function it_is_initializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType('Ayaline\Bundle\ComposerBundle\Validator\Constraints\ComposerJsonValidator');
     }
 
-    function it_is_a_constraint_validator()
+    public function it_is_a_constraint_validator()
     {
         $this->shouldImplement('Symfony\Component\Validator\ConstraintValidator');
     }
 
-    function it_adds_violation_if_the_given_value_is_not_valid_json(ExecutionContext $context, ComposerJson $constraint)
+    public function it_adds_violation_if_the_given_value_is_not_valid_json(ExecutionContext $context, ComposerJson $constraint)
     {
         $context->addViolation(Argument::any())->shouldBeCalled();
 
         $this->validate('not valid json', $constraint);
     }
 
-    function it_does_not_add_violation_if_the_given_value_is_valid_json(ExecutionContext $context, ComposerJson $constraint)
+    public function it_does_not_add_violation_if_the_given_value_is_valid_json(ExecutionContext $context, ComposerJson $constraint)
     {
         $composerJsonContent = <<<EOT
 {

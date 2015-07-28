@@ -15,8 +15,8 @@ use PhpSpec\ObjectBehavior;
 use Sonata\NotificationBundle\Backend\AMQPBackendDispatcher;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\Form\Form;
-use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormError;
+use Symfony\Component\Form\FormView;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,7 +24,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 class ComposerControllerSpec extends ObjectBehavior
 {
-    function let(
+    public function let(
         EngineInterface $templating,
         Form $composerForm,
         AMQPBackendDispatcher $sonataNotificationsBackend
@@ -32,7 +32,7 @@ class ComposerControllerSpec extends ObjectBehavior
         $this->beConstructedWith($templating, $composerForm, $sonataNotificationsBackend);
     }
 
-    function it_render_welcome_page(
+    public function it_render_welcome_page(
         EngineInterface $templating,
         Form $composerForm,
         FormView $formView,
@@ -48,7 +48,7 @@ class ComposerControllerSpec extends ObjectBehavior
         $this->indexAction()->shouldReturn($response);
     }
 
-    function it_return_json_with_error_message_when_form_data_is_not_valid_json(
+    public function it_return_json_with_error_message_when_form_data_is_not_valid_json(
         Request $request,
         Form $composerForm,
         FormError $composerFormError
@@ -66,7 +66,7 @@ class ComposerControllerSpec extends ObjectBehavior
         );
     }
 
-    function it_return_json_with_success_status_and_create_sonata_notification(
+    public function it_return_json_with_success_status_and_create_sonata_notification(
         Request $request,
         Session $session,
         Form $composerForm,
@@ -83,17 +83,17 @@ EOT;
         $composerForm->handleRequest($request)->shouldBeCalled();
         $composerForm->isValid()->shouldBeCalled()->willReturn(true);
         $composerForm->getData()->shouldBeCalled()->willReturn(array(
-            'body' => $composerJsonContent,
-            'hasDevDependencies' => false
+            'body'               => $composerJsonContent,
+            'hasDevDependencies' => false,
         ));
 
         $request->getSession()->shouldBeCalled()->willReturn($session);
         $session->get('channelName')->shouldBeCalled()->willReturn('example_channel_name');
 
         $sonataNotificationsBackend->createAndPublish('upload.composer', array(
-            'body' => $composerJsonContent,
-            'channelName' => 'example_channel_name',
-            'hasDevDependencies' => false
+            'body'               => $composerJsonContent,
+            'channelName'        => 'example_channel_name',
+            'hasDevDependencies' => false,
         ))->shouldBeCalled();
 
         $this->uploadComposerAction($request)->shouldBeJsonResponse(
