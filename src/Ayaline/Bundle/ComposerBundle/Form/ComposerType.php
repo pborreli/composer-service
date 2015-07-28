@@ -11,10 +11,9 @@
 
 namespace Ayaline\Bundle\ComposerBundle\Form;
 
+use Ayaline\Bundle\ComposerBundle\Validator\Constraints\ComposerJson;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-
-use Ayaline\Bundle\ComposerBundle\Validator\Constraints\ComposerJson;
 
 class ComposerType extends AbstractType
 {
@@ -30,7 +29,7 @@ class ComposerType extends AbstractType
 DCB;
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -40,22 +39,21 @@ DCB;
                 'textarea',
                 array(
                     'attr' => array(
-                        'class' => 'form-control',
-                        'rows' => 15,
-                        'spellcheck'=> false
+                        'class'      => 'form-control',
+                        'rows'       => 15,
+                        'spellcheck' => false,
                     ),
-                    'data' => $this->defaultComposerBody,
+                    'data'        => $this->defaultComposerBody,
                     'constraints' => array(
-                        new ComposerJson()
+                        new ComposerJson(),
                     ),
                 )
             )
-            ->add('hasDevDependencies', 'checkbox', array('required' => true))
-        ;
+            ->add('hasDevDependencies', 'checkbox', array('required' => true));
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getName()
     {

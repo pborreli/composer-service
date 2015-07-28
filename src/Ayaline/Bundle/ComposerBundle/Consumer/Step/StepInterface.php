@@ -19,11 +19,12 @@ use Sonata\NotificationBundle\Consumer\ConsumerEvent;
 interface StepInterface
 {
     /**
-     * Executes a step logic
+     * Executes a step logic.
      *
-     * @param  ConsumerEvent $event
-     * @param  string        $directory
-     * @return int           the exit status (0 if successful, non-zero otherwise)
+     * @param ConsumerEvent $event
+     * @param string        $directory
+     *
+     * @return int the exit status (0 if successful, non-zero otherwise)
      */
     public function execute(ConsumerEvent $event, $directory);
 }

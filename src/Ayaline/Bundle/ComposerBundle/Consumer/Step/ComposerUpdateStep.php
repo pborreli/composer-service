@@ -39,7 +39,6 @@ class ComposerUpdateStep extends AbstractStep implements StepInterface
         if (!$process->isSuccessful()
             || false !== strpos($output, 'Your requirements could not be resolved to an installable set of packages.')
             || false !== strpos($output, 'HipHop Fatal error')) {
-
             $this->triggerNewStep($event, array('message' => 'Restarting...'));
 
             $output = null;

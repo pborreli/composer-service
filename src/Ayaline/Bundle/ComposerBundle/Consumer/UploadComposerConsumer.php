@@ -16,11 +16,10 @@ use Sonata\NotificationBundle\Consumer\ConsumerInterface;
 
 class UploadComposerConsumer implements ConsumerInterface
 {
-
     protected $steps;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param array $steps
      */

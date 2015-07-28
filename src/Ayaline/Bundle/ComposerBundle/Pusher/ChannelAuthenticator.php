@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 class ChannelAuthenticator implements ChannelAuthenticatorInterface
 {
     protected $requestStack;
-    
+
     /**
      * Constructor.
      *
@@ -29,8 +29,9 @@ class ChannelAuthenticator implements ChannelAuthenticatorInterface
     }
 
     /**
-     * @param  string  $socketId
-     * @param  string  $channelName
+     * @param string $socketId
+     * @param string $channelName
+     *
      * @return Boolean
      */
     public function authenticate($socketId, $channelName)

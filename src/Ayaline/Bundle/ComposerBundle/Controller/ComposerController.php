@@ -13,11 +13,11 @@ namespace Ayaline\Bundle\ComposerBundle\Controller;
 
 use Sonata\NotificationBundle\Backend\AMQPBackendDispatcher;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
-use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormError;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class ComposerController
 {
@@ -63,7 +63,8 @@ class ComposerController
     }
 
     /**
-     * @param  Request      $request
+     * @param Request $request
+     *
      * @return JsonResponse
      */
     public function uploadComposerAction(Request $request)
@@ -73,9 +74,9 @@ class ComposerController
         if ($this->composerForm->isValid()) {
             $data = $this->composerForm->getData();
             $this->sonataNotificationsBackend->createAndPublish('upload.composer', array(
-                'body' => $data['body'],
-                'channelName' => $request->getSession()->get('channelName'),
-                'hasDevDependencies' => $data['hasDevDependencies']
+                'body'               => $data['body'],
+                'channelName'        => $request->getSession()->get('channelName'),
+                'hasDevDependencies' => $data['hasDevDependencies'],
             ));
 
             return new JsonResponse(array('status' => 'ok'));

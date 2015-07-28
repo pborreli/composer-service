@@ -11,8 +11,8 @@
 
 namespace Ayaline\Bundle\ComposerBundle\Consumer\Step;
 
-use Symfony\Component\Filesystem\Filesystem;
 use Sonata\NotificationBundle\Consumer\ConsumerEvent;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Process\Process;
 
 /**
@@ -91,9 +91,10 @@ abstract class AbstractStep implements StepInterface
     }
 
     /**
-     * Extracts a channel name from a ConsumerEvent
+     * Extracts a channel name from a ConsumerEvent.
      *
-     * @param  ConsumerEvent $event
+     * @param ConsumerEvent $event
+     *
      * @return string
      */
     protected function getChannel(ConsumerEvent $event)
@@ -181,7 +182,7 @@ abstract class AbstractStep implements StepInterface
     }
 
     /**
-     * Runs a process
+     * Runs a process.
      *
      * @param string $commandline      the command line to execute
      * @param string $workingDirectory the current working directory

@@ -11,9 +11,9 @@
 
 namespace Ayaline\Bundle\ComposerBundle\Validator\Constraints;
 
+use Composer\Json\JsonFile;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
-use Composer\Json\JsonFile;
 
 /**
  * @author Abdellatif Ait boudad <a.aitboudad@gmail.com>
@@ -21,7 +21,7 @@ use Composer\Json\JsonFile;
 class ComposerJsonValidator extends ConstraintValidator
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function validate($value, Constraint $constraint)
     {
@@ -32,11 +32,10 @@ class ComposerJsonValidator extends ConstraintValidator
             $jsonFile = new JsonFile($tempFile);
             $jsonFile->validateSchema(JsonFile::LAX_SCHEMA);
             unlink($tempFile);
-
         } catch (\Exception $exception) {
             unlink($tempFile);
             $from = array($tempFile);
-            $to   = array('composer.json');
+            $to = array('composer.json');
             $this->context->addViolation(str_replace($from, $to, $exception->getMessage()));
         }
     }

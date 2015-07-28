@@ -11,12 +11,12 @@
 
 namespace Ayaline\Bundle\ComposerBundle\Features;
 
+use Behat\Behat\Context\Step\When;
 use Behat\Mink\Element\NodeElement;
 use Behat\Mink\Exception\ExpectationException;
-use Symfony\Component\HttpKernel\KernelInterface;
-use Behat\Symfony2Extension\Context\KernelAwareInterface;
 use Behat\MinkExtension\Context\MinkContext;
-use Behat\Behat\Context\Step\When;
+use Behat\Symfony2Extension\Context\KernelAwareInterface;
+use Symfony\Component\HttpKernel\KernelInterface;
 
 class FeatureContext extends MinkContext implements KernelAwareInterface
 {

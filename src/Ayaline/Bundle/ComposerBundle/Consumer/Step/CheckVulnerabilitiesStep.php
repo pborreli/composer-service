@@ -11,8 +11,8 @@
 
 namespace Ayaline\Bundle\ComposerBundle\Consumer\Step;
 
-use Sonata\NotificationBundle\Consumer\ConsumerEvent;
 use SensioLabs\Security\SecurityChecker;
+use Sonata\NotificationBundle\Consumer\ConsumerEvent;
 
 /**
  * @author Hubert Moutot <hubert.moutot@gmail.com>
@@ -22,7 +22,7 @@ class CheckVulnerabilitiesStep extends AbstractStep implements StepInterface
     protected $securityChecker;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param SecurityChecker $securityChecker
      */
