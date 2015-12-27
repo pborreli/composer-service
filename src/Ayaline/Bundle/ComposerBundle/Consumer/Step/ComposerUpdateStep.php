@@ -34,16 +34,7 @@ class ComposerUpdateStep extends AbstractStep implements StepInterface
         $commandLine = sprintf('%s update %s', $this->composerBinPath, $requireDevOption);
         $commandLine .= ' --no-scripts --prefer-dist --no-progress --no-plugins --ignore-platform-reqs --no-custom-installers';
 
-        $process = $this->runProcess('hhvm '.$commandLine, $workingDirectory, $output);
-
-        if (!$process->isSuccessful()
-            || false !== strpos($output, 'Your requirements could not be resolved to an installable set of packages.')
-            || false !== strpos($output, 'HipHop Fatal error')) {
-            $this->triggerNewStep($event, array('message' => 'Restarting...'));
-
-            $output = null;
-            $process = $this->runProcess($commandLine, $workingDirectory, $output);
-        }
+        $process = $this->runProcess($commandLine, $workingDirectory, $output);
 
         if (!$process->isSuccessful()) {
             $this->triggerError($event, array('message' => nl2br($output)));
