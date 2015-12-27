@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace spec\Ayaline\Bundle\ComposerBundle\Form;
+namespace spec\Ayaline\Bundle\ComposerBundle\Form\Type;
 
 use Ayaline\Bundle\ComposerBundle\Validator\Constraints\ComposerJson;
 use PhpSpec\ObjectBehavior;

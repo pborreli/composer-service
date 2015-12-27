@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Ayaline\Bundle\ComposerBundle\Form;
+namespace Ayaline\Bundle\ComposerBundle\Form\Type;
 
 use Ayaline\Bundle\ComposerBundle\Validator\Constraints\ComposerJson;
 use Symfony\Component\Form\AbstractType;
