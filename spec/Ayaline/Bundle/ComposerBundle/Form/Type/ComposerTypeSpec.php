@@ -24,7 +24,7 @@ class ComposerTypeSpec extends ObjectBehavior
 
     public function it_have_name()
     {
-        $this->getName()->shouldReturn('composer');
+        $this->getBlockPrefix()->shouldReturn('composer');
     }
 
     public function it_add_fields_during_build_form(FormBuilder $builder)

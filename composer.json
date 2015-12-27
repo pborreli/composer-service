@@ -28,7 +28,7 @@
         "sensio/framework-extra-bundle": "^3.0.2",
 
         "incenteev/composer-parameter-handler": "~2.0",
-        "composer/composer": "1.0.0-alpha8",
+        "composer/composer": "1.0.0-alpha11",
         "liip/monitor-bundle": "^2.2",
         "videlalvaro/php-amqplib": "~2.2",
         "nelmio/security-bundle": "~1.4",
@@ -49,7 +49,7 @@
         "behat/mink-goutte-driver":          "~1.0",
         "fabpot/goutte":                     "1.0.*@dev",
         "behat/mink-selenium2-driver":       "~1.1",
-        "phpspec/phpspec":                   "2.0.*@dev"
+        "phpspec/phpspec":                   "^2.4"
     },
     "scripts": {
         "post-install-cmd": [
