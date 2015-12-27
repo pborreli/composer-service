@@ -38,10 +38,10 @@
 
         "guzzle/guzzle": "~3.5",
 
-        "sensiolabs/security-checker": "~3.0"
+        "sensiolabs/security-checker": "~3.0",
+        "sensio/generator-bundle":           "~2.3"
     },
     "require-dev": {
-        "sensio/generator-bundle":           "~2.3",
         "behat/behat":                       "~2.5",
         "behat/symfony2-extension":          "~1.1",
         "behat/mink-extension":              "~1.2",
