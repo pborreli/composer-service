@@ -31,11 +31,12 @@ class ComposerTypeSpec extends ObjectBehavior
     {
         $builder->add(
             'body',
-            'textarea',
+            \Symfony\Component\Form\Extension\Core\Type\TextareaType::class,
             array(
                 'attr' => array(
                     'class' => 'form-control',
                     'rows' => 15,
+                    'spellcheck' => false,
                 ),
                 'data' => $this->getDefaultComposerBody(),
                 'constraints' => array(
@@ -44,7 +45,7 @@ class ComposerTypeSpec extends ObjectBehavior
             )
         )->shouldBeCalled()->willReturn($builder);
 
-        $builder->add('hasDevDependencies', 'checkbox', array('required' => true))
+        $builder->add('hasDevDependencies', \Symfony\Component\Form\Extension\Core\Type\CheckboxType::class, array('required' => true))
             ->shouldBeCalled()
             ->willReturn($builder);
 
