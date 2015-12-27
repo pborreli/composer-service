@@ -41,11 +41,11 @@ class Requirement
     /**
      * Constructor that initializes the requirement.
      *
-     * @param Boolean     $fulfilled   Whether the requirement is fulfilled
+     * @param bool        $fulfilled   Whether the requirement is fulfilled
      * @param string      $testMessage The message for testing the requirement
      * @param string      $helpHtml    The help text formatted in HTML for resolving the problem
      * @param string|null $helpText    The help text (when null, it will be inferred from $helpHtml, i.e. stripped from HTML tags)
-     * @param Boolean     $optional    Whether this is only an optional recommendation not a mandatory requirement
+     * @param bool        $optional    Whether this is only an optional recommendation not a mandatory requirement
      */
     public function __construct($fulfilled, $testMessage, $helpHtml, $helpText = null, $optional = false)
     {
@@ -59,7 +59,7 @@ class Requirement
     /**
      * Returns whether the requirement is fulfilled.
      *
-     * @return Boolean true if fulfilled, otherwise false
+     * @return bool true if fulfilled, otherwise false
      */
     public function isFulfilled()
     {
@@ -77,7 +77,7 @@ class Requirement
     }
 
     /**
-     * Returns the help text for resolving the problem
+     * Returns the help text for resolving the problem.
      *
      * @return string The help text
      */
@@ -99,7 +99,7 @@ class Requirement
     /**
      * Returns whether this is only an optional recommendation and not a mandatory requirement.
      *
-     * @return Boolean true if optional, false if mandatory
+     * @return bool true if optional, false if mandatory
      */
     public function isOptional()
     {
@@ -117,16 +117,13 @@ class PhpIniRequirement extends Requirement
     /**
      * Constructor that initializes the requirement.
      *
-     * @param string           $cfgName    The configuration name used for ini_get()
-     * @param Boolean|callback $evaluation Either a Boolean indicating whether the configuration should evaluate to true or false,
-                                                    or a callback function receiving the configuration value as parameter to determine the fulfillment of the requirement
-     * @param Boolean $approveCfgAbsence If true the Requirement will be fulfilled even if the configuration option does not exist, i.e. ini_get() returns false.
-                                                    This is helpful for abandoned configs in later PHP versions or configs of an optional extension, like Suhosin.
-                                                    Example: You require a config to be true but PHP later removes this config and defaults it to true internally.
-     * @param string|null $testMessage The message for testing the requirement (when null and $evaluation is a Boolean a default message is derived)
-     * @param string|null $helpHtml    The help text formatted in HTML for resolving the problem (when null and $evaluation is a Boolean a default help is derived)
-     * @param string|null $helpText    The help text (when null, it will be inferred from $helpHtml, i.e. stripped from HTML tags)
-     * @param Boolean     $optional    Whether this is only an optional recommendation not a mandatory requirement
+     * @param string        $cfgName           The configuration name used for ini_get()
+     * @param bool|callback $evaluation        Either a Boolean indicating whether the configuration should evaluate to true or false,
+     * @param bool          $approveCfgAbsence If true the Requirement will be fulfilled even if the configuration option does not exist, i.e. ini_get() returns false.
+     * @param string|null   $testMessage       The message for testing the requirement (when null and $evaluation is a Boolean a default message is derived)
+     * @param string|null   $helpHtml          The help text formatted in HTML for resolving the problem (when null and $evaluation is a Boolean a default help is derived)
+     * @param string|null   $helpText          The help text (when null, it will be inferred from $helpHtml, i.e. stripped from HTML tags)
+     * @param bool          $optional          Whether this is only an optional recommendation not a mandatory requirement
      */
     public function __construct($cfgName, $evaluation, $approveCfgAbsence = false, $testMessage = null, $helpHtml = null, $helpText = null, $optional = false)
     {
@@ -193,7 +190,7 @@ class RequirementCollection implements IteratorAggregate
     /**
      * Adds a mandatory requirement.
      *
-     * @param Boolean     $fulfilled   Whether the requirement is fulfilled
+     * @param bool        $fulfilled   Whether the requirement is fulfilled
      * @param string      $testMessage The message for testing the requirement
      * @param string      $helpHtml    The help text formatted in HTML for resolving the problem
      * @param string|null $helpText    The help text (when null, it will be inferred from $helpHtml, i.e. stripped from HTML tags)
@@ -206,7 +203,7 @@ class RequirementCollection implements IteratorAggregate
     /**
      * Adds an optional recommendation.
      *
-     * @param Boolean     $fulfilled   Whether the recommendation is fulfilled
+     * @param bool        $fulfilled   Whether the recommendation is fulfilled
      * @param string      $testMessage The message for testing the recommendation
      * @param string      $helpHtml    The help text formatted in HTML for resolving the problem
      * @param string|null $helpText    The help text (when null, it will be inferred from $helpHtml, i.e. stripped from HTML tags)
@@ -219,15 +216,12 @@ class RequirementCollection implements IteratorAggregate
     /**
      * Adds a mandatory requirement in form of a php.ini configuration.
      *
-     * @param string           $cfgName    The configuration name used for ini_get()
-     * @param Boolean|callback $evaluation Either a Boolean indicating whether the configuration should evaluate to true or false,
-                                                    or a callback function receiving the configuration value as parameter to determine the fulfillment of the requirement
-     * @param Boolean $approveCfgAbsence If true the Requirement will be fulfilled even if the configuration option does not exist, i.e. ini_get() returns false.
-                                                    This is helpful for abandoned configs in later PHP versions or configs of an optional extension, like Suhosin.
-                                                    Example: You require a config to be true but PHP later removes this config and defaults it to true internally.
-     * @param string      $testMessage The message for testing the requirement (when null and $evaluation is a Boolean a default message is derived)
-     * @param string      $helpHtml    The help text formatted in HTML for resolving the problem (when null and $evaluation is a Boolean a default help is derived)
-     * @param string|null $helpText    The help text (when null, it will be inferred from $helpHtml, i.e. stripped from HTML tags)
+     * @param string        $cfgName           The configuration name used for ini_get()
+     * @param bool|callback $evaluation        Either a Boolean indicating whether the configuration should evaluate to true or false,
+     * @param bool          $approveCfgAbsence If true the Requirement will be fulfilled even if the configuration option does not exist, i.e. ini_get() returns false.
+     * @param string        $testMessage       The message for testing the requirement (when null and $evaluation is a Boolean a default message is derived)
+     * @param string        $helpHtml          The help text formatted in HTML for resolving the problem (when null and $evaluation is a Boolean a default help is derived)
+     * @param string|null   $helpText          The help text (when null, it will be inferred from $helpHtml, i.e. stripped from HTML tags)
      */
     public function addPhpIniRequirement($cfgName, $evaluation, $approveCfgAbsence = false, $testMessage = null, $helpHtml = null, $helpText = null)
     {
@@ -237,15 +231,12 @@ class RequirementCollection implements IteratorAggregate
     /**
      * Adds an optional recommendation in form of a php.ini configuration.
      *
-     * @param string           $cfgName    The configuration name used for ini_get()
-     * @param Boolean|callback $evaluation Either a Boolean indicating whether the configuration should evaluate to true or false,
-                                                    or a callback function receiving the configuration value as parameter to determine the fulfillment of the requirement
-     * @param Boolean $approveCfgAbsence If true the Requirement will be fulfilled even if the configuration option does not exist, i.e. ini_get() returns false.
-                                                    This is helpful for abandoned configs in later PHP versions or configs of an optional extension, like Suhosin.
-                                                    Example: You require a config to be true but PHP later removes this config and defaults it to true internally.
-     * @param string      $testMessage The message for testing the requirement (when null and $evaluation is a Boolean a default message is derived)
-     * @param string      $helpHtml    The help text formatted in HTML for resolving the problem (when null and $evaluation is a Boolean a default help is derived)
-     * @param string|null $helpText    The help text (when null, it will be inferred from $helpHtml, i.e. stripped from HTML tags)
+     * @param string        $cfgName           The configuration name used for ini_get()
+     * @param bool|callback $evaluation        Either a Boolean indicating whether the configuration should evaluate to true or false,
+     * @param bool          $approveCfgAbsence If true the Requirement will be fulfilled even if the configuration option does not exist, i.e. ini_get() returns false.
+     * @param string        $testMessage       The message for testing the requirement (when null and $evaluation is a Boolean a default message is derived)
+     * @param string        $helpHtml          The help text formatted in HTML for resolving the problem (when null and $evaluation is a Boolean a default help is derived)
+     * @param string|null   $helpText          The help text (when null, it will be inferred from $helpHtml, i.e. stripped from HTML tags)
      */
     public function addPhpIniRecommendation($cfgName, $evaluation, $approveCfgAbsence = false, $testMessage = null, $helpHtml = null, $helpText = null)
     {
@@ -343,7 +334,7 @@ class RequirementCollection implements IteratorAggregate
     /**
      * Returns whether a php.ini configuration is not correct.
      *
-     * @return Boolean php.ini configuration problem?
+     * @return bool php.ini configuration problem?
      */
     public function hasPhpIniConfigIssue()
     {
@@ -405,7 +396,7 @@ class SymfonyRequirements extends RequirementCollection
         $this->addRequirement(
             is_dir(__DIR__.'/../vendor/composer'),
             'Vendor libraries must be installed',
-            'Vendor libraries are missing. Install composer following instructions from <a href="http://getcomposer.org/">http://getcomposer.org/</a>. ' .
+            'Vendor libraries are missing. Install composer following instructions from <a href="http://getcomposer.org/">http://getcomposer.org/</a>. '.
                 'Then run "<strong>php composer.phar install</strong>" to install them.'
         );
 
