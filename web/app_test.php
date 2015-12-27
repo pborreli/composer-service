@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 // for more information
 //umask(0000);
 
-/**
+/*
  * @var Composer\Autoload\ClassLoader
  */
 $loader = require __DIR__.'/../app/autoload.php';
