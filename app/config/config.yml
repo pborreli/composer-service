@@ -107,6 +107,7 @@ nelmio_security:
         hsts_max_age: 63072000 # 2 years
 
 liip_monitor:
+    enable_controller: true
     checks:
         disk_usage:
             path: '/'
