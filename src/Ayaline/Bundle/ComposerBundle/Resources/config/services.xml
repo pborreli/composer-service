@@ -76,7 +76,7 @@
         <service id="ayaline.composer.security_checker" class="SensioLabs\Security\SecurityChecker" />
 
         <!-- Forms -->
-        <service id="ayaline.form_type.composer" class="Ayaline\Bundle\ComposerBundle\Form\ComposerType"/>
+        <service id="ayaline.form_type.composer" class="Ayaline\Bundle\ComposerBundle\Form\Type\ComposerType"/>
         <service id="ayaline.form.composer" class="Symfony\Component\Form\FormInterface"
                 factory-service="form.factory" factory-method="create">
             <argument type="service" id="ayaline.form_type.composer" />

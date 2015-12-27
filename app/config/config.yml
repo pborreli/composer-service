@@ -108,5 +108,14 @@ nelmio_security:
 
 liip_monitor:
     checks:
-        disc_usage:
-            path: %working_temp_path%
+        disk_usage:
+            path: '/'
+        symfony_requirements:
+            file:                 '%kernel.root_dir%/SymfonyRequirements.php'
+        rabbit_mq:
+            notification:
+                host:                 %rabbitmq_host%
+                port:                 %rabbitmq_port%
+                user:                 %rabbitmq_user%
+                password:             %rabbitmq_pass%
+                vhost:                %rabbitmq_vhost%
