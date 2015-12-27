@@ -35,8 +35,56 @@ $(document).ready(function() {
     });
 
     var pusher = new Pusher(pusher_key, { authEndpoint: channel_auth_endpoint });
-    var sessionId = $.cookie('COMPOSERAAS');
-    var channel = pusher.subscribe('private-channel-'+sessionId);
+
+    pusher.connection.bind('connected', function() {
+        socketId = pusher.connection.socket_id;
+        var channel = pusher.subscribe('private-channel-'+socketId);
+
+        channel.bind('consumer:error', function(data) {
+            ladda.stop();
+            $('#error').html(data.message).addClass('alert in');
+        });
+
+        channel.bind('consumer:success', function(data) {
+            end = new Date().getTime();
+            step('Done in '+ (end - start)/1000 +' seconds!', false, true);
+            ladda.stop();
+
+            downloadLink.removeClass('hide');
+            downloadLink.attr('href', data.link);
+        });
+
+        channel.bind('consumer:new-step', function(data) {
+            step(data.message, false);
+        });
+
+        channel.bind('consumer:step-error', function(data) {
+            step(data.message, true, false, data.alerts ? data.alerts : false);
+        });
+
+        channel.bind('consumer:composer-output', function(data) {
+            addLogs('composer-output', data);
+        });
+
+        channel.bind('consumer:composer-installed', function(data) {
+            addLogs('composer-installed', data);
+        });
+
+        channel.bind('consumer:vulnerabilities', function(data) {
+            addLogs('vulnerabilities', data);
+        });
+
+        channel.bind('pusher:subscription_error', function(status) {
+            if(status == 408 || status == 503){
+
+            }
+        });
+
+        channel.bind('pusher:subscription_succeeded', function() {
+            button.removeClass('disabled');
+        });
+    });
+
     var start = 0;
     var end = 0;
 
@@ -51,49 +99,7 @@ $(document).ready(function() {
 
     button.click(handleButtonClick);
 
-    channel.bind('consumer:error', function(data) {
-        ladda.stop();
-        $('#error').html(data.message).addClass('alert in');
-    });
 
-    channel.bind('consumer:success', function(data) {
-        end = new Date().getTime();
-        step('Done in '+ (end - start)/1000 +' seconds!', false, true);
-        ladda.stop();
-
-        downloadLink.removeClass('hide');
-        downloadLink.attr('href', data.link);
-    });
-
-    channel.bind('consumer:new-step', function(data) {
-        step(data.message, false);
-    });
-
-    channel.bind('consumer:step-error', function(data) {
-        step(data.message, true, false, data.alerts ? data.alerts : false);
-    });
-
-    channel.bind('consumer:composer-output', function(data) {
-        addLogs('composer-output', data);
-    });
-
-    channel.bind('consumer:composer-installed', function(data) {
-        addLogs('composer-installed', data);
-    });
-
-    channel.bind('consumer:vulnerabilities', function(data) {
-        addLogs('vulnerabilities', data);
-    });
-
-    channel.bind('pusher:subscription_error', function(status) {
-        if(status == 408 || status == 503){
-
-        }
-    })
-
-    channel.bind('pusher:subscription_succeeded', function() {
-        button.removeClass('disabled');
-    });
 
     $('#file').change(function() {
         readFile(this.files[0])
