@@ -13,6 +13,8 @@ namespace Ayaline\Bundle\ComposerBundle\Form;
 
 use Ayaline\Bundle\ComposerBundle\Validator\Constraints\ComposerJson;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class ComposerType extends AbstractType
@@ -36,7 +38,7 @@ DCB;
         $builder
             ->add(
                 'body',
-                'textarea',
+                TextareaType::class,
                 array(
                     'attr' => array(
                         'class' => 'form-control',
@@ -49,13 +51,13 @@ DCB;
                     ),
                 )
             )
-            ->add('hasDevDependencies', 'checkbox', array('required' => true));
+            ->add('hasDevDependencies', CheckboxType::class, array('required' => true));
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'composer';
     }

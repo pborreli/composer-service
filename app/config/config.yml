@@ -31,7 +31,9 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     globals:
-        pusher_key: %pusher_key%
+        pusher_key: "%pusher_key%"
+        analytics_id: "%analytics_id%"
+        pingdom_rum_id: "%pingdom_rum_id%"
 
 # Assetic Configuration
 assetic:
@@ -98,12 +100,6 @@ lopi_pusher:
     host:   %pusher_host%
     port:   %pusher_port%
     auth_service_id: ayaline.composer.pusher.channel.authenticator
-
-twig:
-    globals:
-        pusher_key: "%pusher_key%"
-        analytics_id: "%analytics_id%"
-        pingdom_rum_id: "%pingdom_rum_id%"
 
 nelmio_security:
     forced_ssl:
