@@ -32,7 +32,7 @@ class ChannelAuthenticator implements ChannelAuthenticatorInterface
      * @param string $socketId
      * @param string $channelName
      *
-     * @return Boolean
+     * @return bool
      */
     public function authenticate($socketId, $channelName)
     {
