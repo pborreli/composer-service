@@ -32,7 +32,7 @@ class ComposerUpdateStep extends AbstractStep implements StepInterface
         $requireDevOption = true === $hasDevDeps ? '--dev' : '--no-dev';
 
         $commandLine = sprintf('%s update %s', $this->composerBinPath, $requireDevOption);
-        $commandLine .= ' --no-scripts --prefer-dist --no-progress --no-plugins --ignore-platform-reqs --no-custom-installers';
+        $commandLine .= ' --no-interaction --no-scripts --prefer-dist --no-progress --no-plugins --ignore-platform-reqs --no-custom-installers';
 
         $process = $this->runProcess($commandLine, $workingDirectory, $output);
 
