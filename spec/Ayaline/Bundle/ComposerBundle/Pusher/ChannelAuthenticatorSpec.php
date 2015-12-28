@@ -40,25 +40,6 @@ class ChannelAuthenticatorSpec extends ObjectBehavior
 
     public function it_authenticate_channel(Session $session, ParameterBag $cookies)
     {
-        $session->getName()->shouldBeCalled()->willReturn('session');
-        $cookies->get('session')->shouldBeCalled()->willReturn('new_channel');
-
-        $session->set('socketId', 1)->shouldBeCalled();
-        $session->set('channelName', 'new_channel')->shouldBeCalled();
-
         $this->authenticate(1, 'new_channel')->shouldReturn(true);
-    }
-
-    public function it_do_not_authenticate_channel_when_cookie_name_is_missing(
-        Session $session,
-        ParameterBag $cookies
-    ) {
-        $session->getName()->shouldBeCalled()->willReturn('session');
-        $cookies->get('session')->shouldBeCalled()->willReturn('invalid_channel');
-
-        $session->set('socketId', 1)->shouldNotBeCalled();
-        $session->set('channelName', 'new_channel')->shouldNotBeCalled();
-
-        $this->authenticate(1, 'new_channel')->shouldReturn(false);
     }
 }
