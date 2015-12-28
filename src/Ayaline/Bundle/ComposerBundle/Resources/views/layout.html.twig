@@ -1,7 +1,7 @@
 {% extends "::base.html.twig" %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     {% stylesheets
         '@AyalineComposerBundle/Resources/public/css/main.css'
         '@AyalineComposerBundle/Resources/public/css/ladda-themeless.css'
@@ -37,8 +37,8 @@
         var channel_auth_endpoint = "{{ path('lopi_pusher_bundle_auth') }}";
         var pusher_key = "{{ pusher_key }}";
     </script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="//js.pusher.com/3.0/pusher.min.js"></script>
     {% javascripts
         '@AyalineComposerBundle/Resources/public/js/spin.js'
