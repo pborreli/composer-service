@@ -14,10 +14,6 @@
             '@AyalineComposerBundle/Resources/public/js/modernizr.js' %}
             <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
-        <script>
-            var _prum = [['id', '{{ pingdom_rum_id }}'],
-                ['mark', 'firstbyte', (new Date()).getTime()]];
-        </script>
     </head>
     <body>
         {% block body %}{% endblock %}
@@ -29,13 +25,6 @@
             })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
             ga('create', '{{ analytics_id }}', 'borreli.com');
             ga('send', 'pageview');
-            (function() {
-                var s = document.getElementsByTagName('script')[0]
-                        , p = document.createElement('script');
-                p.async = 'async';
-                p.src = '//rum-static.pingdom.net/prum.min.js';
-                s.parentNode.insertBefore(p, s);
-            })();
         </script>
     </body>
 </html>

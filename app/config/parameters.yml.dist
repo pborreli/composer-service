@@ -31,7 +31,6 @@ parameters:
     composer_bin_path: '/usr/local/bin/composer'
 
     analytics_id:      UA-XXXXXX-X
-    pingdom_rum_id:    change_me
     assets_version_param: 10
 
     doctrine.orm.metadata.driver_chain.class: Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain
