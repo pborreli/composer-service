@@ -34,7 +34,7 @@ $(document).ready(function() {
         client.setText($.trim(text));
     });
 
-    var pusher = new Pusher(pusher_key, { authEndpoint: channel_auth_endpoint });
+    var pusher = new Pusher(pusher_key, { authEndpoint: channel_auth_endpoint, disableStats: true });
 
     pusher.connection.bind('connected', function() {
         socketId = pusher.connection.socket_id;
