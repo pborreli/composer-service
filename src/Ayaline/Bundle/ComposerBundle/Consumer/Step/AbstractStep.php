@@ -95,13 +95,13 @@ abstract class AbstractStep implements StepInterface
      *
      * @param ConsumerEvent $event
      *
-     * @return string
+     * @return array
      */
-    protected function getChannel(ConsumerEvent $event)
+    protected function getChannels(ConsumerEvent $event)
     {
         $message = $event->getMessage();
 
-        return $message->getValue('channelName');
+        return [$message->getValue('channelName')];
     }
 
     /**
@@ -112,7 +112,7 @@ abstract class AbstractStep implements StepInterface
      */
     protected function triggerNewStep(ConsumerEvent $event, $message)
     {
-        $this->pusher->trigger($this->getChannel($event), 'consumer:new-step', $message);
+        $this->pusher->trigger($this->getChannels($event), 'consumer:new-step', $message);
     }
 
     /**
@@ -123,7 +123,7 @@ abstract class AbstractStep implements StepInterface
      */
     protected function triggerStepError(ConsumerEvent $event, $message)
     {
-        $this->pusher->trigger($this->getChannel($event), 'consumer:step-error', $message);
+        $this->pusher->trigger($this->getChannels($event), 'consumer:step-error', $message);
     }
 
     /**
@@ -134,7 +134,7 @@ abstract class AbstractStep implements StepInterface
      */
     protected function triggerError(ConsumerEvent $event, $message)
     {
-        $this->pusher->trigger($this->getChannel($event), 'consumer:error', $message);
+        $this->pusher->trigger($this->getChannels($event), 'consumer:error', $message);
     }
 
     /**
@@ -145,7 +145,7 @@ abstract class AbstractStep implements StepInterface
      */
     protected function triggerSuccess(ConsumerEvent $event, $message)
     {
-        $this->pusher->trigger($this->getChannel($event), 'consumer:success', $message);
+        $this->pusher->trigger($this->getChannels($event), 'consumer:success', $message);
     }
 
     /**
@@ -156,7 +156,7 @@ abstract class AbstractStep implements StepInterface
      */
     protected function triggerComposerOutput(ConsumerEvent $event, $message)
     {
-        $this->pusher->trigger($this->getChannel($event), 'consumer:composer-output', $message);
+        $this->pusher->trigger($this->getChannels($event), 'consumer:composer-output', $message);
     }
 
     /**
@@ -167,7 +167,7 @@ abstract class AbstractStep implements StepInterface
      */
     protected function triggerComposerInstalled(ConsumerEvent $event, $message)
     {
-        $this->pusher->trigger($this->getChannel($event), 'consumer:composer-installed', $message);
+        $this->pusher->trigger($this->getChannels($event), 'consumer:composer-installed', $message);
     }
 
     /**
@@ -178,7 +178,7 @@ abstract class AbstractStep implements StepInterface
      */
     protected function triggerVulnerabilities(ConsumerEvent $event, $message)
     {
-        $this->pusher->trigger($this->getChannel($event), 'consumer:vulnerabilities', $message);
+        $this->pusher->trigger($this->getChannels($event), 'consumer:vulnerabilities', $message);
     }
 
     /**
