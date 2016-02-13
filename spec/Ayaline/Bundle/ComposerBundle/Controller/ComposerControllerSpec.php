@@ -72,7 +72,7 @@ class ComposerControllerSpec extends ObjectBehavior
         Form $composerForm,
         AMQPBackendDispatcher $sonataNotificationsBackend
     ) {
-        $composerJsonContent = <<<EOT
+        $composerJsonContent = <<<'EOT'
 {
     "require": {
         "monolog/monolog": "1.2.*"
