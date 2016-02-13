@@ -42,7 +42,7 @@ class ComposerJsonValidatorSpec extends ObjectBehavior
 
     public function it_does_not_add_violation_if_the_given_value_is_valid_json(ExecutionContext $context, ComposerJson $constraint)
     {
-        $composerJsonContent = <<<EOT
+        $composerJsonContent = <<<'EOT'
 {
     "require": {
         "monolog/monolog": "1.2.*"

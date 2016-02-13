@@ -22,7 +22,7 @@ class ComposerType extends AbstractType
     /**
      * @var string
      */
-    private $defaultComposerBody = <<<DCB
+    private $defaultComposerBody = <<<'DCB'
 {
     "require": {
         "monolog/monolog": "1.2.*"
