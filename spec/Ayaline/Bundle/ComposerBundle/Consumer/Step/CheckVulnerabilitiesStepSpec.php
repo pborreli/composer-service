@@ -124,7 +124,7 @@ class CheckVulnerabilitiesStepSpec extends ObjectBehavior
      */
     private function getVulnerabilityMessage()
     {
-        return <<<EOT
+        return <<<'EOT'
 Security Report
 ===============
 

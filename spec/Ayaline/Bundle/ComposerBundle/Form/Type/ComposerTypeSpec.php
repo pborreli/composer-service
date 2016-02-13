@@ -54,7 +54,7 @@ class ComposerTypeSpec extends ObjectBehavior
 
     private function getDefaultComposerBody()
     {
-        return <<<DCB
+        return <<<'DCB'
 {
     "require": {
         "monolog/monolog": "1.2.*"
