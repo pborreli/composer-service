@@ -12,7 +12,7 @@
     ],
     "homepage": "http://composer.borreli.com/",
     "autoload": {
-        "psr-4": { "": "src/" },
+        "psr-4": { "Ayaline\\": "src/Ayaline" },
         "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
     },
     "require": {
@@ -30,7 +30,7 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "composer/composer": "1.0.0-alpha11",
         "liip/monitor-bundle": "^2.2",
-        "videlalvaro/php-amqplib": "~2.2",
+        "php-amqplib/php-amqplib": "~2.5",
         "nelmio/security-bundle": "~1.4",
         "sonata-project/notification-bundle": "^2.3",
 
