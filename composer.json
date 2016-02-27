@@ -39,7 +39,8 @@
         "guzzle/guzzle": "~3.5",
 
         "sensiolabs/security-checker": "~3.0",
-        "sensio/generator-bundle":           "~2.3"
+        "sensio/generator-bundle":           "~2.3",
+        "evolution7/bugsnag-bundle": "^2.0"
     },
     "require-dev": {
         "behat/behat":                       "~2.5",
@@ -80,7 +81,8 @@
                 "pusher_app_id": "PUSHER_APP_ID",
                 "pusher_key": "PUSHER_KEY",
                 "pusher_secret": "PUSHER_SECRET",
-                "assets_version_param": "ASSETS_VERSION_PARAM"
+                "assets_version_param": "ASSETS_VERSION_PARAM",
+                "bugsnag_api_key": "BUGSNAG_API_KEY"
             }
         }
     }

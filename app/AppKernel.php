@@ -23,6 +23,8 @@ class AppKernel extends Kernel
             new Lopi\Bundle\PusherBundle\LopiPusherBundle(),
 
             new Liip\MonitorBundle\LiipMonitorBundle(),
+
+            new Evolution7\BugsnagBundle\BugsnagBundle(),
         );
 
         if ('dev' === $this->getEnvironment()) {

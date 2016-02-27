@@ -119,3 +119,7 @@ liip_monitor:
                 user:                 %rabbitmq_user%
                 password:             %rabbitmq_pass%
                 vhost:                %rabbitmq_vhost%
+
+bugsnag:
+    api_key: %bugsnag_api_key%
+    app_version: %assets_version_param%

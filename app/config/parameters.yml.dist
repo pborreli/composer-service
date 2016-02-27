@@ -36,3 +36,5 @@ parameters:
     doctrine.orm.metadata.driver_chain.class: Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain
 
     forced_ssl:        false
+
+    bugsnag_api_key:   BUGSNAG_API_KEY_HERE
