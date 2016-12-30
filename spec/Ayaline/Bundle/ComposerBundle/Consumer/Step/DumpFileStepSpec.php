@@ -40,7 +40,7 @@ class DumpFileStepSpec extends ObjectBehavior
         $message->getValue('channelName')->shouldBeCalled()->willReturn('new_channel');
         $message->getValue('body')->shouldBeCalled()->willReturn('composer.json content');
 
-        $pusher->trigger('new_channel', 'consumer:new-step', array('message' => 'Starting async job'))
+        $pusher->trigger(['new_channel'], 'consumer:new-step', array('message' => 'Starting async job'))
             ->shouldBeCalled();
         $filesystem->mkdir(sys_get_temp_dir().'/'.'composer_dir')->shouldBeCalled();
         $filesystem->dumpFile(

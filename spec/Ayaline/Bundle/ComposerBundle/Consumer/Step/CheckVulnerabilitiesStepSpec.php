@@ -40,7 +40,7 @@ class CheckVulnerabilitiesStepSpec extends ObjectBehavior
         $message->getValue('channelName')->shouldBeCalled()->willReturn('new_channel');
 
         $pusher->trigger(
-            'new_channel',
+            ['new_channel'],
             'consumer:new-step',
             array('message' => 'Checking vulnerability')
         )->shouldBeCalled();
@@ -62,7 +62,7 @@ class CheckVulnerabilitiesStepSpec extends ObjectBehavior
         $message->getValue('channelName')->shouldBeCalled()->willReturn('new_channel');
 
         $pusher->trigger(
-            'new_channel',
+            ['new_channel'],
             'consumer:new-step',
             array('message' => 'Checking vulnerability')
         )->shouldBeCalled();
@@ -71,7 +71,7 @@ class CheckVulnerabilitiesStepSpec extends ObjectBehavior
             ->shouldBeCalled()->willThrow(new \RuntimeException('Error!'));
 
         $pusher->trigger(
-            'new_channel',
+            ['new_channel'],
             'consumer:error',
             array('message' => 'Error!')
         )->shouldBeCalled();
@@ -89,7 +89,7 @@ class CheckVulnerabilitiesStepSpec extends ObjectBehavior
         $message->getValue('channelName')->shouldBeCalled()->willReturn('new_channel');
 
         $pusher->trigger(
-            'new_channel',
+            ['new_channel'],
             'consumer:new-step',
             array('message' => 'Checking vulnerability')
         )->shouldBeCalled();
@@ -101,7 +101,7 @@ class CheckVulnerabilitiesStepSpec extends ObjectBehavior
         $securityChecker->getLastVulnerabilityCount()->shouldBeCalled()->willReturn(1);
 
         $pusher->trigger(
-            'new_channel',
+            ['new_channel'],
             'consumer:step-error',
             array(
                 'message' => 'Vulnerability found : 1',
@@ -109,7 +109,7 @@ class CheckVulnerabilitiesStepSpec extends ObjectBehavior
         )->shouldBeCalled();
 
         $pusher->trigger(
-            'new_channel',
+            ['new_channel'],
             'consumer:vulnerabilities',
             array(
                 'message' => $this->getVulnerabilityMessage(),
