@@ -17,7 +17,7 @@ use Sonata\NotificationBundle\Consumer\ConsumerEvent;
 /**
  * @author Hubert Moutot <hubert.moutot@gmail.com>
  */
-class CheckVulnerabilitiesStep extends AbstractStep implements StepInterface
+class CheckVulnerabilitiesStep extends AbstractStep
 {
     protected $securityChecker;
 

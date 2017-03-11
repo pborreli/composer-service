@@ -17,7 +17,7 @@ use Symfony\Component\Process\Process;
 /**
  * @author Hubert Moutot <hubert.moutot@gmail.com>
  */
-class ServeVendorStep extends AbstractStep implements StepInterface
+class ServeVendorStep extends AbstractStep
 {
     /**
      * {@inheritdoc}

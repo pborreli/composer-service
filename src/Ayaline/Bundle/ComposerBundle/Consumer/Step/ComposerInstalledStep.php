@@ -16,7 +16,7 @@ use Sonata\NotificationBundle\Consumer\ConsumerEvent;
 /**
  * @author Hubert Moutot <hubert.moutot@gmail.com>
  */
-class ComposerInstalledStep extends AbstractStep implements StepInterface
+class ComposerInstalledStep extends AbstractStep
 {
     /**
      * {@inheritdoc}
