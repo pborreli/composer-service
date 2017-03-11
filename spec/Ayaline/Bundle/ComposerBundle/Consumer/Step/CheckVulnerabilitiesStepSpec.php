@@ -120,11 +120,11 @@ class CheckVulnerabilitiesStepSpec extends ObjectBehavior
     }
 
     /**
-     * @return string
+     * @return array
      */
     private function getVulnerabilityMessage()
     {
-        return <<<'EOT'
+        return explode("\n", <<<'EOT'
 Security Report
 ===============
 
@@ -147,6 +147,7 @@ CVE-2012-6431: Routes behind a firewall are accessible even when not logged in
 
 * Disclaimer: This checker can only detect vulnerabilities that are referenced
               in the SensioLabs security advisories database.
-EOT;
+EOT
+        );
     }
 }
