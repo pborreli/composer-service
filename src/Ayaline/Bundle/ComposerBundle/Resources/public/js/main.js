@@ -82,6 +82,7 @@ $(document).ready(function() {
 
         channel.bind('pusher:subscription_succeeded', function() {
             button.removeClass('disabled');
+            button.removeAttr('disabled');
         });
     });
 
