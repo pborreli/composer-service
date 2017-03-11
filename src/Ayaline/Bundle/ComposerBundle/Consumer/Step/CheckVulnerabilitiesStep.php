@@ -49,7 +49,7 @@ class CheckVulnerabilitiesStep extends AbstractStep
         $vulnerabilityCount = $this->securityChecker->getLastVulnerabilityCount();
         if ($vulnerabilityCount > 0) {
             $this->triggerStepError($event, array('message' => 'Vulnerability found : '.$vulnerabilityCount));
-            $this->triggerVulnerabilities($event, array('message' => implode(PHP_EOL, array_map('trim', $alerts))));
+            $this->triggerVulnerabilities($event, array('message' => json_encode($alerts)));
         }
 
         return 0;

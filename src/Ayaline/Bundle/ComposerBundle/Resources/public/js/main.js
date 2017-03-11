@@ -71,7 +71,7 @@ $(document).ready(function() {
         });
 
         channel.bind('consumer:vulnerabilities', function(data) {
-            addLogs('vulnerabilities', data);
+            addVuln('vulnerabilities', data);
         });
 
         channel.bind('pusher:subscription_error', function(status) {
@@ -107,6 +107,25 @@ $(document).ready(function() {
 
     function addLogs(id, data) {
         var content = '<p>' + data.message.split(/\r?\n/).join('</p><p>') + '</p>';
+        $('#log-' + id).html(content);
+        $('.nav-tabs a[href=#' + id + ']').parent().removeClass('hide');
+    }
+
+    function addVuln(id, data) {
+        var vulns = jQuery.parseJSON(data.message);
+
+        var content = '<p>';
+        $.each(vulns, function(name, vuln) {
+
+            content +=  '<ul><li><h4>'+ name + ' ('+ vuln.version + ') </h4>';
+            console.log(name);
+            $.each(vuln.advisories, function(yaml, advisory) {
+                content +=  '<ul><li><a href="'+advisory.link+'">' + advisory.title + ' ' + advisory.cve +'</a></li></ul>';
+            });
+            content +=  '</li></ul>';
+        });
+
+        content +=  '</p>';
         $('#log-' + id).html(content);
         $('.nav-tabs a[href=#' + id + ']').parent().removeClass('hide');
     }
