@@ -45,7 +45,7 @@ class CheckVulnerabilitiesStepSpec extends ObjectBehavior
             array('message' => 'Checking vulnerability')
         )->shouldBeCalled();
 
-        $securityChecker->check(sys_get_temp_dir().'/composer_dir/composer.lock', 'text')
+        $securityChecker->check(sys_get_temp_dir().'/composer_dir/composer.lock')
             ->shouldBeCalled();
         $securityChecker->getLastVulnerabilityCount()->shouldBeCalled()->willReturn(0);
 
@@ -67,7 +67,7 @@ class CheckVulnerabilitiesStepSpec extends ObjectBehavior
             array('message' => 'Checking vulnerability')
         )->shouldBeCalled();
 
-        $securityChecker->check(sys_get_temp_dir().'/composer_dir/composer.lock', 'text')
+        $securityChecker->check(sys_get_temp_dir().'/composer_dir/composer.lock')
             ->shouldBeCalled()->willThrow(new \RuntimeException('Error!'));
 
         $pusher->trigger(
@@ -95,7 +95,7 @@ class CheckVulnerabilitiesStepSpec extends ObjectBehavior
         )->shouldBeCalled();
 
         $securityChecker
-            ->check(sys_get_temp_dir().'/composer_dir/composer.lock', 'text')
+            ->check(sys_get_temp_dir().'/composer_dir/composer.lock')
             ->shouldBeCalled()->willReturn($this->getVulnerabilityMessage());
 
         $securityChecker->getLastVulnerabilityCount()->shouldBeCalled()->willReturn(1);

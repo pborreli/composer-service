@@ -39,7 +39,7 @@ class CheckVulnerabilitiesStep extends AbstractStep
         $this->triggerNewStep($event, array('message' => 'Checking vulnerability'));
 
         try {
-            $alerts = $this->securityChecker->check($this->workingTempPath.'/'.$directory.'/composer.lock', 'text');
+            $alerts = $this->securityChecker->check($this->workingTempPath.'/'.$directory.'/composer.lock');
         } catch (\RuntimeException $e) {
             $this->triggerError($event, array('message' => $e->getMessage()));
 
