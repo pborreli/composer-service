@@ -1,0 +1,13 @@
+tests:
+    "Freaking fast":
+        path: "/.*"                               # only apply the assertions for the homepage
+        assertions:
+            - "metrics.sql.queries.count == 0"  # no SQL statements executed
+            - "main.peak_memory < 5mb"          # memory does not exceed 5mb
+            - "metrics.output.network_out < 100kb"  # the response size is less than 100kb
+            - "main.wall_time < 100ms"        # wall clock time is less than 100ms
+    "Pages should not become slower":
+        path: "/.*"
+        assertions:
+            - "percent(main.wall_time) < 10%"       # time does not increase by more than 10%
+            - "diff(metrics.sql.queries.count) < 2" # less than 2 additional SQL statements
