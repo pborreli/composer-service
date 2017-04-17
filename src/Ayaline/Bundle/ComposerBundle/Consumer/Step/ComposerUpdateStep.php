@@ -23,7 +23,7 @@ class ComposerUpdateStep extends AbstractStep
      */
     public function execute(ConsumerEvent $event, $directory)
     {
-        $this->triggerNewStep($event, array('message' => './composer update'));
+        $this->triggerNewStep($event, ['message' => './composer update']);
 
         $output = null;
         $workingDirectory = $this->workingTempPath.'/'.$directory;
@@ -37,20 +37,20 @@ class ComposerUpdateStep extends AbstractStep
         $process = $this->runProcess($commandLine, $workingDirectory, $output);
 
         if (!$process->isSuccessful()) {
-            $this->triggerError($event, array('message' => nl2br($output)));
-            $this->triggerStepError($event, array('message' => 'Composer failed'));
+            $this->triggerError($event, ['message' => nl2br($output)]);
+            $this->triggerStepError($event, ['message' => 'Composer failed']);
 
             return 1;
         }
 
         if (!is_dir($this->workingTempPath.'/'.$directory.'/vendor')
             || !is_file($this->workingTempPath.'/'.$directory.'/composer.lock')) {
-            $this->triggerStepError($event, array('message' => 'Fatal error during composer update'));
+            $this->triggerStepError($event, ['message' => 'Fatal error during composer update']);
 
             return 1;
         }
 
-        $this->triggerComposerOutput($event, array('message' => $process->getOutput()));
+        $this->triggerComposerOutput($event, ['message' => $process->getOutput()]);
 
         return 0;
     }

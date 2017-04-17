@@ -34,8 +34,8 @@ class ComposerJsonValidator extends ConstraintValidator
             unlink($tempFile);
         } catch (\Exception $exception) {
             unlink($tempFile);
-            $from = array($tempFile);
-            $to = array('composer.json');
+            $from = [$tempFile];
+            $to = ['composer.json'];
             $this->context->addViolation(str_replace($from, $to, $exception->getMessage()));
         }
     }

@@ -36,20 +36,20 @@ class CheckVulnerabilitiesStep extends AbstractStep
      */
     public function execute(ConsumerEvent $event, $directory)
     {
-        $this->triggerNewStep($event, array('message' => 'Checking vulnerability'));
+        $this->triggerNewStep($event, ['message' => 'Checking vulnerability']);
 
         try {
             $alerts = $this->securityChecker->check($this->workingTempPath.'/'.$directory.'/composer.lock');
         } catch (\RuntimeException $e) {
-            $this->triggerError($event, array('message' => $e->getMessage()));
+            $this->triggerError($event, ['message' => $e->getMessage()]);
 
             return 1;
         }
 
         $vulnerabilityCount = $this->securityChecker->getLastVulnerabilityCount();
         if ($vulnerabilityCount > 0) {
-            $this->triggerStepError($event, array('message' => 'Vulnerability found : '.$vulnerabilityCount));
-            $this->triggerVulnerabilities($event, array('message' => json_encode($alerts)));
+            $this->triggerStepError($event, ['message' => 'Vulnerability found : '.$vulnerabilityCount]);
+            $this->triggerVulnerabilities($event, ['message' => json_encode($alerts)]);
         }
 
         return 0;

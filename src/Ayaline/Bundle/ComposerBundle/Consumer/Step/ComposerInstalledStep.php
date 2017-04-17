@@ -28,7 +28,7 @@ class ComposerInstalledStep extends AbstractStep
 
         $process = $this->runProcess(sprintf('%s show --installed', $this->composerBinPath), $workingDirectory, $output);
         if ($process->isSuccessful()) {
-            $this->triggerComposerInstalled($event, array('message' => $process->getOutput()));
+            $this->triggerComposerInstalled($event, ['message' => $process->getOutput()]);
         }
 
         return 0;

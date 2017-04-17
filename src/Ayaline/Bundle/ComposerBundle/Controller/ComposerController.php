@@ -58,7 +58,7 @@ class ComposerController
     {
         return $this->templating->renderResponse(
             'AyalineComposerBundle:Composer:index.html.twig',
-            array('form' => $this->composerForm->createView())
+            ['form' => $this->composerForm->createView()]
         );
     }
 
@@ -73,20 +73,19 @@ class ComposerController
 
         if ($this->composerForm->isValid()) {
             $data = $this->composerForm->getData();
-            $this->sonataNotificationsBackend->createAndPublish('upload.composer', array(
-                'body' => $data['body'],
-                'channelName' => $request->getSession()->get('channelName'),
+            $this->sonataNotificationsBackend->createAndPublish('upload.composer', [
+                'body'               => $data['body'],
+                'channelName'        => $request->getSession()->get('channelName'),
                 'hasDevDependencies' => $data['hasDevDependencies'],
-            ));
+            ]);
 
-            return new JsonResponse(array('status' => 'ok'));
+            return new JsonResponse(['status' => 'ok']);
         }
 
         $errors = array_map(function (FormError $error) {
             return $error->getMessage();
-
         }, $this->composerForm->get('body')->getErrors());
 
-        return new JsonResponse(array('status' => 'ko', 'message' => $errors));
+        return new JsonResponse(['status' => 'ko', 'message' => $errors]);
     }
 }
