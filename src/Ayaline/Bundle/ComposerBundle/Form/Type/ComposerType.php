@@ -39,19 +39,19 @@ DCB;
             ->add(
                 'body',
                 TextareaType::class,
-                array(
-                    'attr' => array(
-                        'class' => 'form-control',
-                        'rows' => 15,
+                [
+                    'attr' => [
+                        'class'      => 'form-control',
+                        'rows'       => 15,
                         'spellcheck' => false,
-                    ),
-                    'data' => $this->defaultComposerBody,
-                    'constraints' => array(
+                    ],
+                    'data'        => $this->defaultComposerBody,
+                    'constraints' => [
                         new ComposerJson(),
-                    ),
-                )
+                    ],
+                ]
             )
-            ->add('hasDevDependencies', CheckboxType::class, array('required' => true));
+            ->add('hasDevDependencies', CheckboxType::class, ['required' => true]);
     }
 
     /**

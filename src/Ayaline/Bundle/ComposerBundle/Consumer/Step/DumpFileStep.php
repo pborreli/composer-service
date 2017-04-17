@@ -23,7 +23,7 @@ class DumpFileStep extends AbstractStep
      */
     public function execute(ConsumerEvent $event, $directory)
     {
-        $this->triggerNewStep($event, array('message' => 'Starting async job'));
+        $this->triggerNewStep($event, ['message' => 'Starting async job']);
 
         $this->filesystem->mkdir($this->workingTempPath.'/'.$directory);
         $this->filesystem->dumpFile(

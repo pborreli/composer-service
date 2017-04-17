@@ -42,7 +42,7 @@ class CheckVulnerabilitiesStepSpec extends ObjectBehavior
         $pusher->trigger(
             ['new_channel'],
             'consumer:new-step',
-            array('message' => 'Checking vulnerability')
+            ['message' => 'Checking vulnerability']
         )->shouldBeCalled();
 
         $securityChecker->check(sys_get_temp_dir().'/composer_dir/composer.lock')
@@ -64,7 +64,7 @@ class CheckVulnerabilitiesStepSpec extends ObjectBehavior
         $pusher->trigger(
             ['new_channel'],
             'consumer:new-step',
-            array('message' => 'Checking vulnerability')
+            ['message' => 'Checking vulnerability']
         )->shouldBeCalled();
 
         $securityChecker->check(sys_get_temp_dir().'/composer_dir/composer.lock')
@@ -73,7 +73,7 @@ class CheckVulnerabilitiesStepSpec extends ObjectBehavior
         $pusher->trigger(
             ['new_channel'],
             'consumer:error',
-            array('message' => 'Error!')
+            ['message' => 'Error!']
         )->shouldBeCalled();
 
         $this->execute($event, 'composer_dir')->shouldReturn(1);
@@ -91,7 +91,7 @@ class CheckVulnerabilitiesStepSpec extends ObjectBehavior
         $pusher->trigger(
             ['new_channel'],
             'consumer:new-step',
-            array('message' => 'Checking vulnerability')
+            ['message' => 'Checking vulnerability']
         )->shouldBeCalled();
 
         $securityChecker
@@ -103,17 +103,17 @@ class CheckVulnerabilitiesStepSpec extends ObjectBehavior
         $pusher->trigger(
             ['new_channel'],
             'consumer:step-error',
-            array(
+            [
                 'message' => 'Vulnerability found : 1',
-            )
+            ]
         )->shouldBeCalled();
 
         $pusher->trigger(
             ['new_channel'],
             'consumer:vulnerabilities',
-            array(
+            [
                 'message' => $this->getVulnerabilityMessage(),
-            )
+            ]
         )->shouldBeCalled();
 
         $this->execute($event, 'composer_dir')->shouldReturn(0);

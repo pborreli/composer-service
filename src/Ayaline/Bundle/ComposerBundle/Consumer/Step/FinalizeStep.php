@@ -25,7 +25,7 @@ class FinalizeStep extends AbstractStep
     {
         $sha1LockFile = sha1_file($this->workingTempPath.'/'.$directory.'/composer.lock');
 
-        $this->triggerSuccess($event, array('link' => '/assets/'.$sha1LockFile.'/vendor.zip'));
+        $this->triggerSuccess($event, ['link' => '/assets/'.$sha1LockFile.'/vendor.zip']);
         $this->filesystem->remove($this->workingTempPath.'/'.$directory);
 
         return 0;

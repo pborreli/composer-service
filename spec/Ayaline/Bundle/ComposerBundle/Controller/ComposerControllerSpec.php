@@ -42,7 +42,7 @@ class ComposerControllerSpec extends ObjectBehavior
 
         $templating->renderResponse(
             'AyalineComposerBundle:Composer:index.html.twig',
-            array('form' => $formView)
+            ['form' => $formView]
         )->shouldBeCalled()->willReturn($response);
 
         $this->indexAction()->shouldReturn($response);
@@ -58,11 +58,11 @@ class ComposerControllerSpec extends ObjectBehavior
         $composerForm->isValid()->shouldBeCalled()->willReturn(false);
 
         $composerForm->get('body')->shouldBeCalled()->willReturn($composerForm);
-        $composerForm->getErrors()->shouldBeCalled()->willReturn(array($composerFormError));
+        $composerForm->getErrors()->shouldBeCalled()->willReturn([$composerFormError]);
         $composerFormError->getMessage()->shouldBeCalled()->willReturn('Please provide a composer.json');
 
         $this->uploadComposerAction($request)->shouldBeJsonResponse(
-            array('status' => 'ko', 'message' => array('Please provide a composer.json'))
+            ['status' => 'ko', 'message' => ['Please provide a composer.json']]
         );
     }
 
@@ -82,28 +82,28 @@ EOT;
 
         $composerForm->handleRequest($request)->shouldBeCalled();
         $composerForm->isValid()->shouldBeCalled()->willReturn(true);
-        $composerForm->getData()->shouldBeCalled()->willReturn(array(
-            'body' => $composerJsonContent,
+        $composerForm->getData()->shouldBeCalled()->willReturn([
+            'body'               => $composerJsonContent,
             'hasDevDependencies' => false,
-        ));
+        ]);
 
         $request->getSession()->shouldBeCalled()->willReturn($session);
         $session->get('channelName')->shouldBeCalled()->willReturn('example_channel_name');
 
-        $sonataNotificationsBackend->createAndPublish('upload.composer', array(
-            'body' => $composerJsonContent,
-            'channelName' => 'example_channel_name',
+        $sonataNotificationsBackend->createAndPublish('upload.composer', [
+            'body'               => $composerJsonContent,
+            'channelName'        => 'example_channel_name',
             'hasDevDependencies' => false,
-        ))->shouldBeCalled();
+        ])->shouldBeCalled();
 
         $this->uploadComposerAction($request)->shouldBeJsonResponse(
-            array('status' => 'ok')
+            ['status' => 'ok']
         );
     }
 
     public function getMatchers()
     {
-        return array(
+        return [
             'beJsonResponse' => function ($response, $data) {
                 if (!$response instanceof JsonResponse) {
                     return false;
@@ -114,6 +114,6 @@ EOT;
                     JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT
                 );
             },
-        );
+        ];
     }
 }

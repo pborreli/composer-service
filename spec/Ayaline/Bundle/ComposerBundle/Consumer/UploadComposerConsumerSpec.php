@@ -20,7 +20,7 @@ class UploadComposerConsumerSpec extends ObjectBehavior
 {
     public function it_is_consumer()
     {
-        $this->beConstructedWith(array());
+        $this->beConstructedWith([]);
         $this->shouldBeAnInstanceOf('Sonata\NotificationBundle\Consumer\ConsumerInterface');
     }
 
@@ -29,9 +29,9 @@ class UploadComposerConsumerSpec extends ObjectBehavior
         StepInterface $step1,
         StepInterface $step2
     ) {
-        $this->beConstructedWith(array(
+        $this->beConstructedWith([
             $step1, $step2,
-        ));
+        ]);
 
         $step1->execute($event, Argument::type('string'))->shouldBeCalled()->willReturn(0);
         $step2->execute($event, Argument::type('string'))->shouldBeCalled()->willReturn(0);
@@ -44,9 +44,9 @@ class UploadComposerConsumerSpec extends ObjectBehavior
         StepInterface $step1,
         StepInterface $step2
     ) {
-        $this->beConstructedWith(array(
+        $this->beConstructedWith([
             $step1, $step2,
-        ));
+        ]);
 
         $step1->execute($event, Argument::type('string'))->shouldBeCalled()->willReturn(5);
         $step2->execute(Argument::any(), Argument::any())->shouldNotBeCalled();
