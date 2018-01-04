@@ -1,6 +1,6 @@
-#Composer as a service [![SensioLabsInsight](https://insight.sensiolabs.com/projects/20408423-f871-4d67-a87c-8967bedd6ef7/small.png)](https://insight.sensiolabs.com/projects/20408423-f871-4d67-a87c-8967bedd6ef7)
+# Composer as a service [![SensioLabsInsight](https://insight.sensiolabs.com/projects/20408423-f871-4d67-a87c-8967bedd6ef7/small.png)](https://insight.sensiolabs.com/projects/20408423-f871-4d67-a87c-8967bedd6ef7)
 
-## What is it ?
+## What is it?
 
 Originally the idea came from @pgodel
 
