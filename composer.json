@@ -37,8 +37,6 @@
         "laupifrpar/pusher-bundle": "~1.2",
 
         "guzzle/guzzle": "~3.5",
-
-        "sensiolabs/security-checker": "dev-master",
         "sensio/generator-bundle":           "~3.0",
         "evolution7/bugsnag-bundle": "^2.0"
     },
