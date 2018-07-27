@@ -31,7 +31,7 @@
         "composer/composer": "^1.0",
         "liip/monitor-bundle": "^2.2",
         "php-amqplib/php-amqplib": "~2.5",
-        "nelmio/security-bundle": "~1.4",
+        "nelmio/security-bundle": "~2.5",
         "sonata-project/notification-bundle": "^3.5",
 
         "laupifrpar/pusher-bundle": "~1.2",
