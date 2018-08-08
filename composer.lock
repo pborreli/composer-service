@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8ea4f6f86b23243a663d6da02bcdcbec",
+    "content-hash": "4e41d9401d60c18e59a2aadfdc2f89d2",
     "packages": [
         {
             "name": "bugsnag/bugsnag",
@@ -1647,21 +1647,21 @@
         },
         {
             "name": "laupifrpar/pusher-bundle",
-            "version": "1.5.2",
+            "version": "2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laupiFrpar/LopiPusherBundle.git",
-                "reference": "3c6254758bb1772a7e3446de131f19fe477bd20a"
+                "reference": "07c86dae5304dc555617011ed2d312a4e9f331b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laupiFrpar/LopiPusherBundle/zipball/3c6254758bb1772a7e3446de131f19fe477bd20a",
-                "reference": "3c6254758bb1772a7e3446de131f19fe477bd20a",
+                "url": "https://api.github.com/repos/laupiFrpar/LopiPusherBundle/zipball/07c86dae5304dc555617011ed2d312a4e9f331b4",
+                "reference": "07c86dae5304dc555617011ed2d312a4e9f331b4",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.6",
-                "pusher/pusher-php-server": "^2.2.1"
+                "pusher/pusher-php-server": "^3.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "5.*",
@@ -1698,7 +1698,7 @@
                 "pusher",
                 "symfony"
             ],
-            "time": "2017-08-09T13:24:33+00:00"
+            "time": "2018-04-13T22:50:32+00:00"
         },
         {
             "name": "liip/monitor-bundle",
@@ -2087,47 +2087,56 @@
         },
         {
             "name": "pusher/pusher-php-server",
-            "version": "2.6.4",
+            "version": "v3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pusher/pusher-http-php.git",
-                "reference": "2cf2ba85e7ce3250468a1c42ab7c948a7d43839d"
+                "reference": "d9260b2d11e4ad45a9f1c95269b18e16b2518447"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pusher/pusher-http-php/zipball/2cf2ba85e7ce3250468a1c42ab7c948a7d43839d",
-                "reference": "2cf2ba85e7ce3250468a1c42ab7c948a7d43839d",
+                "url": "https://api.github.com/repos/pusher/pusher-http-php/zipball/d9260b2d11e4ad45a9f1c95269b18e16b2518447",
+                "reference": "d9260b2d11e4ad45a9f1c95269b18e16b2518447",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
-                "php": ">=5.2"
+                "php": "^5.4 || ^7.0",
+                "psr/log": "^1.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4"
+                "phpunit/phpunit": "^4.8 || ^5.7"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
             "autoload": {
-                "classmap": [
-                    "lib/"
-                ]
+                "psr-4": {
+                    "Pusher\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "description": "Library for interacting with the Pusher REST API",
-            "homepage": "https://github.com/pusher/pusher-php-server",
             "keywords": [
                 "events",
+                "messaging",
                 "php-pusher-server",
                 "publish",
+                "push",
                 "pusher",
+                "real time",
+                "real-time",
                 "realtime",
                 "rest",
                 "trigger"
             ],
-            "time": "2017-06-06T16:41:17+00:00"
+            "time": "2018-07-13T13:24:54+00:00"
         },
         {
             "name": "seld/cli-prompt",
