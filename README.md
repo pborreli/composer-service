@@ -18,7 +18,7 @@ rabbitmq-server
 ```bash
 composer create-project pborreli/composer-service -sdev
 cd composer-service
-php -S localhost:9090 -t web &
+php -S 0.0.0.0:9090 -t web &
 rabbitmq-server &
 php app/console sonata:notification:start
 ```
