@@ -34,7 +34,7 @@
         "nelmio/security-bundle": "~2.5",
         "sonata-project/notification-bundle": "^3.5",
 
-        "laupifrpar/pusher-bundle": "~1.2",
+        "laupifrpar/pusher-bundle": "~3.0",
 
         "guzzle/guzzle": "~3.5",
         "sensio/generator-bundle":           "~3.0",
