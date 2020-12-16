@@ -28,7 +28,7 @@
         "sensio/framework-extra-bundle": "*",
 
         "incenteev/composer-parameter-handler": "~2.0",
-        "composer/composer": "^1.0",
+        "composer/composer": "^2.0",
         "liip/monitor-bundle": "^2.2",
         "php-amqplib/php-amqplib": "~2.5",
         "nelmio/security-bundle": "~2.5",
